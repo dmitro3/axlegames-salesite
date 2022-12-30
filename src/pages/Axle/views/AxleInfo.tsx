@@ -30,8 +30,8 @@ declare global {
 }
 
 const AxleInfo = () => {
-  const [bnb, setBnb] = useState<any>("");
-  const [axle, setAxle] = useState<any>("");
+  const [bnb, setBnb] = useState<any>();
+  const [axle, setAxle] = useState<any>();
   const [hasReferal, setHasReferral] = useState(false);
   const [address, setAddress] = useState<string>("");
 
@@ -207,26 +207,33 @@ const AxleInfo = () => {
     {
       name: "Name",
       value: "Axle Games",
+      token: false,
     },
     {
       name: "Ticker",
       value: "$AXLE",
+      token: false,
     },
     {
       name: "Total supply",
       value: "500 million",
+      token: false,
     },
     {
       name: "Type",
       value: "BEP-20",
+      token: false,
     },
     {
       name: "Sale",
       value: "200 million",
+      token: false,
     },
     {
       name: "Token Address",
       value: "0x942...f2E8A",
+      tokenValue: TOKEN_CONTRACT_ADDRESS,
+      token: true,
     },
   ];
 
@@ -305,7 +312,13 @@ const AxleInfo = () => {
             <Divider my={4} />
             <Flex my={4} rowGap={".5rem"} direction={"column"}>
               {token.map((t, i) => (
-                <Tag key={i} name={t.name} value={t.value} />
+                <Tag
+                  key={i}
+                  tokenValue={t.tokenValue}
+                  token={t.token}
+                  name={t.name}
+                  value={t.value}
+                />
               ))}
             </Flex>
           </Flex>
