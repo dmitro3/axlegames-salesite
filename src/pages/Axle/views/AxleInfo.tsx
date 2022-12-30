@@ -237,7 +237,7 @@ const AxleInfo = () => {
         flexDirection={{ base: "column", md: "row" }}
         display={"flex"}
         justifyContent="space-between"
-        mt={{ base: "8", sm: 0 }}
+        mt={{ base: "10" }}
       >
         <Text
           fontFamily={`'Russo One', sans-serif`}
@@ -414,7 +414,7 @@ const AxleInfo = () => {
                     color={brandingColors.primaryTwoTextColor}
                   >{`you will receive ${axle * 0.25} bonus tokens`}</Text>
                 ) : null}
-                <Flex justifyContent={"center"}>
+                <Flex mt={4} justifyContent={"center"}>
                   {address === "" ? (
                     <NeuButton
                       bg={"#A34400"}
