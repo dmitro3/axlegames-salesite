@@ -8,6 +8,7 @@ interface Props {
   balance: any;
   isLoading: boolean;
   setOpenWallet: Function;
+  disconnect: Function;
 }
 
 const Wallet = (props: Props) => {
@@ -57,6 +58,7 @@ const Wallet = (props: Props) => {
               color={brandingColors.secondaryTextColor}
               mt={"1"}
               width={"100%"}
+              onClick={() => props.disconnect()}
             >
               Disconnect
             </Button>

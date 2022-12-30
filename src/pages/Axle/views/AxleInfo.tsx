@@ -54,9 +54,14 @@ const AxleInfo = () => {
     }
   });
 
-  const { activateBrowserWallet, isLoading } = useEthers();
+  const { activateBrowserWallet, isLoading, deactivate } = useEthers();
   const { chainId } = useEthers();
   const etherBalance = useEtherBalance(address);
+
+  const disconnect = () => {
+    setAddress("");
+    deactivate();
+  };
 
   function onBnbChange(e: any) {
     const bnb = Number(e.target.value);
@@ -243,6 +248,7 @@ const AxleInfo = () => {
         </Text>
         <Wallet
           address={address}
+          disconnect={disconnect}
           balance={balance}
           connectWallet={connectWallet}
           isLoading={isLoading}
