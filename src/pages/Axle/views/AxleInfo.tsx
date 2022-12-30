@@ -229,81 +229,95 @@ const AxleInfo = () => {
   return (
     <Box fontFamily={`'Russo One', sans-serif`}>
       <Box display={"flex"} justifyContent="flex-end">
-        <Box
-          position="relative"
-          display={"flex"}
-          m={3}
-          bg={brandingColors.fgColor}
-          borderRadius="md"
-          justifyContent={"center"}
-          alignItems="center"
-          columnGap={"1rem"}
-          p={4}
-          cursor={"pointer"}
-          onClick={() => setOpenWallet(!openWallet)}
-        >
-          {openWallet ? (
-            <Box
-              onClick={() => setOpenWallet(!openWallet)}
-              width={"100%"}
-              bottom={"-185%"}
-              zIndex={200}
-              bg={brandingColors.primaryTwoTextColor}
-              position="absolute"
-              display={"flex"}
-              flexDirection="column"
-              alignItems={"center"}
-              borderRadius="md"
-              justifyContent="center"
-              minH={"90px"}
-              p={1}
-            >
+        {address !== "" ? (
+          <Box
+            position="relative"
+            display={"flex"}
+            m={3}
+            bg={brandingColors.fgColor}
+            borderRadius="md"
+            justifyContent={"center"}
+            alignItems="center"
+            columnGap={"1rem"}
+            p={4}
+            cursor={"pointer"}
+            onClick={() => setOpenWallet(!openWallet)}
+          >
+            {openWallet ? (
               <Box
+                onClick={() => setOpenWallet(!openWallet)}
                 width={"100%"}
-                height="90px"
-                textAlign="center"
-                bg={brandingColors.fgColor}
-                borderRadius="md"
+                bottom={"-185%"}
+                zIndex={200}
+                bg={brandingColors.primaryTwoTextColor}
+                position="absolute"
                 display={"flex"}
+                flexDirection="column"
+                alignItems={"center"}
+                borderRadius="md"
                 justifyContent="center"
-                flexDirection={"column"}
+                minH={"90px"}
+                p={1}
               >
-                <Text color={brandingColors.primaryTwoTextColor}>
-                  Your wallet balance
-                </Text>
-                <Text fontSize={"3xl"} color={brandingColors.primaryTextColor}>
-                  {balance} BNB{" "}
-                </Text>
-              </Box>
-              <Button mt={"1"} width={"100%"}>
-                Disconnect
-              </Button>
-            </Box>
-          ) : null}
-          <Box bg={brandingColors.bgColor} p={2} borderRadius="3xl">
-            <Image
-              height={"32px"}
-              width={"32px"}
-              src={`https://axlegames.s3.ap-south-1.amazonaws.com/bnb.png`}
-            />
-          </Box>
-          <Box>
-            <Text color={brandingColors.primaryTextColor}>
-              {!isLoading ? `${balance} BNB` : `...`}
-            </Text>
-            {address !== "" ? (
-              <Flex textAlign={"center"} direction={"column"}>
-                <Text
-                  fontSize={"sm"}
-                  color={brandingColors.primaryTwoTextColor}
+                <Box
+                  width={"100%"}
+                  height="90px"
+                  textAlign="center"
+                  bg={brandingColors.fgColor}
+                  borderRadius="md"
+                  display={"flex"}
+                  justifyContent="center"
+                  flexDirection={"column"}
                 >
-                  {address.substring(0, 6)}....
-                  {address.substring(address.length - 6, address.length)}
-                </Text>
-              </Flex>
+                  <Text color={brandingColors.primaryTwoTextColor}>
+                    Your wallet balance
+                  </Text>
+                  <Text
+                    fontSize={"3xl"}
+                    color={brandingColors.primaryTextColor}
+                  >
+                    {balance} BNB{" "}
+                  </Text>
+                </Box>
+                <Button mt={"1"} width={"100%"}>
+                  Disconnect
+                </Button>
+              </Box>
             ) : null}
+            <Box bg={brandingColors.bgColor} p={2} borderRadius="3xl">
+              <Image
+                height={"32px"}
+                width={"32px"}
+                src={`https://axlegames.s3.ap-south-1.amazonaws.com/bnb.png`}
+              />
+            </Box>
+            <Box>
+              <Text color={brandingColors.primaryTextColor}>
+                {!isLoading ? `${balance} BNB` : `...`}
+              </Text>
+              {address !== "" ? (
+                <Flex textAlign={"center"} direction={"column"}>
+                  <Text
+                    fontSize={"sm"}
+                    color={brandingColors.primaryTwoTextColor}
+                  >
+                    {address.substring(0, 6)}....
+                    {address.substring(address.length - 6, address.length)}
+                  </Text>
+                </Flex>
+              ) : null}
+            </Box>
           </Box>
-        </Box>
+        ) : (
+          <Box m={5}>
+            <NeuButton
+              bg={"#A34400"}
+              shadow={"#FF7C1F"}
+              onClick={connectWallet}
+              label="Connect Wallet"
+            ></NeuButton>
+          </Box>
+        )}
       </Box>
 
       <Flex
