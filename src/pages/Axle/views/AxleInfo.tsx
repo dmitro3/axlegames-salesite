@@ -300,9 +300,8 @@ const AxleInfo = () => {
           >
             <Text
               color={brandingColors.primaryTextColor}
-              fontSize={{ base: "xl", xl: "3xl" }}
+              fontSize={{ base: "xl", xl: "2xl" }}
               textAlign="center"
-              fontFamily={`'Russo One', sans-serif`}
             >
               Token Information
             </Text>
