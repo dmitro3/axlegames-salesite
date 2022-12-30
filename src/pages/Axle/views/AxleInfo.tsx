@@ -245,6 +245,7 @@ const AxleInfo = () => {
         flexDirection={{ base: "column", md: "row" }}
         display={"flex"}
         justifyContent="space-between"
+        mt={12}
       >
         <Image
           maxW="180px"
@@ -265,6 +266,7 @@ const AxleInfo = () => {
         templateColumns={{ base: "1fr", lg: "1fr 1fr" }}
         alignItems={"center"}
         borderRadius="xl"
+        mt={12}
       >
         <AxleDialog
           close={() => setSuccess(false)}
