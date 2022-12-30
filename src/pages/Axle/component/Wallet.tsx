@@ -19,7 +19,7 @@ const Wallet = (props: Props) => {
           <Box
             onClick={() => props.setOpenWallet(!props.openWallet)}
             width={"100%"}
-            bottom={"-218%"}
+            bottom={"-255%"}
             zIndex={200}
             bg={brandingColors.newHighlightColor}
             position="absolute"
@@ -44,7 +44,7 @@ const Wallet = (props: Props) => {
               <Text color={brandingColors.secondaryTextColor}>
                 Your wallet balance
               </Text>
-              <Text fontSize={"2xl"} color={brandingColors.secondaryTextColor}>
+              <Text fontSize={"xl"} color={brandingColors.secondaryTextColor}>
                 {props.balance} BNB{" "}
               </Text>
             </Box>
@@ -69,7 +69,7 @@ const Wallet = (props: Props) => {
   };
 
   return (
-    <Box>
+    <Box minW="64px">
       {props.address !== "" ? (
         <Box
           position="relative"
@@ -94,19 +94,18 @@ const Wallet = (props: Props) => {
           </Box>
 
           <Box pr={4}>
-            <Text fontSize={"xl"} color={brandingColors.secondaryTextColor}>
+            <Text fontSize={"md"} color={brandingColors.secondaryTextColor}>
               {!props.isLoading ? `${props.balance} BNB` : `...`}
             </Text>
             {props.address !== "" ? (
               <Flex
                 color={brandingColors.secondaryTextColor}
-                textAlign={"center"}
                 direction={"column"}
               >
-                <Text fontSize={"sm"}>
-                  {props.address.substring(0, 6)}....
+                <Text fontSize={"xs"}>
+                  {props.address.substring(0, 8)}....
                   {props.address.substring(
-                    props.address.length - 6,
+                    props.address.length - 8,
                     props.address.length
                   )}
                 </Text>

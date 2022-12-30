@@ -44,7 +44,11 @@ const Tag = (props: any) => {
         >
           <Text color={brandingColors.primaryTwoTextColor}>{props.name}</Text>
           <Flex alignItems="center" columnGap={"1rem"}>
-            <CopyIcon color={brandingColors.primaryTextColor} onClick={copy} />
+            <CopyIcon
+              cursor={"pointer"}
+              color={brandingColors.primaryTextColor}
+              onClick={copy}
+            />
             <Text color={brandingColors.secondaryTextColor}>{props.value}</Text>
           </Flex>
         </Flex>

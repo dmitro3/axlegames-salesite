@@ -9,6 +9,7 @@ import {
   FormControl,
   FormLabel,
   Grid,
+  Image,
   Input,
   Text,
   useToast,
@@ -198,7 +199,7 @@ const AxleInfo = () => {
 
   useEffect(() => {
     const b: number = Number(
-      Number(ethers.utils.formatEther(etherBalance || 0)).toFixed(2)
+      Number(ethers.utils.formatEther(etherBalance || 0))
     );
     setBalance(b);
   }, [address, etherBalance]);
@@ -246,13 +247,10 @@ const AxleInfo = () => {
         justifyContent="space-between"
         mt={{ base: "10" }}
       >
-        <Text
-          fontFamily={`'Russo One', sans-serif`}
-          fontSize={"5xl"}
-          color={brandingColors.primaryTextColor}
-        >
-          AxleGames
-        </Text>
+        <Image
+          maxW="180px"
+          src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/logo.png`}
+        />
         <Wallet
           address={address}
           disconnect={disconnect}
@@ -293,7 +291,8 @@ const AxleInfo = () => {
         >
           <Flex
             direction="column"
-            bg={brandingColors.fgColor}
+            bg={brandingColors.bgColor}
+            boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
             borderRadius="md"
             py={{ base: "8" }}
             px={{ base: "4" }}
@@ -335,17 +334,15 @@ const AxleInfo = () => {
           py={{ base: "8" }}
         >
           <Box
-            top={"2"}
+            top={"4"}
             left={"8%"}
-            bg={brandingColors.fgColor}
-            boxShadow="xl"
+            bg={brandingColors.bgColor}
+            boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
             pos={"absolute"}
             px={8}
             borderRadius="md"
           >
-            <Text fontFamily={`'Russo One', sans-serif`} fontSize={"3xl"}>
-              BUY $AXLE
-            </Text>
+            <Text fontSize={"2xl"}>Buy $AXLE</Text>
           </Box>
           <Flex
             display={success ? "none" : "flex"}
@@ -356,7 +353,8 @@ const AxleInfo = () => {
           >
             <Box
               width={"100%"}
-              bg={brandingColors.fgColor}
+              bg={brandingColors.bgColor}
+              boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
               p={{ base: 4, lg: 8 }}
               borderRadius={"2vh 4vw"}
               pt={8}
@@ -399,18 +397,17 @@ const AxleInfo = () => {
                     type={"number"}
                   ></Input>
                 </FormControl>
-                {!hasReferal ? (
-                  <Text onClick={() => setHasReferral(!hasReferal)}>
-                    Referral Address ?
-                  </Text>
-                ) : (
+                {!hasReferal ? null : (
                   <FormControl
                     display={"grid"}
                     gridTemplateColumns="1fr 4fr"
                     alignItems="center"
                     columnGap={"2rem"}
                   >
-                    <FormLabel fontWeight={"bold"}>Referral</FormLabel>
+                    <FormLabel fontWeight={"bold"}>
+                      <Text>Referral</Text>
+                      <Text fontSize={"xx-small"}>(Optional)</Text>
+                    </FormLabel>
                     <Input
                       fontWeight={"bold"}
                       placeholder="Referral Address"
@@ -418,12 +415,32 @@ const AxleInfo = () => {
                     ></Input>
                   </FormControl>
                 )}
-                {address !== "" && axle !== undefined ? (
-                  <Text
-                    color={brandingColors.primaryTwoTextColor}
-                  >{`you will receive ${axle * 0.25} bonus tokens`}</Text>
-                ) : null}
-                <Flex mt={4} justifyContent={"center"}>
+                <Text
+                  fontSize={"x-small"}
+                  textAlign={"center"}
+                  color={brandingColors.primaryTextColor}
+                >
+                  Min 0.1 BNB | Max 2 BNB
+                </Text>
+                <Box>
+                  {!hasReferal ? (
+                    <Text
+                      color={brandingColors.secondaryTextColor}
+                      fontSize="sm"
+                      cursor={"pointer"}
+                      onClick={() => setHasReferral(!hasReferal)}
+                    >
+                      Has Referral Address?
+                    </Text>
+                  ) : null}
+                  {address !== "" && axle !== undefined ? (
+                    <Text
+                      fontSize={"sm"}
+                      color={brandingColors.secondaryTwoTextColor}
+                    >{`you will receive ${axle * 0.25} bonus tokens`}</Text>
+                  ) : null}
+                </Box>
+                <Flex justifyContent={"center"}>
                   {address === "" ? (
                     <NeuButton
                       bg={"#A34400"}
@@ -444,19 +461,19 @@ const AxleInfo = () => {
             </Box>
           </Flex>
 
-          <Box p={3} m={3} bg={brandingColors.fgColor} borderRadius="md">
-            <Flex
-              justifyContent={"space-evenly"}
-              flexDirection={"row"}
-              color={brandingColors.highLightColor}
+          <Box
+            p={3}
+            m={3}
+            bg={brandingColors.bgColor}
+            boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
+            borderRadius="md"
+          >
+            <Text
+              color={brandingColors.secondaryTextColor}
+              textAlign={"center"}
             >
-              <Flex columnGap={".5rem"} alignItems="center">
-                <Text color={brandingColors.primaryTextColor} fontSize={"3xl"}>
-                  {axleBalance}
-                </Text>
-                <Text>$AXLE in Wallet</Text>
-              </Flex>
-            </Flex>
+              {axleBalance} $AXLE in Wallet
+            </Text>
           </Box>
         </Box>
       </Grid>
