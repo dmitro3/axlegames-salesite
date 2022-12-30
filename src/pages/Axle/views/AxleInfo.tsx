@@ -245,7 +245,6 @@ const AxleInfo = () => {
         flexDirection={{ base: "column", md: "row" }}
         display={"flex"}
         justifyContent="space-between"
-        mt={{ base: "10" }}
       >
         <Image
           maxW="180px"
@@ -266,7 +265,6 @@ const AxleInfo = () => {
         templateColumns={{ base: "1fr", lg: "1fr 1fr" }}
         alignItems={"center"}
         borderRadius="xl"
-        mt={12}
       >
         <AxleDialog
           close={() => setSuccess(false)}
@@ -365,7 +363,6 @@ const AxleInfo = () => {
                 alignItems={"center"}
                 flexDirection="column"
                 rowGap={"1rem"}
-                mt={4}
               >
                 <FormControl
                   display={"grid"}
@@ -415,14 +412,14 @@ const AxleInfo = () => {
                     ></Input>
                   </FormControl>
                 )}
-                <Text
-                  fontSize={"x-small"}
-                  textAlign={"center"}
-                  color={brandingColors.primaryTextColor}
-                >
-                  Min 0.1 BNB | Max 2 BNB
-                </Text>
                 <Box>
+                  <Text
+                    fontSize={"x-small"}
+                    textAlign={"center"}
+                    color={brandingColors.primaryTextColor}
+                  >
+                    Min 0.1 BNB | Max 2 BNB
+                  </Text>
                   {!hasReferal ? (
                     <Text
                       color={brandingColors.secondaryTextColor}
@@ -440,23 +437,21 @@ const AxleInfo = () => {
                     >{`you will receive ${axle * 0.25} bonus tokens`}</Text>
                   ) : null}
                 </Box>
-                <Flex justifyContent={"center"}>
-                  {address === "" ? (
-                    <NeuButton
-                      bg={"#A34400"}
-                      shadow={"#FF7C1F"}
-                      onClick={connectWallet}
-                      label="Connect Wallet"
-                    ></NeuButton>
-                  ) : (
-                    <NeuButton
-                      bg={"#A34400"}
-                      shadow={"#FF7C1F"}
-                      onClick={buyAxle}
-                      label="Buy Axle"
-                    ></NeuButton>
-                  )}
-                </Flex>
+                {address === "" ? (
+                  <NeuButton
+                    bg={"#A34400"}
+                    shadow={"#FF7C1F"}
+                    onClick={connectWallet}
+                    label="Connect Wallet"
+                  ></NeuButton>
+                ) : (
+                  <NeuButton
+                    bg={"#A34400"}
+                    shadow={"#FF7C1F"}
+                    onClick={buyAxle}
+                    label="Buy Axle"
+                  ></NeuButton>
+                )}
               </Box>
             </Box>
           </Flex>
