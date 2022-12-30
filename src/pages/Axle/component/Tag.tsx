@@ -7,7 +7,7 @@ const Tag = (props: any) => {
       direction={"row"}
       justifyContent="space-between"
       alignItems={"center"}
-      columnGap={{ base: "3rem" }}
+      columnGap={{ base: "1rem" }}
       fontSize={{ xl: "md" }}
       boxShadow={`-2px 2px 1px ${brandingColors.primaryTwoTextColor}`}
       p={2}

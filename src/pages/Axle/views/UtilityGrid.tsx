@@ -33,8 +33,8 @@ const UtilityGrid = () => {
         fontWeight="bold"
         fontSize={"3xl"}
         color={brandingColors.primaryTextColor}
-        fontFamily={`'Russo One', sans-serif`}
         py={{ base: "8" }}
+        fontFamily={`'Russo One', sans-serif`}
       >
         Utilities
       </Text>
@@ -42,10 +42,9 @@ const UtilityGrid = () => {
         templateColumns={{ base: "1fr", "2xl": "1fr 1fr" }}
         justifyContent="center"
         alignItems={"center"}
-        width={{ md: "80%", xl: "70%" }}
-        margin={{ base: "4", md: "auto" }}
         rowGap="1rem"
         columnGap={"1rem"}
+        px={{ base: "4" }}
       >
         {data.map((d, i) => (
           <GridItem display={"flex"} justifyContent="center" key={i}>
@@ -56,7 +55,6 @@ const UtilityGrid = () => {
               borderRadius="md"
               shadow={"lg"}
               fontWeight="bold"
-              fontFamily={`'Russo One', sans-serif`}
               display={"flex"}
               flexDirection="row"
               alignItems={"center"}
@@ -64,7 +62,11 @@ const UtilityGrid = () => {
             >
               <Image width={{ base: "24" }} src={d.img} />
               <Flex direction={"column"}>
-                <Text fontSize={"xl"} color={brandingColors.primaryTextColor}>
+                <Text
+                  fontFamily={`'Russo One', sans-serif`}
+                  fontSize={"xl"}
+                  color={brandingColors.primaryTextColor}
+                >
                   {d.title}
                 </Text>
                 <Text

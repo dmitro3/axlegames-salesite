@@ -12,9 +12,6 @@ const WhitePaper = (props: any) => {
       color={brandingColors.secondaryTextColor}
       p={{ base: "4" }}
       fontWeight="bold"
-      width={{ base: "100%", md: "80%" }}
-      mx={{ base: "0", md: "auto" }}
-      fontFamily={`'Russo One', sans-serif`}
     >
       <Flex
         alignItems={"center"}
@@ -30,7 +27,11 @@ const WhitePaper = (props: any) => {
           />
         </Box>
         <Flex p={4} borderRadius="xl" rowGap={".5rem"} direction={"column"}>
-          <Text color={brandingColors.primaryTextColor} fontSize={"3xl"}>
+          <Text
+            fontFamily={`'Russo One', sans-serif`}
+            color={brandingColors.primaryTextColor}
+            fontSize={"3xl"}
+          >
             A well-designed Deflationary token model
           </Text>
           <Text>

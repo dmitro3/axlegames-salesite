@@ -15,10 +15,11 @@ const NeuButton = (props: Props) => {
 
   return (
     <Button
+      fontFamily={`'Russo One', sans-serif`}
       boxShadow={normalEffect}
       width={props.width || "auto"}
       bg={props.bg}
-      size={{ base: "sm", md: "md", lg: "lg" }}
+      size={{ base: "sm", md: "md" }}
       color={brandingColors.secondaryTextColor}
       onClick={() => props.onClick()}
       _hover={{

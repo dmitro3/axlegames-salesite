@@ -4,13 +4,11 @@ import { brandingColors } from "../../../config/brandingColors";
 import { useEtherBalance, useEthers } from "@usedapp/core";
 import {
   Box,
-  Button,
   Divider,
   Flex,
   FormControl,
   FormLabel,
   Grid,
-  Image,
   Input,
   Text,
   useToast,
@@ -23,6 +21,7 @@ import Tag from "../component/Tag";
 import NeuButton from "../component/NeuButton";
 import AxleDialog from "../dialog/AxleDialog";
 import TransactionSuccessDialog from "../dialog/TransactionSuccessDialog";
+import Wallet from "../component/Wallet";
 
 declare global {
   interface Window {
@@ -227,124 +226,36 @@ const AxleInfo = () => {
   ];
 
   return (
-    <Box fontFamily={`'Russo One', sans-serif`}>
-      <Box display={"flex"} justifyContent="flex-end">
-        {address !== "" ? (
-          <Box
-            position="relative"
-            display={"flex"}
-            m={3}
-            bg={brandingColors.fgColor}
-            borderRadius="md"
-            justifyContent={"center"}
-            alignItems="center"
-            columnGap={"1rem"}
-            p={4}
-            cursor={"pointer"}
-            onClick={() => setOpenWallet(!openWallet)}
-          >
-            {openWallet ? (
-              <Box
-                onClick={() => setOpenWallet(!openWallet)}
-                width={"100%"}
-                bottom={"-185%"}
-                zIndex={200}
-                bg={brandingColors.primaryTwoTextColor}
-                position="absolute"
-                display={"flex"}
-                flexDirection="column"
-                alignItems={"center"}
-                borderRadius="md"
-                justifyContent="center"
-                minH={"90px"}
-                p={1}
-              >
-                <Box
-                  width={"100%"}
-                  height="90px"
-                  textAlign="center"
-                  bg={brandingColors.fgColor}
-                  borderRadius="md"
-                  display={"flex"}
-                  justifyContent="center"
-                  flexDirection={"column"}
-                >
-                  <Text color={brandingColors.primaryTwoTextColor}>
-                    Your wallet balance
-                  </Text>
-                  <Text
-                    fontSize={"3xl"}
-                    color={brandingColors.primaryTextColor}
-                  >
-                    {balance} BNB{" "}
-                  </Text>
-                </Box>
-                <Button mt={"1"} width={"100%"}>
-                  Disconnect
-                </Button>
-              </Box>
-            ) : null}
-            <Box bg={brandingColors.bgColor} p={2} borderRadius="3xl">
-              <Image
-                height={"32px"}
-                width={"32px"}
-                src={`https://axlegames.s3.ap-south-1.amazonaws.com/bnb.png`}
-              />
-            </Box>
-            <Box>
-              <Text color={brandingColors.primaryTextColor}>
-                {!isLoading ? `${balance} BNB` : `...`}
-              </Text>
-              {address !== "" ? (
-                <Flex textAlign={"center"} direction={"column"}>
-                  <Text
-                    fontSize={"sm"}
-                    color={brandingColors.primaryTwoTextColor}
-                  >
-                    {address.substring(0, 6)}....
-                    {address.substring(address.length - 6, address.length)}
-                  </Text>
-                </Flex>
-              ) : null}
-            </Box>
-          </Box>
-        ) : (
-          <Box m={5}>
-            <NeuButton
-              bg={"#A34400"}
-              shadow={"#FF7C1F"}
-              onClick={connectWallet}
-              label="Connect Wallet"
-            ></NeuButton>
-          </Box>
-        )}
-      </Box>
-
-      <Flex
-        my={{ base: "4" }}
-        mb={{ base: "8" }}
-        direction={"column"}
-        textAlign={"center"}
-        fontWeight="bold"
+    <Box fontWeight={"bold"}>
+      <Box
+        alignItems={"center"}
+        flexDirection={{ base: "column", md: "row" }}
+        display={"flex"}
+        justifyContent="space-between"
+        mt={{ base: "8", sm: 0 }}
       >
         <Text
+          fontFamily={`'Russo One', sans-serif`}
+          fontSize={"5xl"}
           color={brandingColors.primaryTextColor}
-          fontSize={{ base: "xl", lg: "3xl" }}
         >
-          Introducing Axle Token
+          AxleGames
         </Text>
-        <Text
-          color={brandingColors.secondaryTextColor}
-          fontSize={{ base: "lg", lg: "xl" }}
-        >
-          A web3 Gaming token
-        </Text>
-      </Flex>
+        <Wallet
+          address={address}
+          balance={balance}
+          connectWallet={connectWallet}
+          isLoading={isLoading}
+          openWallet={openWallet}
+          setOpenWallet={setOpenWallet}
+        />
+      </Box>
       <Grid
+        columnGap={"5rem"}
         templateColumns={{ base: "1fr", lg: "1fr 1fr" }}
         alignItems={"center"}
         borderRadius="xl"
-        fontFamily={`'Russo One', sans-serif`}
+        mt={12}
       >
         <AxleDialog
           close={() => setSuccess(false)}
@@ -371,25 +282,20 @@ const AxleInfo = () => {
             direction="column"
             bg={brandingColors.fgColor}
             borderRadius="md"
-            p={{ base: "4" }}
-            pt={{ base: "3" }}
+            py={{ base: "8" }}
+            px={{ base: "4" }}
             fontWeight="bold"
             width="100%"
+            justifyContent="center"
           >
-            <Box
-              alignItems={"center"}
-              display={"flex"}
-              justifyContent="space-between"
+            <Text
+              color={brandingColors.primaryTextColor}
+              fontSize={{ base: "xl", xl: "3xl" }}
+              textAlign="center"
+              fontFamily={`'Russo One', sans-serif`}
             >
-              <Text
-                color={brandingColors.primaryTextColor}
-                fontSize={{ base: "xl", xl: "3xl" }}
-                textAlign="center"
-                fontFamily={`'Russo One', sans-serif`}
-              >
-                Token Information
-              </Text>
-            </Box>
+              Token Information
+            </Text>
             <Divider my={4} />
             <Flex my={4} rowGap={".5rem"} direction={"column"}>
               {token.map((t, i) => (
@@ -407,9 +313,10 @@ const AxleInfo = () => {
           color={brandingColors.primaryTextColor}
           p={4}
           pos="relative"
+          py={{ base: "8" }}
         >
           <Box
-            top={"0"}
+            top={"2"}
             left={"8%"}
             bg={brandingColors.fgColor}
             boxShadow="xl"
@@ -417,7 +324,9 @@ const AxleInfo = () => {
             px={8}
             borderRadius="md"
           >
-            <Text fontSize={"2xl"}>BUY $AXLE</Text>
+            <Text fontFamily={`'Russo One', sans-serif`} fontSize={"3xl"}>
+              BUY $AXLE
+            </Text>
           </Box>
           <Flex
             display={success ? "none" : "flex"}
@@ -431,6 +340,7 @@ const AxleInfo = () => {
               bg={brandingColors.fgColor}
               p={{ base: 4, lg: 8 }}
               borderRadius={"2vh 4vw"}
+              pt={8}
             >
               <Box
                 display={"flex"}
@@ -438,10 +348,17 @@ const AxleInfo = () => {
                 alignItems={"center"}
                 flexDirection="column"
                 rowGap={"1rem"}
+                mt={4}
               >
-                <FormControl>
-                  <FormLabel>BNB</FormLabel>
+                <FormControl
+                  display={"grid"}
+                  gridTemplateColumns="1fr 4fr"
+                  alignItems="center"
+                  columnGap={"2rem"}
+                >
+                  <FormLabel fontWeight={"bold"}>BNB</FormLabel>
                   <Input
+                    fontWeight={"bold"}
                     placeholder="value (BNB)"
                     onChange={onBnbChange}
                     max={1.99}
@@ -450,9 +367,15 @@ const AxleInfo = () => {
                     value={bnb}
                   ></Input>
                 </FormControl>
-                <FormControl>
-                  <FormLabel>AXLE</FormLabel>
+                <FormControl
+                  display={"grid"}
+                  gridTemplateColumns="1fr 4fr"
+                  alignItems="center"
+                  columnGap={"2rem"}
+                >
+                  <FormLabel fontWeight={"bold"}>AXLE</FormLabel>
                   <Input
+                    fontWeight={"bold"}
                     placeholder="value (AXLE)"
                     onChange={onAxleChange}
                     value={axle}
@@ -466,9 +389,18 @@ const AxleInfo = () => {
                     Referral Address ?
                   </Text>
                 ) : (
-                  <FormControl>
-                    <FormLabel>Referral</FormLabel>
-                    <Input placeholder="Referral Address" type={"text"}></Input>
+                  <FormControl
+                    display={"grid"}
+                    gridTemplateColumns="1fr 4fr"
+                    alignItems="center"
+                    columnGap={"2rem"}
+                  >
+                    <FormLabel fontWeight={"bold"}>Referral</FormLabel>
+                    <Input
+                      fontWeight={"bold"}
+                      placeholder="Referral Address"
+                      type={"text"}
+                    ></Input>
                   </FormControl>
                 )}
                 {address !== "" && axle !== undefined ? (
@@ -476,17 +408,6 @@ const AxleInfo = () => {
                     color={brandingColors.primaryTwoTextColor}
                   >{`you will receive ${axle * 0.25} bonus tokens`}</Text>
                 ) : null}
-                <Flex direction={"column"}>
-                  <Text
-                    fontWeight={"bold"}
-                    align="center"
-                    color={brandingColors.primaryTextColor}
-                    fontSize="md"
-                  >
-                    Min 0.1 BNB | Max 2 BNB
-                  </Text>
-                </Flex>
-
                 <Flex justifyContent={"center"}>
                   {address === "" ? (
                     <NeuButton
