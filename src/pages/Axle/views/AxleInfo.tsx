@@ -30,8 +30,8 @@ declare global {
 }
 
 const AxleInfo = () => {
-  const [bnb, setBnb] = useState<any>();
-  const [axle, setAxle] = useState<any>();
+  const [bnb, setBnb] = useState<any>("");
+  const [axle, setAxle] = useState<any>("");
   const [hasReferal, setHasReferral] = useState(false);
   const [address, setAddress] = useState<string>("");
 
@@ -65,14 +65,14 @@ const AxleInfo = () => {
 
   function onBnbChange(e: any) {
     const bnb = Number(e.target.value);
-    setBnb(bnb);
-    setAxle(bnb * 8000);
+    setBnb(bnb.toString());
+    setAxle((bnb * 8000).toString());
   }
 
   function onAxleChange(e: any) {
     const axle = Number(e.target.value);
-    setAxle(axle);
-    setBnb(axle / 8000);
+    setAxle(axle.toString());
+    setBnb((axle / 8000).toString());
   }
 
   useEffect(() => {
@@ -367,9 +367,7 @@ const AxleInfo = () => {
                     fontWeight={"bold"}
                     placeholder="value (BNB)"
                     onChange={onBnbChange}
-                    max={1.99}
-                    min={0.1}
-                    type={"text"}
+                    type={"number"}
                     value={bnb}
                   ></Input>
                 </FormControl>
@@ -385,9 +383,7 @@ const AxleInfo = () => {
                     placeholder="value (AXLE)"
                     onChange={onAxleChange}
                     value={axle}
-                    max={1.99}
-                    min={0.1}
-                    type={"text"}
+                    type={"number"}
                   ></Input>
                 </FormControl>
                 {!hasReferal ? (
