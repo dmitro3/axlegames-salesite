@@ -217,7 +217,7 @@ const AxleInfo = () => {
     },
     {
       name: "Total supply",
-      value: "500 million",
+      value: "1 billion",
       token: false,
     },
     {
@@ -226,15 +226,39 @@ const AxleInfo = () => {
       token: false,
     },
     {
-      name: "Sale",
-      value: "200 million",
-      token: false,
-    },
-    {
       name: "Token Address",
       value: "0x942...f2E8A",
       tokenValue: TOKEN_CONTRACT_ADDRESS,
       token: true,
+    },
+  ];
+
+  const sale = [
+    {
+      name: "Sale",
+      value: "600 million",
+      token: false,
+      tokenValue: TOKEN_CONTRACT_ADDRESS,
+    },
+    {
+      name: "Zeus Sale",
+      value: "15%",
+      token: false,
+    },
+    {
+      name: "Poseidon Sale",
+      value: "25%",
+      token: false,
+    },
+    {
+      name: "Hades Sale",
+      value: "10%",
+      token: false,
+    },
+    {
+      name: "Referral & Bonus",
+      value: "10%",
+      token: false,
     },
   ];
 
@@ -319,6 +343,27 @@ const AxleInfo = () => {
                 />
               ))}
             </Flex>
+
+            <Text
+              color={brandingColors.primaryTextColor}
+              fontSize={{ base: "xl", xl: "2xl" }}
+              textAlign="center"
+              mt={4}
+            >
+              Current Sale Information
+            </Text>
+            <Divider my={4} />
+            <Flex my={4} rowGap={".5rem"} direction={"column"}>
+              {sale.map((t, i) => (
+                <Tag
+                  key={i}
+                  tokenValue={t.tokenValue}
+                  token={t.token}
+                  name={t.name}
+                  value={t.value}
+                />
+              ))}
+            </Flex>
           </Flex>
         </Flex>
 
@@ -335,11 +380,11 @@ const AxleInfo = () => {
           <Box
             top={"4"}
             left={"8%"}
-            bg={brandingColors.bgColor}
             boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
             pos={"absolute"}
             px={8}
             borderRadius="md"
+            bg={brandingColors.bgColor}
           >
             <Text fontSize={"2xl"}>Buy $AXLE</Text>
           </Box>
@@ -372,13 +417,23 @@ const AxleInfo = () => {
                   columnGap={"2rem"}
                 >
                   <FormLabel fontWeight={"bold"}>BNB</FormLabel>
-                  <Input
-                    fontWeight={"bold"}
-                    placeholder="value (BNB)"
-                    onChange={onBnbChange}
-                    type={"number"}
-                    value={bnb}
-                  ></Input>
+                  <Box>
+                    <Text
+                      px={2}
+                      py={1}
+                      fontSize={"x-small"}
+                      color={brandingColors.primaryTextColor}
+                    >
+                      Min 0.1 BNB | Max 2 BNB
+                    </Text>
+                    <Input
+                      fontWeight={"bold"}
+                      placeholder="value (BNB)"
+                      onChange={onBnbChange}
+                      type={"number"}
+                      value={bnb}
+                    ></Input>
+                  </Box>
                 </FormControl>
                 <FormControl
                   display={"grid"}
@@ -414,13 +469,6 @@ const AxleInfo = () => {
                   </FormControl>
                 )}
                 <Box>
-                  <Text
-                    fontSize={"x-small"}
-                    textAlign={"center"}
-                    color={brandingColors.primaryTextColor}
-                  >
-                    Min 0.1 BNB | Max 2 BNB
-                  </Text>
                   {!hasReferal ? (
                     <Text
                       color={brandingColors.secondaryTextColor}
@@ -428,7 +476,7 @@ const AxleInfo = () => {
                       cursor={"pointer"}
                       onClick={() => setHasReferral(!hasReferal)}
                     >
-                      Has Referral Address?
+                      Have Referral Address?
                     </Text>
                   ) : null}
                   {address !== "" && axle !== undefined ? (

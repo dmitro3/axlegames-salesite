@@ -1,6 +1,7 @@
 import { ChakraProvider, theme, Flex, Box } from "@chakra-ui/react";
 import { brandingColors } from "./config/brandingColors";
 import AxleInfo from "./pages/Axle/views/AxleInfo";
+// import NFTs from "./pages/Axle/views/Nfts";
 import UtilityGrid from "./pages/Axle/views/UtilityGrid";
 import WhitePaper from "./pages/Axle/views/WhitePaper";
 
@@ -15,6 +16,7 @@ export const App = () => (
         margin="auto"
       >
         <AxleInfo />
+        {/* <NFTs /> */}
         <UtilityGrid />
         <WhitePaper />
       </Flex>
