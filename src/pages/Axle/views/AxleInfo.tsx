@@ -235,29 +235,23 @@ const AxleInfo = () => {
 
   const sale = [
     {
-      name: "Sale",
-      value: "600 million",
-      token: false,
+      name: "Zeus Sale",
+      value: "15%",
       tokenValue: TOKEN_CONTRACT_ADDRESS,
     },
     {
-      name: "Zeus Sale",
-      value: "15%",
+      name: "Sale Amount",
+      value: "200 million",
       token: false,
     },
     {
-      name: "Poseidon Sale",
+      name: "Bonus",
       value: "25%",
       token: false,
     },
     {
-      name: "Hades Sale",
-      value: "10%",
-      token: false,
-    },
-    {
-      name: "Referral & Bonus",
-      value: "10%",
+      name: "Referral",
+      value: "5%",
       token: false,
     },
   ];
@@ -315,7 +309,7 @@ const AxleInfo = () => {
         >
           <Flex
             direction="column"
-            bg={brandingColors.bgColor}
+            bg={brandingColors.fgColor}
             boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
             borderRadius="md"
             py={{ base: "8" }}
@@ -384,7 +378,7 @@ const AxleInfo = () => {
             pos={"absolute"}
             px={8}
             borderRadius="md"
-            bg={brandingColors.bgColor}
+            bg={brandingColors.fgColor}
           >
             <Text fontSize={"2xl"}>Buy $AXLE</Text>
           </Box>
@@ -397,7 +391,7 @@ const AxleInfo = () => {
           >
             <Box
               width={"100%"}
-              bg={brandingColors.bgColor}
+              bg={brandingColors.fgColor}
               boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
               p={{ base: 4, lg: 8 }}
               borderRadius={"2vh 4vw"}
@@ -412,16 +406,18 @@ const AxleInfo = () => {
               >
                 <FormControl
                   display={"grid"}
-                  gridTemplateColumns="1fr 4fr"
+                  gridTemplateColumns="1fr 6fr"
                   alignItems="center"
                   columnGap={"2rem"}
                 >
-                  <FormLabel fontWeight={"bold"}>BNB</FormLabel>
+                  <FormLabel p={0} m={0} fontWeight={"bold"}>
+                    BNB
+                  </FormLabel>
                   <Box>
                     <Text
                       px={2}
                       py={1}
-                      fontSize={"x-small"}
+                      fontSize={"small"}
                       color={brandingColors.primaryTextColor}
                     >
                       Min 0.1 BNB | Max 2 BNB
@@ -437,7 +433,7 @@ const AxleInfo = () => {
                 </FormControl>
                 <FormControl
                   display={"grid"}
-                  gridTemplateColumns="1fr 4fr"
+                  gridTemplateColumns="1fr 6fr"
                   alignItems="center"
                   columnGap={"2rem"}
                 >
@@ -453,9 +449,9 @@ const AxleInfo = () => {
                 {!hasReferal ? null : (
                   <FormControl
                     display={"grid"}
-                    gridTemplateColumns="1fr 4fr"
+                    gridTemplateColumns="1fr 6fr"
                     alignItems="center"
-                    columnGap={"2rem"}
+                    columnGap={{ base: "1rem", "2xl": "2rem" }}
                   >
                     <FormLabel fontWeight={"bold"}>
                       <Text>Referral</Text>
@@ -508,7 +504,7 @@ const AxleInfo = () => {
           <Box
             p={3}
             m={3}
-            bg={brandingColors.bgColor}
+            bg={brandingColors.fgColor}
             boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
             borderRadius="md"
           >
