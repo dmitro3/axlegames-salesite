@@ -319,7 +319,7 @@ const AxleInfo = () => {
             boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
             borderRadius="md"
             py={{ base: "8" }}
-            px={{ base: "4" }}
+            px={{ base: "8" }}
             fontWeight="bold"
             width="100%"
             justifyContent="center"
