@@ -39,7 +39,7 @@ const UtilityGrid = () => {
         Utilities
       </Text>
       <Grid
-        templateColumns={{ base: "1fr", "2xl": "1fr 1fr" }}
+        templateColumns={{ base: "1fr", xl: "1fr 1fr" }}
         justifyContent="center"
         alignItems={"center"}
         rowGap="1rem"
