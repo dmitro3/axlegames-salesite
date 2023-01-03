@@ -310,7 +310,7 @@ const AxleInfo = () => {
           <Flex
             direction="column"
             bg={brandingColors.fgColor}
-            boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
+            boxShadow="xl"
             borderRadius="md"
             py={{ base: "8" }}
             px={{ base: "8" }}
@@ -374,7 +374,7 @@ const AxleInfo = () => {
           <Box
             top={"4"}
             left={"8%"}
-            boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
+            boxShadow="xl"
             pos={"absolute"}
             px={8}
             borderRadius="md"
@@ -392,7 +392,7 @@ const AxleInfo = () => {
             <Box
               width={"100%"}
               bg={brandingColors.fgColor}
-              boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
+              boxShadow="xl"
               p={{ base: 4, lg: 8 }}
               borderRadius={"2vh 4vw"}
               pt={8}
@@ -408,7 +408,6 @@ const AxleInfo = () => {
                   display={"grid"}
                   gridTemplateColumns="1fr 6fr"
                   alignItems="center"
-                  columnGap={"2rem"}
                 >
                   <FormLabel p={0} m={0} fontWeight={"bold"}>
                     BNB
@@ -435,9 +434,9 @@ const AxleInfo = () => {
                   display={"grid"}
                   gridTemplateColumns="1fr 6fr"
                   alignItems="center"
-                  columnGap={"2rem"}
                 >
-                  <FormLabel fontWeight={"bold"}>AXLE</FormLabel>
+                  {" "}
+                  <FormLabel fontWeight={"bold"}>AXLE</FormLabel>{" "}
                   <Input
                     fontWeight={"bold"}
                     placeholder="value (AXLE)"
@@ -447,15 +446,12 @@ const AxleInfo = () => {
                   ></Input>
                 </FormControl>
                 {!hasReferal ? null : (
-                  <FormControl
-                    display={"grid"}
-                    gridTemplateColumns="1fr 6fr"
-                    alignItems="center"
-                    columnGap={{ base: "1rem", "2xl": "2rem" }}
-                  >
+                  <FormControl display={"grid"} alignItems="center">
                     <FormLabel fontWeight={"bold"}>
-                      <Text>Referral</Text>
-                      <Text fontSize={"xx-small"}>(Optional)</Text>
+                      <Flex alignItems={"center"} columnGap=".5rem">
+                        <Text>Referral </Text>
+                        <Text fontSize={"xs"}>(Optional)</Text>
+                      </Flex>
                     </FormLabel>
                     <Input
                       fontWeight={"bold"}
@@ -505,7 +501,7 @@ const AxleInfo = () => {
             p={3}
             m={3}
             bg={brandingColors.fgColor}
-            boxShadow={`5px 5px 13px #05192d, -5px -5px 13px #072341`}
+            boxShadow="xl"
             borderRadius="md"
           >
             <Text

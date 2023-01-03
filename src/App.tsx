@@ -12,7 +12,7 @@ export const App = () => (
         direction={"column"}
         rowGap="1rem"
         fontFamily={"quicksand"}
-        width={{ base: "100%", md: "90%", lg: "92%", xl: "80%", "2xl": "75%" }}
+        width={{ base: "100%", md: "90%", lg: "92%", xl: "80%", "2xl": "65%" }}
         margin="auto"
       >
         <AxleInfo />
