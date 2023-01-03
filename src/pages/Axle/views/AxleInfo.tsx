@@ -314,6 +314,56 @@ const AxleInfo = () => {
           rowGap="1rem"
           p={5}
         >
+          <Box justifyContent={"center"} display="flex" width={"70%"}>
+            <Box data-aos={`fade-left`}>
+              <Box
+                minW={{ base: "270px" }}
+                maxW={{ base: "270px" }}
+                justifyContent={"center"}
+                alignItems="center"
+                display="flex"
+                flexDirection="column"
+              >
+                <Tilt>
+                  <video
+                    muted
+                    loop
+                    src={`https://axlegames.s3.ap-south-1.amazonaws.com/zeus.mp4`}
+                    autoPlay
+                    width={"300px"}
+                  ></video>
+                </Tilt>
+                <Box
+                  py={3}
+                  borderBottomRadius="xl"
+                  backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
+                  width={"100%"}
+                  mx="auto"
+                  my={2}
+                  boxShadow={`2xl`}
+                >
+                  <Text
+                    color={brandingColors.primaryTextColor}
+                    fontSize={{ base: "lg", lg: "2xl" }}
+                    fontFamily={`'Russo One', sans-serif`}
+                    textAlign={"center"}
+                  >
+                    {`Zeus Sale`}
+                  </Text>
+                  <Text
+                    color={brandingColors.secondaryTextColor}
+                    fontFamily={`'Russo One', sans-serif`}
+                    fontWeight={"normal"}
+                    fontSize={{ base: "sm", lg: "md" }}
+                    textAlign={"center"}
+                  >
+                    {``}
+                  </Text>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+
           <Box
             justifyContent={"center"}
             alignSelf="center"
@@ -333,6 +383,7 @@ const AxleInfo = () => {
               px={8}
               borderRadius="md"
               bg={brandingColors.fgColor}
+              data-aos={`fade-right`}
             >
               <Text fontSize={"2xl"}>Buy $AXLE</Text>
             </Box>
@@ -457,6 +508,7 @@ const AxleInfo = () => {
               boxShadow="xl"
               borderRadius="md"
               p={3}
+              data-aos={`fade-up`}
             >
               <Text
                 color={brandingColors.secondaryTextColor}
@@ -465,57 +517,6 @@ const AxleInfo = () => {
                 {axleBalance} $AXLE in Wallet
               </Text>
             </Box>
-          </Box>
-
-          <Box justifyContent={"center"} display="flex" width={"70%"}>
-            <Box data-aos={``}>
-              <Box
-                minW={{ base: "270px" }}
-                maxW={{ base: "270px" }}
-                justifyContent={"center"}
-                alignItems="center"
-                display="flex"
-                flexDirection="column"
-              >
-                <Tilt>
-                  <video
-                    muted
-                    loop
-                    src={`https://axlegames.s3.ap-south-1.amazonaws.com/zeus.mp4`}
-                    autoPlay
-                    width={"300px"}
-                  ></video>
-                </Tilt>
-                <Box
-                  py={3}
-                  borderBottomRadius="xl"
-                  backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
-                  width={"100%"}
-                  mx="auto"
-                  my={2}
-                  boxShadow={`2xl`}
-                >
-                  <Text
-                    color={brandingColors.primaryTextColor}
-                    fontSize={{ base: "lg", lg: "2xl" }}
-                    fontFamily={`'Russo One', sans-serif`}
-                    textAlign={"center"}
-                  >
-                    {`Zeus`}
-                  </Text>
-                  <Text
-                    color={brandingColors.secondaryTextColor}
-                    fontFamily={`'Russo One', sans-serif`}
-                    fontWeight={"normal"}
-                    fontSize={{ base: "sm", lg: "md" }}
-                    textAlign={"center"}
-                  >
-                    {``}
-                  </Text>
-                </Box>
-              </Box>
-            </Box>
-            <Tilt></Tilt>
           </Box>
         </Box>
 
@@ -544,6 +545,7 @@ const AxleInfo = () => {
               px={{ base: "8" }}
               bg={brandingColors.fgColor}
               width="100%"
+              data-aos={`fade-left`}
             >
               <Text
                 color={brandingColors.primaryTextColor}
@@ -572,6 +574,7 @@ const AxleInfo = () => {
               px={{ base: "8" }}
               bg={brandingColors.fgColor}
               width="100%"
+              data-aos={`fade-right`}
             >
               <Text
                 color={brandingColors.primaryTextColor}

@@ -24,9 +24,16 @@ const WhitePaper = (props: any) => {
             width={{ base: "32", lg: "64" }}
             src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/gamein/whitepaper.png`}
             m={4}
+            data-aos={`fade-left`}
           />
         </Box>
-        <Flex p={4} borderRadius="xl" rowGap={".5rem"} direction={"column"}>
+        <Flex
+          data-aos={`fade-right`}
+          p={4}
+          borderRadius="xl"
+          rowGap={".5rem"}
+          direction={"column"}
+        >
           <Text
             fontFamily={`'Russo One', sans-serif`}
             color={brandingColors.primaryTextColor}

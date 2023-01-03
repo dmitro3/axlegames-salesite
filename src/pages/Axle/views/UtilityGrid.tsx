@@ -47,7 +47,12 @@ const UtilityGrid = () => {
         px={{ base: "4" }}
       >
         {data.map((d, i) => (
-          <GridItem display={"flex"} justifyContent="center" key={i}>
+          <GridItem
+            data-aos={i % 2 === 0 ? `fade-right` : `fade-left`}
+            display={"flex"}
+            justifyContent="center"
+            key={i}
+          >
             <Box
               p={{ base: "8" }}
               width={"100%"}

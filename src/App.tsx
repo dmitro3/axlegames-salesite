@@ -11,7 +11,7 @@ import "aos/dist/aos.css";
 
 export const App = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init({});
   }, []);
   return (
     <ChakraProvider theme={theme}>
