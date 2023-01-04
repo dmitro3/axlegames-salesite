@@ -502,7 +502,7 @@ const AxleInfo = () => {
                             fontWeight={"bold"}
                             fontSize="xl"
                           >
-                            BNB
+                            AXLE
                           </Text>
                         </Flex>
                         <Flex
