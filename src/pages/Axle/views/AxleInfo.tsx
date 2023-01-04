@@ -16,7 +16,6 @@ import {
 import axleTokenABI from "../../../abi/AxleToken.json";
 import axlePresaleABI from "../../../abi/TokenPresale.json";
 
-import Tag from "../component/Tag";
 import NeuButton from "../component/NeuButton";
 import AxleDialog from "../dialog/AxleDialog";
 import TransactionSuccessDialog from "../dialog/TransactionSuccessDialog";
@@ -203,76 +202,18 @@ const AxleInfo = () => {
     setBalance(b);
   }, [address, etherBalance]);
 
-  const token = [
-    {
-      name: "Name",
-      value: "Axle Games",
-      token: false,
-    },
-    {
-      name: "Ticker",
-      value: "$AXLE",
-      token: false,
-    },
-    {
-      name: "Total supply",
-      value: "1 billion",
-      token: false,
-    },
-    {
-      name: "Type",
-      value: "BEP-20",
-      token: false,
-    },
-    {
-      name: "Token Address",
-      value: "0x942...f2E8A",
-      tokenValue: TOKEN_CONTRACT_ADDRESS,
-      token: true,
-    },
-  ];
-
-  const sale = [
-    {
-      name: "Sale type",
-      value: "Zeus",
-      tokenValue: TOKEN_CONTRACT_ADDRESS,
-    },
-    {
-      name: "Available for sale",
-      value: "150 million",
-      token: false,
-    },
-    {
-      name: "Price",
-      value: "1 BNB = 75,000 $AXLE",
-      token: false,
-    },
-    {
-      name: "Bonus",
-      value: "25%",
-      token: false,
-    },
-    {
-      name: "Referral",
-      value: "5%",
-      token: false,
-    },
-  ];
-
   return (
     <Box fontWeight={"bold"}>
       <Box
         alignItems={"center"}
-        flexDirection={{ base: "row" }}
+        flexDirection={{ base: "column", md: "row" }}
         display={"flex"}
         justifyContent="space-between"
-        mt={2}
-        px={8}
-        py={2}
+        px={12}
+        mb={4}
       >
         <Image
-          maxW="120px"
+          maxW="100px"
           src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/logo.png`}
         />
         <Wallet
@@ -290,7 +231,13 @@ const AxleInfo = () => {
         templateColumns={{ base: "1fr" }}
         alignItems={"center"}
         borderRadius="xl"
-        mt={12}
+        width={{
+          base: "100%",
+          md: "90%",
+          xl: "75%",
+          "2xl": "65%",
+        }}
+        margin="auto"
       >
         <AxleDialog
           close={() => setSuccess(false)}
@@ -308,21 +255,21 @@ const AxleInfo = () => {
 
         <Box
           display={"flex"}
-          flexDirection={{ base: "column", md: "row" }}
-          justifyContent="space-evenly"
+          flexDirection={{ base: "column", lg: "row" }}
+          justifyContent="space-between"
           alignItems={"center"}
-          rowGap="1rem"
+          columnGap="1rem"
+          rowGap={"1rem"}
           p={5}
         >
-          <Box justifyContent={"center"} display="flex" width={"100%"}>
+          <Box justifyContent={"flex-start"} display="flex" width={"70%"}>
             <Box data-aos={`fade-left`}>
               <Box
-                minW={{ base: "270px" }}
-                maxW={{ base: "270px" }}
                 justifyContent={"center"}
                 alignItems="center"
                 display="flex"
                 flexDirection="column"
+                maxW={"300px"}
               >
                 <Tilt>
                   <video
@@ -330,7 +277,6 @@ const AxleInfo = () => {
                     loop
                     src={`https://axlegames.s3.ap-south-1.amazonaws.com/zeus.mp4`}
                     autoPlay
-                    width={"300px"}
                   ></video>
                 </Tilt>
                 <Box
@@ -364,310 +310,213 @@ const AxleInfo = () => {
             </Box>
           </Box>
 
-          <Box width={"100%"}>
-            <Box
+          <Box
+            justifyContent={"center"}
+            alignSelf="center"
+            display={"flex"}
+            flexDirection="column"
+            color={brandingColors.primaryTextColor}
+            p={4}
+            width="100%"
+            boxShadow={`0px 0px 6px ${brandingColors.newHighlightColor}`}
+            borderRadius="xl"
+            backdropFilter={`blur( 4px )`}
+            backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
+          >
+            <Text fontFamily={`'Russo One', sans-serif`} pb={2} fontSize={"xl"}>
+              Buy AXLE
+            </Text>
+            <Flex
+              alignItems={"center"}
               justifyContent={"center"}
-              alignSelf="center"
-              display={"flex"}
-              flexDirection="column"
-              color={brandingColors.primaryTextColor}
-              p={4}
-              width="100%"
-              boxShadow={"2xl"}
-              borderRadius="xl"
-              backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
+              direction={"column"}
             >
-              <Text
-                fontFamily={`'Russo One', sans-serif`}
-                pb={2}
-                fontSize={"xl"}
-              >
-                Buy $AXLE
-              </Text>
-              <Flex
-                alignItems={"center"}
-                justifyContent={"center"}
-                direction={"column"}
-              >
-                <Box width={"100%"} borderRadius="md">
+              <Box width={"100%"} borderRadius="md">
+                <Box
+                  display={"flex"}
+                  justifyContent="center"
+                  alignItems={"center"}
+                  flexDirection="column"
+                  rowGap={".2rem"}
+                >
+                  <Box
+                    backgroundImage={`linear-gradient(to top, #061e37, #072340, #072849, #082d52, #0a325c)`}
+                    boxShadow="2xl"
+                    p={4}
+                    borderRadius="md"
+                    width={"100%"}
+                  >
+                    <Text>You Pay</Text>
+                    <Flex
+                      alignItems={"center"}
+                      justifyContent={"space-between"}
+                      columnGap="20%"
+                      bg={brandingColors.bgColor}
+                      p={4}
+                      my={2}
+                      borderRadius="md"
+                    >
+                      <Flex alignItems="center" columnGap={"2rem"}>
+                        <Image
+                          width={8}
+                          src={`https://axlegames.s3.ap-south-1.amazonaws.com/bnb.png`}
+                        />
+                        <Text
+                          color={brandingColors.secondaryTextColor}
+                          fontWeight={"bold"}
+                          fontSize="xl"
+                        >
+                          BNB
+                        </Text>
+                      </Flex>
+                      <Flex
+                        flexDirection={"column"}
+                        justifyContent={"flex-end"}
+                      >
+                        <Text
+                          color={brandingColors.secondaryTextColor}
+                          fontSize={"xs"}
+                          textAlign={"right"}
+                        >
+                          Amount
+                        </Text>
+                        <Input
+                          fontWeight={"bold"}
+                          color={brandingColors.secondaryTextColor}
+                          placeholder="value (BNB)"
+                          onChange={onBnbChange}
+                          type={"number"}
+                          textAlign="right"
+                          value={bnb}
+                          border="none"
+                          outline={"none"}
+                          _focus={{
+                            outline: "none",
+                            border: "none",
+                            shadow: "none",
+                          }}
+                        ></Input>
+                      </Flex>
+                    </Flex>
+                    <Text color={brandingColors.primaryTextColor} fontSize="sm">
+                      Min 0.1 BNB | Max 2 BNB
+                    </Text>
+                  </Box>
                   <Box
                     display={"flex"}
-                    justifyContent="center"
-                    alignItems={"center"}
-                    flexDirection="column"
-                    rowGap={".2rem"}
+                    justifyContent={"center"}
+                    position={"relative"}
                   >
-                    <Box
-                      backgroundImage={`linear-gradient(to top, #061e37, #072340, #072849, #082d52, #0a325c)`}
-                      boxShadow="2xl"
-                      p={4}
-                      borderRadius="md"
-                      width={"100%"}
-                    >
-                      <Text>You Pay</Text>
-                      <Flex
-                        alignItems={"center"}
-                        justifyContent={"space-between"}
-                        columnGap="20%"
-                        bg={brandingColors.bgColor}
-                        p={4}
-                        my={2}
-                        borderRadius="md"
-                      >
-                        <Flex alignItems="center" columnGap={"2rem"}>
-                          <Image
-                            width={8}
-                            src={`https://axlegames.s3.ap-south-1.amazonaws.com/bnb.png`}
-                          />
-                          <Text
-                            color={brandingColors.secondaryTextColor}
-                            fontWeight={"bold"}
-                            fontSize="xl"
-                          >
-                            BNB
-                          </Text>
-                        </Flex>
-                        <Flex
-                          flexDirection={"column"}
-                          justifyContent={"flex-end"}
-                        >
-                          <Text fontSize={"xs"} textAlign={"right"}>
-                            Amount
-                          </Text>
-                          <Input
-                            fontWeight={"bold"}
-                            placeholder="value (BNB)"
-                            onChange={onBnbChange}
-                            type={"number"}
-                            textAlign="right"
-                            value={bnb}
-                            border="none"
-                            outline={"none"}
-                            _focus={{
-                              outline: "none",
-                              border: "none",
-                              shadow: "none",
-                            }}
-                          ></Input>
-                        </Flex>
-                      </Flex>
-                      <Text
-                        color={brandingColors.primaryTextColor}
-                        fontSize="sm"
-                      >
-                        Min 0.1 BNB | Max 2 BNB
-                      </Text>
-                    </Box>
-                    <Box
-                      display={"flex"}
-                      justifyContent={"center"}
-                      position={"relative"}
-                    >
-                      <Icon
-                        backgroundImage={`radial-gradient(circle, #061e37, #072340, #072849, #082d52, #0a325c)`}
-                        boxShadow="2xl"
-                        borderRadius="10vh"
-                        top={-4}
-                        width={8}
-                        height={8}
-                        position={"absolute"}
-                        as={ArrowDownIcon}
-                      ></Icon>
-                    </Box>
+                    <Icon
+                      bg={brandingColors.bgColor}
+                      boxShadow={`0px 0px 3px ${brandingColors.fgColor}`}
+                      borderRadius="10vh"
+                      top={-4}
+                      width={8}
+                      height={8}
+                      position={"absolute"}
+                      as={ArrowDownIcon}
+                    ></Icon>
+                  </Box>
 
-                    <Box
-                      backgroundImage={`linear-gradient(to bottom, #061e37, #072340, #072849, #082d52, #0a325c)`}
-                      boxShadow="2xl"
-                      p={4}
-                      borderRadius="md"
-                      width={"100%"}
-                    >
+                  <Box
+                    backgroundImage={`linear-gradient(to bottom, #061e37, #072340, #072849, #082d52, #0a325c)`}
+                    boxShadow="2xl"
+                    p={4}
+                    borderRadius="md"
+                    width={"100%"}
+                  >
+                    <Flex justifyContent={"space-between"}>
                       <Text>You Secure</Text>
-                      <Flex
-                        alignItems={"center"}
-                        justifyContent={"space-between"}
-                        columnGap="20%"
-                        bg={brandingColors.bgColor}
-                        p={4}
-                        my={2}
-                        borderRadius="md"
+                      <Text
+                        color={brandingColors.secondaryTextColor}
+                        fontSize={"sm"}
                       >
-                        <Flex alignItems="center" columnGap={"2rem"}>
-                          <Image
-                            width={10}
-                            src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/icon.png`}
-                          />
-                          <Text
-                            color={brandingColors.secondaryTextColor}
-                            fontWeight={"bold"}
-                            fontSize="xl"
-                          >
-                            AXLE
-                          </Text>
-                        </Flex>
-                        <Flex
-                          flexDirection={"column"}
-                          justifyContent={"flex-end"}
-                        >
-                          <Text
-                            color={brandingColors.primaryButtonColor}
-                            textAlign={"right"}
-                          >
-                            {axle}
-                          </Text>
-                        </Flex>
-                      </Flex>
-                      {address !== "" && axle !== undefined ? (
-                        <Text
-                          color={brandingColors.primaryTextColor}
-                          fontSize="sm"
-                        >
-                          {`you will receive ${axle * 0.25} bonus tokens`}
-                        </Text>
-                      ) : null}
-                    </Box>
-                    <Box
-                      display={"flex"}
-                      flexDirection="column"
-                      width={"100%"}
-                      rowGap="1rem"
-                      pt={4}
+                        {`Bal : ` + axleBalance}
+                      </Text>
+                    </Flex>
+                    <Flex
+                      alignItems={"center"}
+                      justifyContent={"space-between"}
+                      columnGap="20%"
+                      bg={brandingColors.bgColor}
+                      p={4}
+                      my={2}
+                      borderRadius="md"
                     >
-                      <Input
-                        fontWeight={"bold"}
-                        placeholder="Referral Address (optional)"
-                        outline={`2px groove ${brandingColors.primaryTextColor}`}
-                        border={`none`}
-                        bg={brandingColors.bgColor}
-                        type={"text"}
-                      ></Input>
-                      {address === "" ? (
-                        <NeuButton
-                          bg={"#A34400"}
-                          shadow={"#FF7C1F"}
-                          onClick={connectWallet}
-                          label="Connect Wallet"
-                          width="100%"
-                        ></NeuButton>
-                      ) : (
-                        <NeuButton
-                          bg={"#A34400"}
-                          shadow={"#FF7C1F"}
-                          onClick={buyAxle}
-                          label="Buy Axle"
-                          width="100%"
-                        ></NeuButton>
-                      )}
-                    </Box>
+                      <Flex alignItems="center" columnGap={"2rem"}>
+                        <Image
+                          width={10}
+                          src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/icon.png`}
+                        />
+                        <Text
+                          color={brandingColors.secondaryTextColor}
+                          fontWeight={"bold"}
+                          fontSize="xl"
+                        >
+                          AXLE
+                        </Text>
+                      </Flex>
+                      <Flex
+                        flexDirection={"column"}
+                        justifyContent={"flex-end"}
+                      >
+                        <Text
+                          color={brandingColors.secondaryTextColor}
+                          textAlign={"right"}
+                        >
+                          {axle}
+                        </Text>
+                      </Flex>
+                    </Flex>
+                    {address !== "" && axle !== undefined ? (
+                      <Text
+                        color={brandingColors.secondaryTwoTextColor}
+                        fontSize="sm"
+                        textAlign={"center"}
+                      >
+                        {`Bonus: +${axle * 0.25} AXLE`}
+                      </Text>
+                    ) : null}
+                  </Box>
+                  <Box
+                    display={"flex"}
+                    flexDirection="column"
+                    width={"100%"}
+                    rowGap="1rem"
+                    pt={4}
+                  >
+                    <Input
+                      fontWeight={"bold"}
+                      placeholder="Referral Address (optional)"
+                      outline={`2px groove ${brandingColors.primaryTextColor}`}
+                      border={`none`}
+                      bg={brandingColors.bgColor}
+                      type={"text"}
+                    ></Input>
+                    {address === "" ? (
+                      <NeuButton
+                        bg={"#A34400"}
+                        shadow={"#FF7C1F"}
+                        onClick={connectWallet}
+                        label="Connect Wallet"
+                        width="100%"
+                      ></NeuButton>
+                    ) : (
+                      <NeuButton
+                        bg={"#A34400"}
+                        shadow={"#FF7C1F"}
+                        onClick={buyAxle}
+                        label="Buy Axle"
+                        width="100%"
+                      ></NeuButton>
+                    )}
                   </Box>
                 </Box>
-              </Flex>
-            </Box>
-
-            <Box
-              m={3}
-              backgroundImage={`linear-gradient(to top, #061e37, #002956, #003376, #003b96, #1442b5)`}
-              boxShadow="xl"
-              borderRadius="md"
-              p={3}
-              data-aos={`fade-up`}
-            >
-              <Text
-                color={brandingColors.secondaryTextColor}
-                textAlign={"center"}
-              >
-                {axleBalance} $AXLE in Wallet
-              </Text>
-            </Box>
+              </Box>
+            </Flex>
           </Box>
         </Box>
-
-        <Flex
-          my={{ base: "8" }}
-          px={{ base: "4" }}
-          direction={"row"}
-          textAlign={"left"}
-          fontWeight="bold"
-        >
-          <Flex
-            direction="row"
-            fontWeight="bold"
-            width="100%"
-            justifyContent="space-evenly"
-            columnGap={"2rem"}
-            flexDirection={{ base: "column", lg: "row" }}
-            alignItems={"center"}
-            rowGap="1rem"
-            p={5}
-          >
-            <Box width="100%">
-              <Text
-                width={"80%"}
-                mx="auto"
-                color={brandingColors.primaryTextColor}
-                fontSize={{ base: "xl", xl: "2xl" }}
-                textAlign="center"
-                data-aos={`zoom-in`}
-                fontFamily={`'Russo One', sans-serif`}
-              >
-                Token Information
-              </Text>
-              <Flex
-                backgroundImage={`linear-gradient(to right, #061e37, #002956, #003376, #003b96, #1442b5)`}
-                my={4}
-                rowGap={".5rem"}
-                direction={"column"}
-                py={{ base: "8" }}
-                px={{ base: "8" }}
-                boxShadow="xl"
-                borderRadius="md"
-                data-aos={`fade-left`}
-              >
-                {token.map((t, i) => (
-                  <Tag
-                    key={i}
-                    tokenValue={t.tokenValue}
-                    token={t.token}
-                    name={t.name}
-                    value={t.value}
-                  />
-                ))}
-              </Flex>
-            </Box>
-            <Box width="100%">
-              <Text
-                color={brandingColors.primaryTextColor}
-                fontSize={{ base: "xl", xl: "2xl" }}
-                textAlign="center"
-                data-aos={`zoom-in`}
-                fontFamily={`'Russo One', sans-serif`}
-              >
-                Current Sale Information
-              </Text>
-              <Flex
-                backgroundImage={`linear-gradient(to left, #061e37, #002956, #003376, #003b96, #1442b5)`}
-                my={4}
-                rowGap={".5rem"}
-                direction={"column"}
-                py={{ base: "8" }}
-                px={{ base: "8" }}
-                boxShadow="xl"
-                borderRadius="md"
-                data-aos={`fade-right`}
-              >
-                {sale.map((t, i) => (
-                  <Tag
-                    key={i}
-                    tokenValue={t.tokenValue}
-                    token={t.token}
-                    name={t.name}
-                    value={t.value}
-                  />
-                ))}
-              </Flex>
-            </Box>
-          </Flex>
-        </Flex>
       </Grid>
     </Box>
   );

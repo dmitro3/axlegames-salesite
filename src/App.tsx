@@ -1,13 +1,13 @@
 import { ChakraProvider, theme, Flex, Box } from "@chakra-ui/react";
 import { brandingColors } from "./config/brandingColors";
 import AxleInfo from "./pages/Axle/views/AxleInfo";
-// import NFTs from "./pages/Axle/views/Nfts";
 import UtilityGrid from "./pages/Axle/views/UtilityGrid";
 import WhitePaper from "./pages/Axle/views/WhitePaper";
 import Marquee from "react-fast-marquee";
 import AOS from "aos";
 import { useEffect } from "react";
 import "aos/dist/aos.css";
+import Token from "./pages/Axle/views/Token";
 
 export const App = () => {
   useEffect(() => {
@@ -25,9 +25,10 @@ export const App = () => {
           speed={50}
           style={{
             background: brandingColors.newHighlightColor,
-            fontFamily: `'Russo One', sans-serif`,
-            color: brandingColors.primaryTextColor,
+            fontFamily: `'quicksand', sans-serif`,
+            color: brandingColors.secondaryTextColor,
             padding: ".5vh 0",
+            fontWeight: "bold",
           }}
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure aliquid
@@ -35,6 +36,7 @@ export const App = () => {
           iste temporibus optio laudantium, ratione, ipsum obcaecati fugit
           explicabo nisi?
         </Marquee>
+        <AxleInfo />
         <Flex
           direction={"column"}
           rowGap="1rem"
@@ -48,8 +50,7 @@ export const App = () => {
           }}
           margin="auto"
         >
-          <AxleInfo />
-          {/* <NFTs /> */}
+          <Token />
           <UtilityGrid />
           <WhitePaper />
         </Flex>

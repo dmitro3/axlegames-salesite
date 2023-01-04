@@ -37,11 +37,11 @@ const WhitePaper = (props: any) => {
           <Text
             fontFamily={`'Russo One', sans-serif`}
             color={brandingColors.primaryTextColor}
-            fontSize={"3xl"}
+            fontSize={{ base: "xl", lg: "3xl" }}
           >
             A well-designed Deflationary token model
           </Text>
-          <Text>
+          <Text fontSize={{ base: "sm", md: "md" }}>
             Axle games tokenomics is designed to create solid, reliable and
             attractive ways for users to benefit from the platform.
           </Text>

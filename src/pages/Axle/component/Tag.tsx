@@ -28,8 +28,18 @@ const Tag = (props: any) => {
           p={2}
           borderRadius="lg"
         >
-          <Text color={brandingColors.primaryTwoTextColor}>{props.name}</Text>
-          <Text color={brandingColors.secondaryTextColor}>{props.value}</Text>
+          <Text
+            fontSize={{ base: "sm", md: "md" }}
+            color={brandingColors.primaryTwoTextColor}
+          >
+            {props.name}
+          </Text>
+          <Text
+            fontSize={{ base: "sm", md: "md" }}
+            color={brandingColors.secondaryTextColor}
+          >
+            {props.value}
+          </Text>
         </Flex>
       ) : (
         <Flex

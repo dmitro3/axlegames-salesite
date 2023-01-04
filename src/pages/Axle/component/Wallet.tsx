@@ -9,6 +9,7 @@ const socials = [
   `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/twitter.webp`,
   `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/instagram.webp`,
   `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/discord.webp`,
+  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/medium.webp`,
 ];
 interface Props {
   connectWallet: Function;
@@ -86,20 +87,51 @@ const Wallet = (props: Props) => {
         alignItems={"center"}
         justifyContent={{ base: "center" }}
         flexDirection={{ base: "row" }}
+        columnGap="1rem"
       >
-        {socials.map((i, x) => (
-          <Box cursor={"pointer"}>
-            <Tilt>
-              <Image
-                key={i}
-                data-aos={`zoom-in`}
-                height={{ base: "12" }}
-                width={{ base: "12" }}
-                src={i}
-              />
-            </Tilt>
-          </Box>
-        ))}
+        <Flex alignItems={"center"} columnGap={"1rem"}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ width: "100%" }}
+            href="https://axlegames.s3.ap-south-1.amazonaws.com/AxleGames_EconomicsPaper.pdf"
+          >
+            <NeuButton
+              onClick={() => {}}
+              bg={"#A34400"}
+              shadow={"#FF7C1F"}
+              label={`Economics Paper`}
+            ></NeuButton>
+          </a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ width: "100%" }}
+            href="https://axlegames.s3.ap-south-1.amazonaws.com/AxleGames_EconomicsPaper.pdf"
+          >
+            <NeuButton
+              onClick={() => {}}
+              bg={"#A34400"}
+              shadow={"#FF7C1F"}
+              label={`Pitch Deck`}
+            ></NeuButton>
+          </a>
+        </Flex>
+        <Flex>
+          {socials.map((i, x) => (
+            <Box cursor={"pointer"}>
+              <Tilt>
+                <Image
+                  key={i}
+                  data-aos={`zoom-in`}
+                  height={{ base: "12" }}
+                  width={{ base: "12" }}
+                  src={i}
+                />
+              </Tilt>
+            </Box>
+          ))}
+        </Flex>
       </Flex>
       {props.address !== "" ? (
         <Box

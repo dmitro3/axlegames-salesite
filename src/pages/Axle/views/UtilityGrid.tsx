@@ -73,13 +73,13 @@ const UtilityGrid = () => {
               <Flex direction={"column"}>
                 <Text
                   fontFamily={`'Russo One', sans-serif`}
-                  fontSize={"xl"}
+                  fontSize={{ base: "sm", md: "md", xl: "xl" }}
                   color={brandingColors.primaryTextColor}
                 >
                   {d.title}
                 </Text>
                 <Text
-                  fontSize={"md"}
+                  fontSize={{ base: "sm", md: "md" }}
                   fontWeight="bold"
                   color={brandingColors.secondaryTextColor}
                 >
