@@ -4,7 +4,6 @@ import { brandingColors } from "../../../config/brandingColors";
 import { useEtherBalance, useEthers } from "@usedapp/core";
 import {
   Box,
-  Divider,
   Flex,
   FormControl,
   FormLabel,
@@ -378,11 +377,10 @@ const AxleInfo = () => {
             <Box
               top={"4"}
               left={"8%"}
-              boxShadow="xl"
               pos={"absolute"}
               px={8}
               borderRadius="md"
-              bg={brandingColors.fgColor}
+              backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
               data-aos={`fade-right`}
             >
               <Text fontSize={"2xl"}>Buy $AXLE</Text>
@@ -396,7 +394,7 @@ const AxleInfo = () => {
             >
               <Box
                 width={"100%"}
-                bg={brandingColors.fgColor}
+                backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
                 boxShadow="xl"
                 p={{ base: 4, lg: 8 }}
                 borderRadius={"2vh 4vw"}
@@ -504,7 +502,7 @@ const AxleInfo = () => {
 
             <Box
               m={3}
-              bg={brandingColors.fgColor}
+              backgroundImage={`linear-gradient(to top, #061e37, #002956, #003376, #003b96, #1442b5)`}
               boxShadow="xl"
               borderRadius="md"
               p={3}
@@ -538,24 +536,29 @@ const AxleInfo = () => {
             rowGap="1rem"
             p={5}
           >
-            <Box
-              boxShadow="xl"
-              borderRadius="md"
-              py={{ base: "8" }}
-              px={{ base: "8" }}
-              bg={brandingColors.fgColor}
-              width="100%"
-              data-aos={`fade-left`}
-            >
+            <Box width="100%">
               <Text
+                width={"80%"}
+                mx="auto"
                 color={brandingColors.primaryTextColor}
                 fontSize={{ base: "xl", xl: "2xl" }}
                 textAlign="center"
+                data-aos={`zoom-in`}
+                fontFamily={`'Russo One', sans-serif`}
               >
                 Token Information
               </Text>
-              <Divider my={4} />
-              <Flex my={4} rowGap={".5rem"} direction={"column"}>
+              <Flex
+                backgroundImage={`linear-gradient(to right, #061e37, #002956, #003376, #003b96, #1442b5)`}
+                my={4}
+                rowGap={".5rem"}
+                direction={"column"}
+                py={{ base: "8" }}
+                px={{ base: "8" }}
+                boxShadow="xl"
+                borderRadius="md"
+                data-aos={`fade-left`}
+              >
                 {token.map((t, i) => (
                   <Tag
                     key={i}
@@ -567,24 +570,27 @@ const AxleInfo = () => {
                 ))}
               </Flex>
             </Box>
-            <Box
-              boxShadow="xl"
-              borderRadius="md"
-              py={{ base: "8" }}
-              px={{ base: "8" }}
-              bg={brandingColors.fgColor}
-              width="100%"
-              data-aos={`fade-right`}
-            >
+            <Box width="100%">
               <Text
                 color={brandingColors.primaryTextColor}
                 fontSize={{ base: "xl", xl: "2xl" }}
                 textAlign="center"
+                data-aos={`zoom-in`}
+                fontFamily={`'Russo One', sans-serif`}
               >
                 Current Sale Information
               </Text>
-              <Divider my={4} />
-              <Flex my={4} rowGap={".5rem"} direction={"column"}>
+              <Flex
+                backgroundImage={`linear-gradient(to left, #061e37, #002956, #003376, #003b96, #1442b5)`}
+                my={4}
+                rowGap={".5rem"}
+                direction={"column"}
+                py={{ base: "8" }}
+                px={{ base: "8" }}
+                boxShadow="xl"
+                borderRadius="md"
+                data-aos={`fade-right`}
+              >
                 {sale.map((t, i) => (
                   <Tag
                     key={i}

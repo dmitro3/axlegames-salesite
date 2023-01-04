@@ -56,7 +56,11 @@ const UtilityGrid = () => {
             <Box
               p={{ base: "8" }}
               width={"100%"}
-              bg={brandingColors.fgColor}
+              backgroundImage={
+                i % 2 !== 0
+                  ? `linear-gradient(to left bottom, #061e37, #002956, #003376, #003b96, #1442b5)`
+                  : `linear-gradient(to right bottom, #061e37, #002956, #003376, #003b96, #1442b5)`
+              }
               borderRadius="md"
               shadow={"lg"}
               fontWeight="bold"
