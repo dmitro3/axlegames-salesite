@@ -21,6 +21,7 @@ import AxleDialog from "../dialog/AxleDialog";
 import TransactionSuccessDialog from "../dialog/TransactionSuccessDialog";
 import Wallet from "../component/Wallet";
 import { ArrowDownIcon } from "@chakra-ui/icons";
+import NFT from "./NFT";
 
 declare global {
   interface Window {
@@ -202,16 +203,18 @@ const AxleInfo = () => {
   }, [address, etherBalance]);
 
   return (
-    <Box fontWeight={"bold"}>
+    <Box fontFamily={"quicksand"} fontWeight={"bold"}>
       <Box
         alignItems={"center"}
         flexDirection={{ base: "column", md: "row" }}
         display={"flex"}
-        justifyContent="space-between"
+        justifyContent={{ base: "flex-start", md: "space-between" }}
         px={12}
         mb={4}
+        mt={{ base: "4", md: "0" }}
       >
         <Image
+          display={{ base: "none", md: "flex" }}
           maxW="100px"
           src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/logo.png`}
         />
@@ -223,6 +226,18 @@ const AxleInfo = () => {
           isLoading={isLoading}
           openWallet={openWallet}
           setOpenWallet={setOpenWallet}
+        />
+      </Box>
+
+      <Box
+        display={{ base: "flex", md: "none" }}
+        justifyContent="center"
+        m={3}
+        alignItems="center"
+      >
+        <Image
+          maxW="100px"
+          src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/logo.png`}
         />
       </Box>
       <Grid
@@ -257,66 +272,13 @@ const AxleInfo = () => {
           flexDirection={{ base: "column", lg: "row" }}
           justifyContent="center"
           alignItems={"center"}
-          columnGap="2rem"
           rowGap={"2rem"}
+          columnGap="6rem"
           m={4}
           p={5}
+          width="100%"
         >
-          <Box
-            backgroundImage={`linear-gradient(to bottom, rgba(6, 30, 55, 0.25), rgba(0, 41, 86, 0.25), rgba(0, 51, 118, 0.25), rgba(0, 59, 150, 0.25), rgba(20, 66, 181, 0.25))`}
-            color={brandingColors.primaryTextColor}
-            borderRadius="xl"
-            backdropFilter={`blur(20px)`}
-            boxShadow={`0px 0px 6px ${brandingColors.newHighlightColor}`}
-            justifyContent={"center"}
-            display="flex"
-            p={4}
-          >
-            <Box data-aos={`fade-left`}>
-              <Box
-                justifyContent={"center"}
-                alignItems="center"
-                display="flex"
-                flexDirection="column"
-                maxW={"450px"}
-              >
-                <video
-                  muted
-                  loop
-                  src={`https://axlegames.s3.ap-south-1.amazonaws.com/zeus.mp4`}
-                  autoPlay
-                ></video>
-                <Box
-                  py={3}
-                  borderBottomRadius="xl"
-                  backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
-                  width={"100%"}
-                  mx="auto"
-                  my={2}
-                  boxShadow={`2xl`}
-                >
-                  <Text
-                    color={brandingColors.primaryTextColor}
-                    fontSize={{ base: "lg", lg: "2xl" }}
-                    fontFamily={`'Russo One', sans-serif`}
-                    textAlign={"center"}
-                  >
-                    {`Zeus Sale`}
-                  </Text>
-                  <Text
-                    color={brandingColors.secondaryTextColor}
-                    fontFamily={`'Russo One', sans-serif`}
-                    fontWeight={"normal"}
-                    fontSize={{ base: "sm", lg: "md" }}
-                    textAlign={"center"}
-                  >
-                    {``}
-                  </Text>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-
+          <NFT />
           <Box
             justifyContent={"center"}
             alignSelf="center"
@@ -389,9 +351,10 @@ const AxleInfo = () => {
                         </Text>
                         <Input
                           fontWeight={"bold"}
-                          color={brandingColors.secondaryTextColor}
+                          color={brandingColors.primaryButtonColor}
                           placeholder="value (BNB)"
                           onChange={onBnbChange}
+                          fontSize="lg"
                           type={"number"}
                           textAlign="right"
                           value={bnb}
@@ -416,7 +379,7 @@ const AxleInfo = () => {
                   >
                     <Icon
                       bg={brandingColors.bgColor}
-                      boxShadow={`0px 0px 3px ${brandingColors.fgColor}`}
+                      boxShadow={`0px 0px 12px ${brandingColors.fgColor}`}
                       borderRadius="10vh"
                       top={-4}
                       width={8}
@@ -439,7 +402,7 @@ const AxleInfo = () => {
                         color={brandingColors.secondaryTextColor}
                         fontSize={"sm"}
                       >
-                        {`Bal : ` + axleBalance}
+                        {`Balance : ` + axleBalance + ` AXLE`}
                       </Text>
                     </Flex>
                     <Flex
@@ -469,8 +432,9 @@ const AxleInfo = () => {
                         justifyContent={"flex-end"}
                       >
                         <Text
-                          color={brandingColors.secondaryTextColor}
+                          color={brandingColors.primaryButtonColor}
                           textAlign={"right"}
+                          fontSize="lg"
                         >
                           {axle}
                         </Text>

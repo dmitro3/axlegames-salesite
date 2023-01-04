@@ -98,38 +98,6 @@ const Wallet = (props: Props) => {
         flexDirection={{ base: "row" }}
         columnGap="1rem"
       >
-        <Flex
-          display={{ base: "none", lg: "flex" }}
-          alignItems={"center"}
-          columnGap={"1rem"}
-        >
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ width: "100%" }}
-            href="https://axlegames.s3.ap-south-1.amazonaws.com/AxleGames_EconomicsPaper.pdf"
-          >
-            <NeuButton
-              onClick={() => {}}
-              bg={"#A34400"}
-              shadow={"#FF7C1F"}
-              label={`Economics Paper`}
-            ></NeuButton>
-          </a>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ width: "100%" }}
-            href="https://axlegames.s3.ap-south-1.amazonaws.com/AxleGames_EconomicsPaper.pdf"
-          >
-            <NeuButton
-              onClick={() => {}}
-              bg={"#A34400"}
-              shadow={"#FF7C1F"}
-              label={`Pitch Deck`}
-            ></NeuButton>
-          </a>
-        </Flex>
         <Flex>
           {socials.map((i, x) => (
             <Box cursor={"pointer"}>
