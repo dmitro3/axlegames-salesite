@@ -30,6 +30,13 @@ declare global {
   }
 }
 
+const socials = [
+  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/telegram.webp`,
+  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/twitter.webp`,
+  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/instagram.webp`,
+  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/discord.webp`,
+];
+
 const AxleInfo = () => {
   const [bnb, setBnb] = useState<any>();
   const [axle, setAxle] = useState<any>();
@@ -517,6 +524,30 @@ const AxleInfo = () => {
             </Box>
           </Box>
         </Box>
+
+        <Flex
+          my={8}
+          display={{ base: "flex" }}
+          rowGap={{ base: "1rem" }}
+          alignItems={"center"}
+          flexDirection={{ base: "row" }}
+          justifyContent={{ base: "center" }}
+        >
+          {socials.map((i, x) => (
+            <Image
+              key={i}
+              data-aos={`zoom-in`}
+              height={{ base: "12", lg: "20" }}
+              width={{ base: "12", lg: "20" }}
+              _hover={{
+                transform: "scale(1.1)",
+                transition: "all 200ms ease-in",
+                cursor: "pointer",
+              }}
+              src={i}
+            />
+          ))}
+        </Flex>
 
         <Flex
           my={{ base: "8" }}

@@ -3,13 +3,6 @@ import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { brandingColors } from "../../../config/brandingColors";
 import NeuButton from "../component/NeuButton";
 
-const socials = [
-  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/telegram.webp`,
-  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/twitter.webp`,
-  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/instagram.webp`,
-  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/discord.webp`,
-];
-
 const WhitePaper = (props: any) => {
   return (
     <Box
@@ -68,28 +61,6 @@ const WhitePaper = (props: any) => {
             </a>
           </Box>
         </Flex>
-      </Flex>
-      <Flex
-        display={{ base: "flex" }}
-        rowGap={{ base: "1rem" }}
-        alignItems={"center"}
-        flexDirection={{ base: "row" }}
-        justifyContent={{ base: "center" }}
-      >
-        {socials.map((i, x) => (
-          <Image
-            key={i}
-            data-aos={`zoom-in`}
-            height={{ base: "12", lg: "20" }}
-            width={{ base: "12", lg: "20" }}
-            _hover={{
-              transform: "scale(1.1)",
-              transition: "all 200ms ease-in",
-              cursor: "pointer",
-            }}
-            src={i}
-          />
-        ))}
       </Flex>
     </Box>
   );
