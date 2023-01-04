@@ -522,32 +522,31 @@ const AxleInfo = () => {
                 {axleBalance} $AXLE in Wallet
               </Text>
             </Box>
+
+            <Flex
+              my={3}
+              display={{ base: "flex" }}
+              rowGap={{ base: "1rem" }}
+              alignItems={"center"}
+              flexDirection={{ base: "row" }}
+              justifyContent={{ base: "center" }}
+            >
+              {socials.map((i, x) => (
+                <Box cursor={"pointer"}>
+                  <Tilt>
+                    <Image
+                      key={i}
+                      data-aos={`zoom-in`}
+                      height={{ base: "12", lg: "16" }}
+                      width={{ base: "12", lg: "16" }}
+                      src={i}
+                    />
+                  </Tilt>
+                </Box>
+              ))}
+            </Flex>
           </Box>
         </Box>
-
-        <Flex
-          my={8}
-          display={{ base: "flex" }}
-          rowGap={{ base: "1rem" }}
-          alignItems={"center"}
-          flexDirection={{ base: "row" }}
-          justifyContent={{ base: "center" }}
-        >
-          {socials.map((i, x) => (
-            <Image
-              key={i}
-              data-aos={`zoom-in`}
-              height={{ base: "12", lg: "20" }}
-              width={{ base: "12", lg: "20" }}
-              _hover={{
-                transform: "scale(1.1)",
-                transition: "all 200ms ease-in",
-                cursor: "pointer",
-              }}
-              src={i}
-            />
-          ))}
-        </Flex>
 
         <Flex
           my={{ base: "8" }}
