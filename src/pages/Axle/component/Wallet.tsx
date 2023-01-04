@@ -1,6 +1,15 @@
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { brandingColors } from "../../../config/brandingColors";
 import NeuButton from "./NeuButton";
+
+import Tilt from "react-parallax-tilt";
+
+const socials = [
+  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/telegram.webp`,
+  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/twitter.webp`,
+  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/instagram.webp`,
+  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/discord.webp`,
+];
 interface Props {
   connectWallet: Function;
   openWallet: boolean;
@@ -69,11 +78,33 @@ const Wallet = (props: Props) => {
   };
 
   return (
-    <Box minW="64px">
+    <Box columnGap={"2rem"} display={"flex"} minW="64px">
+      <Flex
+        my={3}
+        display={{ base: "flex" }}
+        rowGap={{ base: "1rem" }}
+        alignItems={"center"}
+        justifyContent={{ base: "center" }}
+        flexDirection={{ base: "row" }}
+      >
+        {socials.map((i, x) => (
+          <Box cursor={"pointer"}>
+            <Tilt>
+              <Image
+                key={i}
+                data-aos={`zoom-in`}
+                height={{ base: "12" }}
+                width={{ base: "12" }}
+                src={i}
+              />
+            </Tilt>
+          </Box>
+        ))}
+      </Flex>
       {props.address !== "" ? (
         <Box
           position="relative"
-          display={"flex"}
+          display={{ base: "none", md: "flex" }}
           bg={brandingColors.fgColor}
           my={4}
           borderRadius="md"

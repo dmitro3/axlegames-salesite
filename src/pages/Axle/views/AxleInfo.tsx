@@ -5,9 +5,8 @@ import { useEtherBalance, useEthers } from "@usedapp/core";
 import {
   Box,
   Flex,
-  FormControl,
-  FormLabel,
   Grid,
+  Icon,
   Image,
   Input,
   Text,
@@ -23,6 +22,7 @@ import AxleDialog from "../dialog/AxleDialog";
 import TransactionSuccessDialog from "../dialog/TransactionSuccessDialog";
 import Wallet from "../component/Wallet";
 import Tilt from "react-parallax-tilt";
+import { ArrowDownIcon } from "@chakra-ui/icons";
 
 declare global {
   interface Window {
@@ -30,21 +30,13 @@ declare global {
   }
 }
 
-const socials = [
-  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/telegram.webp`,
-  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/twitter.webp`,
-  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/instagram.webp`,
-  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/discord.webp`,
-];
-
 const AxleInfo = () => {
   const [bnb, setBnb] = useState<any>();
-  const [axle, setAxle] = useState<any>();
-  const [hasReferal, setHasReferral] = useState(false);
+  const [axle, setAxle] = useState<any>(0);
   const [address, setAddress] = useState<string>("");
 
   const [balance, setBalance] = useState(0);
-  const [axleBalance, setAxleBalance] = useState(0);
+  const [axleBalance, setAxleBalance] = useState<any>("0");
 
   const [success, setSuccess] = useState(false);
   const [hash, setHash] = useState<string>("");
@@ -77,11 +69,11 @@ const AxleInfo = () => {
     setAxle((bnb * 8000).toString());
   }
 
-  function onAxleChange(e: any) {
-    const axle = Number(e.target.value);
-    setAxle(axle.toString());
-    setBnb((axle / 8000).toString());
-  }
+  // function onAxleChange(e: any) {
+  //   const axle = Number(e.target.value);
+  //   setAxle(axle.toString());
+  //   setBnb((axle / 8000).toString());
+  // }
 
   useEffect(() => {
     const isWalletConnected = localStorage.getItem("isWalletConnected");
@@ -272,13 +264,15 @@ const AxleInfo = () => {
     <Box fontWeight={"bold"}>
       <Box
         alignItems={"center"}
-        flexDirection={{ base: "column", lg: "row" }}
+        flexDirection={{ base: "row" }}
         display={"flex"}
         justifyContent="space-between"
-        mt={12}
+        mt={2}
+        px={8}
+        py={2}
       >
         <Image
-          maxW="180px"
+          maxW="120px"
           src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/logo.png`}
         />
         <Wallet
@@ -320,7 +314,7 @@ const AxleInfo = () => {
           rowGap="1rem"
           p={5}
         >
-          <Box justifyContent={"center"} display="flex" width={"70%"}>
+          <Box justifyContent={"center"} display="flex" width={"100%"}>
             <Box data-aos={`fade-left`}>
               <Box
                 minW={{ base: "270px" }}
@@ -370,142 +364,205 @@ const AxleInfo = () => {
             </Box>
           </Box>
 
-          <Box
-            justifyContent={"center"}
-            alignSelf="center"
-            display={"flex"}
-            flexDirection="column"
-            color={brandingColors.primaryTextColor}
-            p={4}
-            pos="relative"
-            py={{ base: "8" }}
-            width="100%"
-          >
+          <Box width={"100%"}>
             <Box
-              top={"4"}
-              left={"8%"}
-              pos={"absolute"}
-              px={8}
-              borderRadius="md"
-              backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
-              data-aos={`fade-right`}
-            >
-              <Text fontSize={"2xl"}>Buy $AXLE</Text>
-            </Box>
-            <Flex
-              display={success ? "none" : "flex"}
-              alignItems={"center"}
               justifyContent={"center"}
-              direction={"column"}
-              rowGap="1rem"
+              alignSelf="center"
+              display={"flex"}
+              flexDirection="column"
+              color={brandingColors.primaryTextColor}
+              p={4}
+              width="100%"
+              boxShadow={"2xl"}
+              borderRadius="xl"
+              backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
             >
-              <Box
-                width={"100%"}
-                backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
-                boxShadow="xl"
-                p={{ base: 4, lg: 8 }}
-                borderRadius={"2vh 4vw"}
-                pt={8}
+              <Text
+                fontFamily={`'Russo One', sans-serif`}
+                pb={2}
+                fontSize={"xl"}
               >
-                <Box
-                  display={"flex"}
-                  justifyContent="center"
-                  alignItems={"center"}
-                  flexDirection="column"
-                  rowGap={"1rem"}
-                >
-                  <FormControl
-                    display={"grid"}
-                    gridTemplateColumns="1fr 6fr"
-                    alignItems="center"
+                Buy $AXLE
+              </Text>
+              <Flex
+                alignItems={"center"}
+                justifyContent={"center"}
+                direction={"column"}
+              >
+                <Box width={"100%"} borderRadius="md">
+                  <Box
+                    display={"flex"}
+                    justifyContent="center"
+                    alignItems={"center"}
+                    flexDirection="column"
+                    rowGap={".2rem"}
                   >
-                    <FormLabel p={0} m={0} fontWeight={"bold"}>
-                      BNB
-                    </FormLabel>
-                    <Box>
+                    <Box
+                      backgroundImage={`linear-gradient(to top, #061e37, #072340, #072849, #082d52, #0a325c)`}
+                      boxShadow="2xl"
+                      p={4}
+                      borderRadius="md"
+                      width={"100%"}
+                    >
+                      <Text>You Pay</Text>
+                      <Flex
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
+                        columnGap="20%"
+                        bg={brandingColors.bgColor}
+                        p={4}
+                        my={2}
+                        borderRadius="md"
+                      >
+                        <Flex alignItems="center" columnGap={"2rem"}>
+                          <Image
+                            width={8}
+                            src={`https://axlegames.s3.ap-south-1.amazonaws.com/bnb.png`}
+                          />
+                          <Text
+                            color={brandingColors.secondaryTextColor}
+                            fontWeight={"bold"}
+                            fontSize="xl"
+                          >
+                            BNB
+                          </Text>
+                        </Flex>
+                        <Flex
+                          flexDirection={"column"}
+                          justifyContent={"flex-end"}
+                        >
+                          <Text fontSize={"xs"} textAlign={"right"}>
+                            Amount
+                          </Text>
+                          <Input
+                            fontWeight={"bold"}
+                            placeholder="value (BNB)"
+                            onChange={onBnbChange}
+                            type={"number"}
+                            textAlign="right"
+                            value={bnb}
+                            border="none"
+                            outline={"none"}
+                            _focus={{
+                              outline: "none",
+                              border: "none",
+                              shadow: "none",
+                            }}
+                          ></Input>
+                        </Flex>
+                      </Flex>
                       <Text
-                        px={2}
-                        py={1}
-                        fontSize={"small"}
                         color={brandingColors.primaryTextColor}
+                        fontSize="sm"
                       >
                         Min 0.1 BNB | Max 2 BNB
                       </Text>
-                      <Input
-                        fontWeight={"bold"}
-                        placeholder="value (BNB)"
-                        onChange={onBnbChange}
-                        type={"number"}
-                        value={bnb}
-                      ></Input>
                     </Box>
-                  </FormControl>
-                  <FormControl
-                    display={"grid"}
-                    gridTemplateColumns="1fr 6fr"
-                    alignItems="center"
-                  >
-                    {" "}
-                    <FormLabel fontWeight={"bold"}>AXLE</FormLabel>{" "}
-                    <Input
-                      fontWeight={"bold"}
-                      placeholder="value (AXLE)"
-                      onChange={onAxleChange}
-                      value={axle}
-                      type={"number"}
-                    ></Input>
-                  </FormControl>
-                  {!hasReferal ? null : (
-                    <FormControl display={"grid"} alignItems="center">
-                      <FormLabel fontWeight={"bold"}>
-                        <Flex alignItems={"center"} columnGap=".5rem">
-                          <Text>Referral </Text>
-                          <Text fontSize={"x-small"}>(Optional)</Text>
+                    <Box
+                      display={"flex"}
+                      justifyContent={"center"}
+                      position={"relative"}
+                    >
+                      <Icon
+                        backgroundImage={`radial-gradient(circle, #061e37, #072340, #072849, #082d52, #0a325c)`}
+                        boxShadow="2xl"
+                        borderRadius="10vh"
+                        top={-4}
+                        width={8}
+                        height={8}
+                        position={"absolute"}
+                        as={ArrowDownIcon}
+                      ></Icon>
+                    </Box>
+
+                    <Box
+                      backgroundImage={`linear-gradient(to bottom, #061e37, #072340, #072849, #082d52, #0a325c)`}
+                      boxShadow="2xl"
+                      p={4}
+                      borderRadius="md"
+                      width={"100%"}
+                    >
+                      <Text>You Secure</Text>
+                      <Flex
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
+                        columnGap="20%"
+                        bg={brandingColors.bgColor}
+                        p={4}
+                        my={2}
+                        borderRadius="md"
+                      >
+                        <Flex alignItems="center" columnGap={"2rem"}>
+                          <Image
+                            width={10}
+                            src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/icon.png`}
+                          />
+                          <Text
+                            color={brandingColors.secondaryTextColor}
+                            fontWeight={"bold"}
+                            fontSize="xl"
+                          >
+                            BNB
+                          </Text>
                         </Flex>
-                      </FormLabel>
+                        <Flex
+                          flexDirection={"column"}
+                          justifyContent={"flex-end"}
+                        >
+                          <Text
+                            color={brandingColors.primaryButtonColor}
+                            textAlign={"right"}
+                          >
+                            {axle}
+                          </Text>
+                        </Flex>
+                      </Flex>
+                      {address !== "" && axle !== undefined ? (
+                        <Text
+                          color={brandingColors.primaryTextColor}
+                          fontSize="sm"
+                        >
+                          {`you will receive ${axle * 0.25} bonus tokens`}
+                        </Text>
+                      ) : null}
+                    </Box>
+                    <Box
+                      display={"flex"}
+                      flexDirection="column"
+                      width={"100%"}
+                      rowGap="1rem"
+                      pt={4}
+                    >
                       <Input
                         fontWeight={"bold"}
-                        placeholder="Referral Address"
+                        placeholder="Referral Address (optional)"
+                        outline={`2px groove ${brandingColors.primaryTextColor}`}
+                        border={`none`}
+                        bg={brandingColors.bgColor}
                         type={"text"}
                       ></Input>
-                    </FormControl>
-                  )}
-                  <Box>
-                    {!hasReferal ? (
-                      <Text
-                        color={brandingColors.secondaryTextColor}
-                        fontSize="sm"
-                        cursor={"pointer"}
-                        onClick={() => setHasReferral(!hasReferal)}
-                      >
-                        Have Referral Address?
-                      </Text>
-                    ) : null}
-                    {address !== "" && axle !== undefined ? (
-                      <Text
-                        fontSize={"sm"}
-                        color={brandingColors.secondaryTwoTextColor}
-                      >{`you will receive ${axle * 0.25} bonus tokens`}</Text>
-                    ) : null}
+                      {address === "" ? (
+                        <NeuButton
+                          bg={"#A34400"}
+                          shadow={"#FF7C1F"}
+                          onClick={connectWallet}
+                          label="Connect Wallet"
+                          width="100%"
+                        ></NeuButton>
+                      ) : (
+                        <NeuButton
+                          bg={"#A34400"}
+                          shadow={"#FF7C1F"}
+                          onClick={buyAxle}
+                          label="Buy Axle"
+                          width="100%"
+                        ></NeuButton>
+                      )}
+                    </Box>
                   </Box>
-                  {address === "" ? (
-                    <NeuButton
-                      bg={"#A34400"}
-                      shadow={"#FF7C1F"}
-                      onClick={connectWallet}
-                      label="Connect Wallet"
-                    ></NeuButton>
-                  ) : (
-                    <NeuButton
-                      bg={"#A34400"}
-                      shadow={"#FF7C1F"}
-                      onClick={buyAxle}
-                      label="Buy Axle"
-                    ></NeuButton>
-                  )}
                 </Box>
-              </Box>
-            </Flex>
+              </Flex>
+            </Box>
 
             <Box
               m={3}
@@ -522,29 +579,6 @@ const AxleInfo = () => {
                 {axleBalance} $AXLE in Wallet
               </Text>
             </Box>
-
-            <Flex
-              my={3}
-              display={{ base: "flex" }}
-              rowGap={{ base: "1rem" }}
-              alignItems={"center"}
-              flexDirection={{ base: "row" }}
-              justifyContent={{ base: "center" }}
-            >
-              {socials.map((i, x) => (
-                <Box cursor={"pointer"}>
-                  <Tilt>
-                    <Image
-                      key={i}
-                      data-aos={`zoom-in`}
-                      height={{ base: "12", lg: "16" }}
-                      width={{ base: "12", lg: "16" }}
-                      src={i}
-                    />
-                  </Tilt>
-                </Box>
-              ))}
-            </Flex>
           </Box>
         </Box>
 
