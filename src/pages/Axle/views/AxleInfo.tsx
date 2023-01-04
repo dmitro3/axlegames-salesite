@@ -20,7 +20,6 @@ import NeuButton from "../component/NeuButton";
 import AxleDialog from "../dialog/AxleDialog";
 import TransactionSuccessDialog from "../dialog/TransactionSuccessDialog";
 import Wallet from "../component/Wallet";
-import Tilt from "react-parallax-tilt";
 import { ArrowDownIcon } from "@chakra-ui/icons";
 
 declare global {
@@ -256,29 +255,37 @@ const AxleInfo = () => {
         <Box
           display={"flex"}
           flexDirection={{ base: "column", lg: "row" }}
-          justifyContent="space-between"
+          justifyContent="center"
           alignItems={"center"}
-          columnGap="1rem"
-          rowGap={"1rem"}
+          columnGap="2rem"
+          rowGap={"2rem"}
+          m={4}
           p={5}
         >
-          <Box justifyContent={"flex-start"} display="flex" width={"70%"}>
+          <Box
+            backgroundImage={`linear-gradient(to bottom, rgba(6, 30, 55, 0.25), rgba(0, 41, 86, 0.25), rgba(0, 51, 118, 0.25), rgba(0, 59, 150, 0.25), rgba(20, 66, 181, 0.25))`}
+            color={brandingColors.primaryTextColor}
+            borderRadius="xl"
+            backdropFilter={`blur(20px)`}
+            boxShadow={`0px 0px 6px ${brandingColors.newHighlightColor}`}
+            justifyContent={"center"}
+            display="flex"
+            p={4}
+          >
             <Box data-aos={`fade-left`}>
               <Box
                 justifyContent={"center"}
                 alignItems="center"
                 display="flex"
                 flexDirection="column"
-                maxW={"300px"}
+                maxW={"450px"}
               >
-                <Tilt>
-                  <video
-                    muted
-                    loop
-                    src={`https://axlegames.s3.ap-south-1.amazonaws.com/zeus.mp4`}
-                    autoPlay
-                  ></video>
-                </Tilt>
+                <video
+                  muted
+                  loop
+                  src={`https://axlegames.s3.ap-south-1.amazonaws.com/zeus.mp4`}
+                  autoPlay
+                ></video>
                 <Box
                   py={3}
                   borderBottomRadius="xl"
@@ -315,13 +322,13 @@ const AxleInfo = () => {
             alignSelf="center"
             display={"flex"}
             flexDirection="column"
+            backgroundImage={`linear-gradient(to bottom, rgba(6, 30, 55, 0.25), rgba(0, 41, 86, 0.25), rgba(0, 51, 118, 0.25), rgba(0, 59, 150, 0.25), rgba(20, 66, 181, 0.25))`}
             color={brandingColors.primaryTextColor}
             p={4}
+            borderRadius="xl"
+            backdropFilter={`blur(20px)`}
             width="100%"
             boxShadow={`0px 0px 6px ${brandingColors.newHighlightColor}`}
-            borderRadius="xl"
-            backdropFilter={`blur( 4px )`}
-            backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
           >
             <Text fontFamily={`'Russo One', sans-serif`} pb={2} fontSize={"xl"}>
               Buy AXLE
@@ -489,9 +496,8 @@ const AxleInfo = () => {
                     <Input
                       fontWeight={"bold"}
                       placeholder="Referral Address (optional)"
-                      outline={`2px groove ${brandingColors.fgColor}`}
+                      outline={`2px groove ${brandingColors.newHighlightColor}`}
                       border={`none`}
-                      bg={brandingColors.fgColor}
                       type={"text"}
                     ></Input>
                     {address === "" ? (
