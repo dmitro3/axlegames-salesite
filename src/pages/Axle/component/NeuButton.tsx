@@ -24,12 +24,10 @@ const NeuButton = (props: Props) => {
       onClick={() => props.onClick()}
       _hover={{
         boxShadow: pushedEffect,
-        transform: `scale(0.95)`,
         transition: "200ms all ",
       }}
       _active={{
         boxShadow: pushedEffect,
-        transform: `scale(0.95)`,
         transition: "200ms all ",
       }}
     >

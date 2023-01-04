@@ -489,9 +489,9 @@ const AxleInfo = () => {
                     <Input
                       fontWeight={"bold"}
                       placeholder="Referral Address (optional)"
-                      outline={`2px groove ${brandingColors.primaryTextColor}`}
+                      outline={`2px groove ${brandingColors.fgColor}`}
                       border={`none`}
-                      bg={brandingColors.bgColor}
+                      bg={brandingColors.fgColor}
                       type={"text"}
                     ></Input>
                     {address === "" ? (

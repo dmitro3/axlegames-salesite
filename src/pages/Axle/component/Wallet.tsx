@@ -11,6 +11,15 @@ const socials = [
   `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/discord.webp`,
   `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/medium.webp`,
 ];
+
+const links = [
+  `t.me/axlegames_en`,
+  `https://twitter.com/AxleGames`,
+  `https://instagram.com/axlegames`,
+  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/discord.webp`,
+  `https://medium.com/@axlegames`,
+];
+
 interface Props {
   connectWallet: Function;
   openWallet: boolean;
@@ -89,7 +98,11 @@ const Wallet = (props: Props) => {
         flexDirection={{ base: "row" }}
         columnGap="1rem"
       >
-        <Flex alignItems={"center"} columnGap={"1rem"}>
+        <Flex
+          display={{ base: "none", lg: "flex" }}
+          alignItems={"center"}
+          columnGap={"1rem"}
+        >
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -120,15 +133,17 @@ const Wallet = (props: Props) => {
         <Flex>
           {socials.map((i, x) => (
             <Box cursor={"pointer"}>
-              <Tilt>
-                <Image
-                  key={i}
-                  data-aos={`zoom-in`}
-                  height={{ base: "12" }}
-                  width={{ base: "12" }}
-                  src={i}
-                />
-              </Tilt>
+              <a href={links[x]} target={"_blank"} rel="noopener noreferrer">
+                <Tilt>
+                  <Image
+                    key={i}
+                    data-aos={`zoom-in`}
+                    height={{ base: "12" }}
+                    width={{ base: "12" }}
+                    src={i}
+                  />
+                </Tilt>
+              </a>
             </Box>
           ))}
         </Flex>
