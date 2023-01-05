@@ -100,7 +100,7 @@ const Wallet = (props: Props) => {
       >
         <Flex>
           {socials.map((i, x) => (
-            <Box cursor={"pointer"}>
+            <Box key={x} cursor={"pointer"}>
               <a href={links[x]} target={"_blank"} rel="noopener noreferrer">
                 <Tilt>
                   <Image

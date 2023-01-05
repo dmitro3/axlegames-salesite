@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 
 import axleTokenABI from "../../../abi/AxleToken.json";
-import axlePresaleABI from "../../../abi/TokenPresale.json";
+import axlePresaleABI from "../../../abi/AxlePresale.json";
 
 import NeuButton from "../component/NeuButton";
 import AxleDialog from "../dialog/AxleDialog";
@@ -127,8 +127,8 @@ const AxleInfo = () => {
     }
   };
 
-  const TOKEN_CONTRACT_ADDRESS = "0x9FE1eb84F87d83Ad87A532aD3ce034037039913B";
-  const PRESALE_CONTRACT_ADDRESS = "0x39D371fdCaabAAc1a2a052acb2F36c5D19a2cD1f";
+  const TOKEN_CONTRACT_ADDRESS = "0x0Fffe22810EA0BB3463D2b8afCEBCB7F462B95a1";
+  const PRESALE_CONTRACT_ADDRESS = "0x5512b66bB0e6e80348092E2a030e2a2f1D7bf4fd";
 
   const toast = useToast();
 
@@ -174,13 +174,15 @@ const AxleInfo = () => {
         axlePresaleABI.abi,
         signer
       );
+      console.log(presale);
       const options = { value: ethers.utils.parseEther(bnb.toString()) };
       try {
-        const { hash } = await presale.deposit(options);
+        const { hash } = await presale.buyToken(options);
         setHash(hash);
         setSuccess(true);
       } catch (err: any) {
         if (err) {
+          console.log(err);
           const message = err.data.message;
           return toast({
             title: "Error",
@@ -284,11 +286,10 @@ const AxleInfo = () => {
             alignSelf="center"
             display={"flex"}
             flexDirection="column"
-            backgroundImage={`linear-gradient(to bottom, rgba(6, 30, 55, 0.25), rgba(0, 41, 86, 0.25), rgba(0, 51, 118, 0.25), rgba(0, 59, 150, 0.25), rgba(20, 66, 181, 0.25))`}
             color={brandingColors.primaryTextColor}
+            backgroundImage={`linear-gradient(to bottom, #061e37, #06223e, #072544, #07294b, #082d52, #082d52, #082d52, #082d52, #07294b, #072544, #06223e, #061e37)`}
             p={4}
             borderRadius="xl"
-            backdropFilter={`blur(20px)`}
             width="100%"
             boxShadow={`0px 0px 6px ${brandingColors.newHighlightColor}`}
           >
@@ -306,11 +307,11 @@ const AxleInfo = () => {
                   justifyContent="center"
                   alignItems={"center"}
                   flexDirection="column"
-                  rowGap={".2rem"}
+                  rowGap={".4rem"}
                 >
                   <Box
-                    backgroundImage={`linear-gradient(to top, #061e37, #072340, #072849, #082d52, #0a325c)`}
-                    boxShadow="2xl"
+                    backgroundImage={`linear-gradient(to bottom, #061e37, #072340, #072849, #082d52, #0a325c)`}
+                    boxShadow={`0px 0px 4px ${brandingColors.newHighlightColor}`}
                     p={4}
                     borderRadius="md"
                     width={"100%"}
@@ -390,8 +391,8 @@ const AxleInfo = () => {
                   </Box>
 
                   <Box
-                    backgroundImage={`linear-gradient(to bottom, #061e37, #072340, #072849, #082d52, #0a325c)`}
-                    boxShadow="2xl"
+                    backgroundImage={`linear-gradient(to top, #061e37, #072340, #072849, #082d52, #0a325c)`}
+                    boxShadow={`0px 0px 4px ${brandingColors.newHighlightColor}`}
                     p={4}
                     borderRadius="md"
                     width={"100%"}
