@@ -8,15 +8,13 @@ const socials = [
   `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/telegram.webp`,
   `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/twitter.webp`,
   `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/instagram.webp`,
-  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/discord.webp`,
   `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/medium.webp`,
 ];
 
 const links = [
-  `t.me/axlegames_en`,
+  `https://telegram.me/axlegames_en`,
   `https://twitter.com/AxleGames`,
   `https://instagram.com/axlegames`,
-  `https://axlegames.s3.ap-south-1.amazonaws.com/assets/main/discord.webp`,
   `https://medium.com/@axlegames`,
 ];
 
