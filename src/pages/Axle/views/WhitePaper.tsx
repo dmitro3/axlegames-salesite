@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
-
 import { brandingColors } from "../../../config/brandingColors";
+
 import NeuButton from "../component/NeuButton";
 
 const WhitePaper = (props: any) => {
