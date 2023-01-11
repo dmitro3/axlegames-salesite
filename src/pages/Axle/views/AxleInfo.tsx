@@ -232,6 +232,16 @@ const AxleInfo = () => {
         close={() => setOpenModal(!openModal)}
         isOpen={openModal}
         connectMetaMaskWallet={connectWallet}
+        connectCoinBase={() =>
+          toast({
+            title: "Stay Tuned",
+            description: "Coming soon",
+            status: "info",
+            duration: 5000,
+            isClosable: true,
+            position: "top",
+          })
+        }
       />
       <Box
         alignItems={"center"}

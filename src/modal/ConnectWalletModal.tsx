@@ -22,6 +22,7 @@ interface Props {
   isOpen: boolean;
   close: Function;
   connectMetaMaskWallet: Function;
+  connectCoinBase: Function;
 }
 
 const ConnectWalletModal = (props: Props) => {
@@ -71,6 +72,10 @@ const ConnectWalletModal = (props: Props) => {
               alignItems="center"
               justifyContent={"center"}
               flexDirection="column"
+              cursor={"pointer"}
+              onClick={() => {
+                props.connectCoinBase();
+              }}
             >
               <Image width="12" src={TWT} />
               <Text>Trust Wallet</Text>
@@ -81,6 +86,10 @@ const ConnectWalletModal = (props: Props) => {
               alignItems="center"
               justifyContent={"center"}
               flexDirection="column"
+              cursor={"pointer"}
+              onClick={() => {
+                props.connectCoinBase();
+              }}
             >
               <Image width="12" src={BNB} />
               <Text>Binance Wallet</Text>
@@ -90,6 +99,10 @@ const ConnectWalletModal = (props: Props) => {
               alignItems="center"
               justifyContent={"center"}
               flexDirection="column"
+              cursor={"pointer"}
+              onClick={() => {
+                props.connectCoinBase();
+              }}
             >
               <Image width="12" src={CB} />
               <Text>Coinbase Wallet</Text>
