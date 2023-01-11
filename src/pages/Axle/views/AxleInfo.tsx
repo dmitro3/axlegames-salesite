@@ -39,7 +39,7 @@ const AxleInfo = () => {
   const [balance, setBalance] = useState(0);
   const [axleBalance, setAxleBalance] = useState<any>("0");
 
-  const [success, setSuccess] = useState(true);
+  const [success, setSuccess] = useState(false);
   const [hash, setHash] = useState<string>("");
 
   const [openWallet, setOpenWallet] = useState(false);
