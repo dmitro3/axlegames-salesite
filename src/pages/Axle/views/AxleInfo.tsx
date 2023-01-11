@@ -79,7 +79,7 @@ const AxleInfo = () => {
   function onBnbChange(e: any) {
     const bnb = Number(e.target.value);
     setBnb(bnb.toString());
-    setAxle((bnb * 8000).toString());
+    setAxle((bnb * 75000).toString());
   }
 
   useEffect(() => {
@@ -184,7 +184,6 @@ const AxleInfo = () => {
         axlePresaleABI,
         signer
       );
-      console.log(presale);
       const options = { value: ethers.utils.parseEther(bnb.toString()) };
       try {
         const { hash } = await presale.buyToken(options);
@@ -206,11 +205,25 @@ const AxleInfo = () => {
     })();
   }
 
+  async function getAxleLiveBal() {
+    const signer = provider.getSigner();
+    const token = new ethers.Contract(
+      TOKEN_CONTRACT_ADDRESS,
+      axleTokenABI,
+      signer
+    );
+    const a: number =
+      Number(ethers.utils.formatEther(await token.balanceOf(address))) || 0;
+    setAxleBalance(a);
+  }
+
   useEffect(() => {
     const b: number = Number(
       Number(ethers.utils.formatEther(etherBalance || 0))
     );
     setBalance(b);
+    getAxleLiveBal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address, etherBalance]);
 
   return (
@@ -274,7 +287,9 @@ const AxleInfo = () => {
           children={
             <TransactionSuccessDialog
               hash={hash}
-              close={() => setSuccess(false)}
+              close={async () => {
+                setSuccess(false);
+              }}
               fee={axle}
             />
           }
@@ -417,7 +432,7 @@ const AxleInfo = () => {
                         color={brandingColors.secondaryTextColor}
                         fontSize={"sm"}
                       >
-                        {`Balance : ` + axleBalance + ` AXLE`}
+                        {`Balance : ` + axleBalance * 10 ** 9 + ` AXLE`}
                       </Text>
                     </Flex>
                     <Flex
