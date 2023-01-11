@@ -42,16 +42,27 @@ const AxleInfo = () => {
 
   const [openWallet, setOpenWallet] = useState(false);
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-
-  provider.on("network", (newNetwork, oldNetwork) => {
-    // When a Provider makes its initial connection, it emits a "network"
-    // event with a null oldNetwork along with the newNetwork. So, if the
-    // oldNetwork exists, it represents a changing network
-    if (oldNetwork) {
-      window.location.reload();
+  let provider: any;
+  try {
+    provider = new ethers.providers.Web3Provider(
+      window.ethereum,
+      "any"
+    ) as ethers.providers.Web3Provider;
+    if (provider !== null || provider !== undefined) {
+      provider.on("network", (newNetwork: any, oldNetwork: any) => {
+        // When a Provider makes its initial connection, it emits a "network"
+        // event with a null oldNetwork along with the newNetwork. So, if the
+        // oldNetwork exists, it represents a changing network
+        if (oldNetwork) {
+          window.location.reload();
+        }
+      });
     }
-  });
+  } catch (error) {
+    provider =
+      ethers.providers.getDefaultProvider() as ethers.providers.BaseProvider;
+    console.log(error);
+  }
 
   const { activateBrowserWallet, isLoading, deactivate } = useEthers();
   const { chainId } = useEthers();
@@ -68,22 +79,18 @@ const AxleInfo = () => {
     setAxle((bnb * 8000).toString());
   }
 
-  // function onAxleChange(e: any) {
-  //   const axle = Number(e.target.value);
-  //   setAxle(axle.toString());
-  //   setBnb((axle / 8000).toString());
-  // }
-
   useEffect(() => {
-    const isWalletConnected = localStorage.getItem("isWalletConnected");
-    if (isWalletConnected === "true") connectWallet();
-    window.ethereum.on("accountsChanged", (accounts: any) => {
-      if (accounts[0] !== address) connectWallet();
-      if (accounts.length === 0 || accounts[0] === "") {
-        localStorage.removeItem("isWalletConnected");
-        window.location.reload();
-      }
-    });
+    if (provider.antNetwork) {
+      const isWalletConnected = localStorage.getItem("isWalletConnected");
+      if (isWalletConnected === "true") connectWallet();
+      window.ethereum.on("accountsChanged", (accounts: any) => {
+        if (accounts[0] !== address) connectWallet();
+        if (accounts.length === 0 || accounts[0] === "") {
+          localStorage.removeItem("isWalletConnected");
+          window.location.reload();
+        }
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
