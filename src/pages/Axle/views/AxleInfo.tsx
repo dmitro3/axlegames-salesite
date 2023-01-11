@@ -15,6 +15,7 @@ import {
 
 import axleTokenABI from "../../../abi/AxleToken.json";
 import axlePresaleABI from "../../../abi/AxlePresale.json";
+import ConnectWalletModal from "../../../modal/ConnectWalletModal";
 
 import NeuButton from "../component/NeuButton";
 import AxleDialog from "../dialog/AxleDialog";
@@ -41,6 +42,7 @@ const AxleInfo = () => {
   const [hash, setHash] = useState<string>("");
 
   const [openWallet, setOpenWallet] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   let provider: any;
   try {
@@ -105,7 +107,7 @@ const AxleInfo = () => {
       const address = await signer.getAddress();
       const token = new ethers.Contract(
         TOKEN_CONTRACT_ADDRESS,
-        axleTokenABI.abi,
+        axleTokenABI,
         signer
       );
       if (token !== null) {
@@ -134,8 +136,8 @@ const AxleInfo = () => {
     }
   };
 
-  const TOKEN_CONTRACT_ADDRESS = "0x0Fffe22810EA0BB3463D2b8afCEBCB7F462B95a1";
-  const PRESALE_CONTRACT_ADDRESS = "0x5512b66bB0e6e80348092E2a030e2a2f1D7bf4fd";
+  const TOKEN_CONTRACT_ADDRESS = "0x988Bc83ce10e9c120E8FCeC2cde484fE58d8bCd5";
+  const PRESALE_CONTRACT_ADDRESS = "0x5d2B76830e115dE97238EfEef8263f6bfCB70dDa";
 
   const toast = useToast();
 
@@ -178,7 +180,7 @@ const AxleInfo = () => {
       const signer = provider.getSigner();
       const presale = new ethers.Contract(
         PRESALE_CONTRACT_ADDRESS,
-        axlePresaleABI.abi,
+        axlePresaleABI,
         signer
       );
       console.log(presale);
@@ -213,6 +215,10 @@ const AxleInfo = () => {
 
   return (
     <Box fontFamily={"quicksand"} fontWeight={"bold"}>
+      <ConnectWalletModal
+        close={() => setOpenModal(!openModal)}
+        isOpen={openModal}
+      />
       <Box
         alignItems={"center"}
         flexDirection={{ base: "column", md: "row" }}

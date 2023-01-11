@@ -1,4 +1,4 @@
-import { ChakraProvider, theme, Flex, Box } from "@chakra-ui/react";
+import { ChakraProvider, theme, Flex, Box, Text } from "@chakra-ui/react";
 import { brandingColors } from "./config/brandingColors";
 import AxleInfo from "./pages/Axle/views/AxleInfo";
 import UtilityGrid from "./pages/Axle/views/UtilityGrid";
@@ -31,10 +31,14 @@ export const App = () => {
             fontWeight: "bold",
           }}
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure aliquid
-          commodi sint id neque libero necessitatibus amet inventore tempora ab
-          iste temporibus optio laudantium, ratione, ipsum obcaecati fugit
-          explicabo nisi?
+          <Flex columnGap={"4rem"}>
+            <Text>• The sale of $AXLE tokens will begin soon.</Text>
+            <Text>• DeFi is going live soon.</Text>
+            <Text>• Axlegames is live.</Text>
+            <Text>• The sale of $AXLE tokens will begin soon.</Text>
+            <Text>• DeFi is going live soon.</Text>
+            <Text>• Axlegames is live.</Text>
+          </Flex>
         </Marquee>
         <AxleInfo />
         <Flex

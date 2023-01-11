@@ -86,7 +86,7 @@ const NFT = () => {
             fontFamily={`'Russo One', sans-serif`}
             textAlign={"center"}
           >
-            {`Header`}
+            {`Zeus`}
           </Text>
           <Text
             color={brandingColors.secondaryTextColor}
@@ -95,7 +95,7 @@ const NFT = () => {
             fontSize={{ base: "sm", lg: "md" }}
             textAlign={"center"}
           >
-            {`Sub`}
+            {`Thunder NFT`}
           </Text>
         </Box>
       </Box>
