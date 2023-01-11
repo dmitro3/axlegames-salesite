@@ -16,7 +16,10 @@ const TransactionSuccessDialog = (props: any) => {
           src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/gamein/checked.webp`}
         />
         <Text fontSize={"xl"}>Welcome to AXLE family!</Text>{" "}
-        <Text fontSize={"md"}> You purchased {props.fee} AXLE</Text>
+        <Text fontSize={"md"}>
+          {" "}
+          You have received {props.fee + props.fee * 0.25} AXLE
+        </Text>
         <a
           href={`https://testnet.bscscan.com/tx/` + props.hash}
           target="_blank"
@@ -37,6 +40,14 @@ const TransactionSuccessDialog = (props: any) => {
             </Text>
           </Box>
         </a>
+        <Text
+          color={brandingColors.dangerColor}
+          textAlign={"center"}
+          fontSize={"sm"}
+        >
+          **please refresh the page after 2 minutes for the updated AXLE token
+          balance{" "}
+        </Text>
       </Flex>
       <Box mt={3}></Box>
       <Flex justifyContent={"center"}>

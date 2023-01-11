@@ -39,7 +39,7 @@ const AxleInfo = () => {
   const [balance, setBalance] = useState(0);
   const [axleBalance, setAxleBalance] = useState<any>("0");
 
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(true);
   const [hash, setHash] = useState<string>("");
 
   const [openWallet, setOpenWallet] = useState(false);
@@ -158,7 +158,7 @@ const AxleInfo = () => {
       if (bnb < 0.1)
         return toast({
           title: "Warning",
-          description: "Minimum 0.1 BNB",
+          description: "Minimum 0.2 BNB",
           status: "warning",
           duration: 5000,
           isClosable: true,
@@ -399,7 +399,7 @@ const AxleInfo = () => {
                       </Flex>
                     </Flex>
                     <Text color={brandingColors.primaryTextColor} fontSize="sm">
-                      Min 0.1 BNB | Max 2 BNB
+                      Min 0.2 BNB | Max 2 BNB
                     </Text>
                   </Box>
                   <Box
