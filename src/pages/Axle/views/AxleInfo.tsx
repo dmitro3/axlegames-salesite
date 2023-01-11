@@ -192,7 +192,6 @@ const AxleInfo = () => {
         setSuccess(true);
       } catch (err: any) {
         if (err) {
-          console.log(err);
           const message = err.data.message;
           return toast({
             title: "Error",

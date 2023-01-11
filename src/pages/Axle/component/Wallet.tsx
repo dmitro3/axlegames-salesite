@@ -86,7 +86,7 @@ const Wallet = (props: Props) => {
   };
 
   return (
-    <Box columnGap={"2rem"} display={"flex"} minW="64px">
+    <Box columnGap={"2rem"} display={{ base: "none", md: "flex" }} minW="64px">
       <Flex
         my={3}
         display={{ base: "flex" }}
