@@ -218,6 +218,7 @@ const AxleInfo = () => {
       <ConnectWalletModal
         close={() => setOpenModal(!openModal)}
         isOpen={openModal}
+        connectMetaMaskWallet={connectWallet}
       />
       <Box
         alignItems={"center"}
@@ -237,7 +238,7 @@ const AxleInfo = () => {
           address={address}
           disconnect={disconnect}
           balance={balance}
-          connectWallet={connectWallet}
+          connectWallet={() => setOpenModal(true)}
           isLoading={isLoading}
           openWallet={openWallet}
           setOpenWallet={setOpenWallet}
@@ -482,7 +483,7 @@ const AxleInfo = () => {
                       <NeuButton
                         bg={"#A34400"}
                         shadow={"#FF7C1F"}
-                        onClick={connectWallet}
+                        onClick={() => setOpenModal(true)}
                         label="Connect Wallet"
                         width="100%"
                       ></NeuButton>

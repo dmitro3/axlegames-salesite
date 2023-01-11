@@ -21,6 +21,7 @@ import TWT from "./twt.svg";
 interface Props {
   isOpen: boolean;
   close: Function;
+  connectMetaMaskWallet: Function;
 }
 
 const ConnectWalletModal = (props: Props) => {
@@ -37,11 +38,11 @@ const ConnectWalletModal = (props: Props) => {
         <ModalCloseButton />
         <ModalBody>
           <Box>
-            <Text>Start by connecting with one of the wallets below.</Text>
             <Text>
-              Be sure to store your private keys or seed pharses Securely.
+              Start by connecting with one of the wallets below. Be sure to
+              store your private keys or seed pharses Securely. Never share them
+              with anyone.
             </Text>
-            <Text>Never share them with anyone.</Text>
           </Box>
           <Grid
             justifyContent="center"
@@ -56,6 +57,11 @@ const ConnectWalletModal = (props: Props) => {
               alignItems="center"
               justifyContent={"center"}
               flexDirection="column"
+              cursor={"pointer"}
+              onClick={() => {
+                props.connectMetaMaskWallet();
+                props.close();
+              }}
             >
               <Image width="12" src={MM} />
               <Text>Metamask</Text>
