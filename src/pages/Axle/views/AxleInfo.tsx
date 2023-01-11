@@ -15,14 +15,15 @@ import {
 
 import axleTokenABI from "../../../abi/AxleToken.json";
 import axlePresaleABI from "../../../abi/AxlePresale.json";
-import ConnectWalletModal from "../../../modal/ConnectWalletModal";
 
+import NFT from "./NFT";
+import Wallet from "../component/Wallet";
 import NeuButton from "../component/NeuButton";
 import AxleDialog from "../dialog/AxleDialog";
+import ConnectWalletModal from "../../../modal/ConnectWalletModal";
 import TransactionSuccessDialog from "../dialog/TransactionSuccessDialog";
-import Wallet from "../component/Wallet";
+
 import { ArrowDownIcon } from "@chakra-ui/icons";
-import NFT from "./NFT";
 
 declare global {
   interface Window {
@@ -290,8 +291,8 @@ const AxleInfo = () => {
           alignItems={"center"}
           rowGap={"2rem"}
           columnGap="6rem"
-          m={4}
-          p={5}
+          m={{ base: "0", md: "4" }}
+          p={{ base: "0", md: "4" }}
           width="100%"
         >
           <NFT />
