@@ -35,12 +35,12 @@ export const App = () => {
           }}
         >
           <Flex columnGap={"4rem"}>
-            <Text>• The sale of $AXLE tokens will begin soon.</Text>
-            <Text>• DeFi is going live soon.</Text>
-            <Text>• Axlegames is live.</Text>
-            <Text>• The sale of $AXLE tokens will begin soon.</Text>
-            <Text>• DeFi is going live soon.</Text>
-            <Text>• Axlegames is live.</Text>
+            <Text>• Zeus sale is live now, Buy $AXLE and get +25% Bonus.</Text>
+            <Text>• Refer and Earn 5% Bonus $AXLE tokens.</Text>
+            <Text>• First 100 Buyers {`>`}= 1 BNB will get a Zeus NFT.</Text>
+            <Text>• Zeus sale is live now, Buy $AXLE and get +25% Bonus.</Text>
+            <Text>• Refer and Earn 5% Bonus $AXLE tokens.</Text>
+            <Text>• First 100 Buyers {`>`}= 1 BNB will get a Zeus NFT.</Text>
           </Flex>
         </Marquee>
         <Banner close={() => setBanner(false)} isOpen={banner} size="xl" />
