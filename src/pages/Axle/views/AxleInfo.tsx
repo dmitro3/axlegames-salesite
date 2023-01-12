@@ -23,7 +23,7 @@ import AxleDialog from "../dialog/AxleDialog";
 import ConnectWalletModal from "../../../modal/ConnectWalletModal";
 import TransactionSuccessDialog from "../dialog/TransactionSuccessDialog";
 
-import { ArrowDownIcon } from "@chakra-ui/icons";
+import { ArrowDownIcon, CopyIcon } from "@chakra-ui/icons";
 
 declare global {
   interface Window {
@@ -100,6 +100,7 @@ const AxleInfo = () => {
   const connectWallet = async () => {
     try {
       const signer = provider.getSigner();
+      console.log(signer);
       if (signer._address === null) {
         await window.ethereum.request({
           method: "eth_requestAccounts",
@@ -217,6 +218,12 @@ const AxleInfo = () => {
     setAxleBalance(a);
   }
 
+  const [refAddress, setRefAddress] = useState("");
+
+  const updateReferralAddress = (address: string) => {
+    setRefAddress(address);
+  };
+
   useEffect(() => {
     const b: number = Number(
       Number(ethers.utils.formatEther(etherBalance || 0))
@@ -266,6 +273,45 @@ const AxleInfo = () => {
           openWallet={openWallet}
           setOpenWallet={setOpenWallet}
         />
+      </Box>
+
+      <Box display={"flex"} justifyContent="flex-end" px={4}>
+        <Box>
+          <Text color={brandingColors.primaryTextColor}>
+            Your Referral Address
+          </Text>
+          <Box
+            color={brandingColors.primaryMiscColor}
+            bg={brandingColors.newHighlightColor}
+            p={2}
+            borderRadius="md"
+            boxShadow={"lg"}
+            display="flex"
+            alignItems={"center"}
+            columnGap=".5rem"
+            justifyContent={"flex-end"}
+          >
+            <Text>
+              {address.substring(0, 6)}....
+              {address.substring(address.length - 7, address.length - 1)}{" "}
+            </Text>
+            <CopyIcon
+              cursor={"pointer"}
+              onClick={() => {
+                navigator.clipboard.writeText(address);
+                return toast({
+                  title: "Copied",
+                  description: address,
+                  status: "success",
+                  duration: 5000,
+                  isClosable: true,
+                  position: "top",
+                });
+              }}
+              color={brandingColors.primaryButtonColor}
+            />
+          </Box>
+        </Box>
       </Box>
 
       <Box
@@ -503,7 +549,18 @@ const AxleInfo = () => {
                       outline={`2px groove ${brandingColors.newHighlightColor}`}
                       border={`none`}
                       type={"text"}
+                      onChange={(s) => updateReferralAddress(s.target.value)}
                     ></Input>
+                    {refAddress !== "" ? (
+                      <NeuButton
+                        bg={"#A34400"}
+                        shadow={"#FF7C1F"}
+                        onClick={() => setOpenModal(true)}
+                        label="Confirm Referral Address"
+                        width="50%"
+                      ></NeuButton>
+                    ) : null}
+
                     {address === "" ? (
                       <NeuButton
                         bg={"#A34400"}
