@@ -1,7 +1,5 @@
-import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import { brandingColors } from "../../../config/brandingColors";
-import { useEtherBalance, useEthers } from "@usedapp/core";
 import {
   Box,
   Flex,
@@ -16,14 +14,18 @@ import {
 import axleTokenABI from "../../../abi/AxleToken.json";
 import axlePresaleABI from "../../../abi/AxlePresale.json";
 
+import Web3Modal from "web3modal";
+
 import NFT from "./NFT";
-import Wallet from "../component/Wallet";
 import NeuButton from "../component/NeuButton";
 import AxleDialog from "../dialog/AxleDialog";
-import ConnectWalletModal from "../../../modal/ConnectWalletModal";
+import Wallet from "../component/Wallet";
 import TransactionSuccessDialog from "../dialog/TransactionSuccessDialog";
 
+import { ethers } from "ethers";
 import { ArrowDownIcon, CopyIcon } from "@chakra-ui/icons";
+import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 
 declare global {
   interface Window {
@@ -32,48 +34,38 @@ declare global {
 }
 
 const AxleInfo = () => {
-  const [bnb, setBnb] = useState<any>();
-  const [axle, setAxle] = useState<any>(0);
-  const [address, setAddress] = useState<string>("");
+  const web3Modal = new Web3Modal({
+    network: "rinkeby",
+    theme: "dark",
+    cacheProvider: false,
+    providerOptions: {
+      binancechainwallet: {
+        package: true,
+      },
+      walletconnect: {
+        package: WalletConnectProvider, // required
+        options: {
+          infuraId: process.env.INFURA_ID, // required
+        },
+      },
+      coinbasewallet: {
+        package: CoinbaseWalletSDK, // Required
+        options: {
+          appName: "Coinbase", // Required
+          infuraId: process.env.INFURA_ID, // Required
+          chainId: 4, //4 for Rinkeby, 1 for mainnet (default)
+        },
+      },
+    },
+  });
 
-  const [balance, setBalance] = useState(0);
-  const [axleBalance, setAxleBalance] = useState<any>("0");
+  const [tokenContract, setTokenContract] = useState<any>();
+  const [presaleContract, setPresaleContract] = useState<any>();
+  const [provider, setProvider] = useState<any>();
 
-  const [success, setSuccess] = useState(false);
-  const [hash, setHash] = useState<string>("");
-
-  const [openWallet, setOpenWallet] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-
-  let provider: any;
-  try {
-    provider = new ethers.providers.Web3Provider(
-      window.ethereum,
-      "any"
-    ) as ethers.providers.Web3Provider;
-    if (provider !== null || provider !== undefined) {
-      provider.on("network", (newNetwork: any, oldNetwork: any) => {
-        // When a Provider makes its initial connection, it emits a "network"
-        // event with a null oldNetwork along with the newNetwork. So, if the
-        // oldNetwork exists, it represents a changing network
-        if (oldNetwork) {
-          window.location.reload();
-        }
-      });
-    }
-  } catch (error) {
-    provider =
-      ethers.providers.getDefaultProvider() as ethers.providers.BaseProvider;
-    console.log(error);
-  }
-
-  const { activateBrowserWallet, isLoading, deactivate } = useEthers();
-  const { chainId } = useEthers();
-  const etherBalance = useEtherBalance(address);
-
-  const disconnect = () => {
-    setAddress("");
-    deactivate();
+  const disconnectWeb3Modal = async () => {
+    await web3Modal.clearCachedProvider();
+    window.location.reload();
   };
 
   function onBnbChange(e: any) {
@@ -82,141 +74,112 @@ const AxleInfo = () => {
     setAxle((bnb * 75000).toString());
   }
 
-  useEffect(() => {
-    if (provider.antNetwork) {
-      const isWalletConnected = localStorage.getItem("isWalletConnected");
-      if (isWalletConnected === "true") connectWallet();
-      window.ethereum.on("accountsChanged", (accounts: any) => {
-        if (accounts[0] !== address) connectWallet();
-        if (accounts.length === 0 || accounts[0] === "") {
-          localStorage.removeItem("isWalletConnected");
-          window.location.reload();
-        }
+  const buyAxle = async () => {
+    if (bnb < 0.2)
+      return toast({
+        title: "Warning",
+        description: "Minimum 0.2 BNB",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
       });
+
+    if (bnb >= 51)
+      return toast({
+        title: "Warning",
+        description: "Maximum 50 BNB",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+      });
+    const options = { value: ethers.utils.parseEther(bnb.toString()) };
+    try {
+      const { hash } = await presaleContract.buyToken(options);
+      setHash(hash);
+      setSuccess(true);
+    } catch (err: any) {
+      if (err) {
+        const message = err.data.message;
+        return toast({
+          title: "Error",
+          description: message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
+      }
     }
+  };
+
+  const connectWeb3Wallet = async () => {
+    try {
+      const web3Provider = await web3Modal.connect();
+      const provider = new ethers.providers.Web3Provider(web3Provider);
+      const web3Accounts = await provider.listAccounts();
+      setAddress(web3Accounts[0]);
+      const network = await provider.getNetwork();
+      let bnbBal: any = await provider.getBalance(web3Accounts[0]);
+      bnbBal = Number(ethers.utils.formatEther(bnbBal));
+      setBalance(bnbBal);
+      if (network.chainId === 97) {
+        const signer = provider.getSigner();
+        const token = new ethers.Contract(
+          TOKEN_CONTRACT_ADDRESS,
+          axleTokenABI,
+          signer
+        );
+        const presale = new ethers.Contract(
+          PRESALE_CONTRACT_ADDRESS,
+          axlePresaleABI,
+          signer
+        );
+        setProvider(provider);
+        setTokenContract(token);
+        setPresaleContract(presale);
+        let bal = await token.balanceOf(web3Accounts[0]);
+        bal = ethers.utils.formatEther(bal);
+        setAxleBalance(bal);
+        localStorage.setItem("isWalletConnected", "true");
+      }
+      return toast({
+        title: "Warning",
+        description: `connect to BSC Mainnet`,
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    connectWeb3Wallet().then(() => {
+      console.log("wallet connected");
+      console.log(tokenContract);
+      console.log(presaleContract);
+      console.log(provider);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const connectWallet = async () => {
-    try {
-      const signer = provider.getSigner();
-      console.log(signer);
-      if (signer._address === null) {
-        await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-      }
-      const address = await signer.getAddress();
-      const token = new ethers.Contract(
-        TOKEN_CONTRACT_ADDRESS,
-        axleTokenABI,
-        signer
-      );
-      if (token !== null) {
-        const a: number =
-          Number(ethers.utils.formatEther(await token.balanceOf(address))) || 0;
-        setAddress(address);
-        setAxleBalance(a);
-        localStorage.setItem("isWalletConnected", "true");
-      }
-    } catch (error: any) {
-      window.ethereum.request({
-        method: "wallet_addEthereumChain",
-        params: [
-          {
-            chainId: "0x61",
-            rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
-            chainName: "BSC Testnet",
-            nativeCurrency: {
-              symbol: "BNB",
-              decimals: 18,
-            },
-            blockExplorerUrls: ["https://testnet.bscscan.com/"],
-          },
-        ],
-      });
-    }
-  };
+  const [bnb, setBnb] = useState<any>();
+  const [axle, setAxle] = useState<any>(0);
+  const [balance, setBalance] = useState(0);
+  const [axleBalance, setAxleBalance] = useState<any>("0");
+  const [success, setSuccess] = useState(false);
+  const [hash, setHash] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [openWallet, setOpenWallet] = useState(false);
 
   const TOKEN_CONTRACT_ADDRESS = "0x988Bc83ce10e9c120E8FCeC2cde484fE58d8bCd5";
   const PRESALE_CONTRACT_ADDRESS = "0x5d2B76830e115dE97238EfEef8263f6bfCB70dDa";
 
   const toast = useToast();
-
-  function buyAxle() {
-    (async () => {
-      if (address === "") activateBrowserWallet();
-      if (chainId !== 97)
-        return toast({
-          title: "Warning",
-          description: "Connect to BSC Testnet, chain id 97",
-          status: "warning",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
-
-      if (bnb < 0.1)
-        return toast({
-          title: "Warning",
-          description: "Minimum 0.2 BNB",
-          status: "warning",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
-
-      if (bnb >= 1.99)
-        return toast({
-          title: "Warning",
-          description: "Maximum 1.99 BNB",
-          status: "warning",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
-
-      const provider = new ethers.providers.Web3Provider(
-        window.ethereum as ethers.providers.ExternalProvider
-      );
-      const signer = provider.getSigner();
-      const presale = new ethers.Contract(
-        PRESALE_CONTRACT_ADDRESS,
-        axlePresaleABI,
-        signer
-      );
-      const options = { value: ethers.utils.parseEther(bnb.toString()) };
-      try {
-        const { hash } = await presale.buyToken(options);
-        setHash(hash);
-        setSuccess(true);
-      } catch (err: any) {
-        if (err) {
-          const message = err.data.message;
-          return toast({
-            title: "Error",
-            description: message,
-            status: "error",
-            duration: 5000,
-            isClosable: true,
-            position: "top",
-          });
-        }
-      }
-    })();
-  }
-
-  async function getAxleLiveBal() {
-    const signer = provider.getSigner();
-    const token = new ethers.Contract(
-      TOKEN_CONTRACT_ADDRESS,
-      axleTokenABI,
-      signer
-    );
-    const a: number =
-      Number(ethers.utils.formatEther(await token.balanceOf(address))) || 0;
-    setAxleBalance(a);
-  }
 
   const [refAddress, setRefAddress] = useState("");
 
@@ -224,32 +187,8 @@ const AxleInfo = () => {
     setRefAddress(address);
   };
 
-  useEffect(() => {
-    const b: number = Number(
-      Number(ethers.utils.formatEther(etherBalance || 0))
-    );
-    setBalance(b);
-    getAxleLiveBal();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [address, etherBalance]);
-
   return (
     <Box fontFamily={"quicksand"} fontWeight={"bold"}>
-      <ConnectWalletModal
-        close={() => setOpenModal(!openModal)}
-        isOpen={openModal}
-        connectMetaMaskWallet={connectWallet}
-        connectCoinBase={() =>
-          toast({
-            title: "Stay Tuned",
-            description: "Coming soon",
-            status: "info",
-            duration: 5000,
-            isClosable: true,
-            position: "top",
-          })
-        }
-      />
       <Box
         alignItems={"center"}
         flexDirection={{ base: "column", md: "row" }}
@@ -266,53 +205,54 @@ const AxleInfo = () => {
         />
         <Wallet
           address={address}
-          disconnect={disconnect}
+          disconnect={disconnectWeb3Modal}
           balance={balance}
-          connectWallet={() => setOpenModal(true)}
-          isLoading={isLoading}
+          connectWallet={connectWeb3Wallet}
+          isLoading={false}
           openWallet={openWallet}
           setOpenWallet={setOpenWallet}
         />
       </Box>
-
-      <Box display={"flex"} justifyContent="flex-end" px={4}>
-        <Box>
-          <Text color={brandingColors.primaryTextColor}>
-            Your Referral Address
-          </Text>
-          <Box
-            color={brandingColors.primaryMiscColor}
-            bg={brandingColors.newHighlightColor}
-            p={2}
-            borderRadius="md"
-            boxShadow={"lg"}
-            display="flex"
-            alignItems={"center"}
-            columnGap=".5rem"
-            justifyContent={"flex-end"}
-          >
-            <Text>
-              {address.substring(0, 6)}....
-              {address.substring(address.length - 7, address.length - 1)}{" "}
+      {address !== "" ? (
+        <Box display={"flex"} justifyContent="flex-end" px={4}>
+          <Box>
+            <Text color={brandingColors.primaryTextColor}>
+              Your Referral Address
             </Text>
-            <CopyIcon
-              cursor={"pointer"}
-              onClick={() => {
-                navigator.clipboard.writeText(address);
-                return toast({
-                  title: "Copied",
-                  description: address,
-                  status: "success",
-                  duration: 5000,
-                  isClosable: true,
-                  position: "top",
-                });
-              }}
-              color={brandingColors.primaryButtonColor}
-            />
+            <Box
+              color={brandingColors.primaryMiscColor}
+              bg={brandingColors.newHighlightColor}
+              p={2}
+              borderRadius="md"
+              boxShadow={"lg"}
+              display="flex"
+              alignItems={"center"}
+              columnGap=".5rem"
+              justifyContent={"flex-end"}
+            >
+              <Text>
+                {address.substring(0, 6)}....
+                {address.substring(address.length - 7, address.length)}{" "}
+              </Text>
+              <CopyIcon
+                cursor={"pointer"}
+                onClick={() => {
+                  navigator.clipboard.writeText(address);
+                  return toast({
+                    title: "Copied",
+                    description: address,
+                    status: "success",
+                    duration: 5000,
+                    isClosable: true,
+                    position: "top",
+                  });
+                }}
+                color={brandingColors.primaryButtonColor}
+              />
+            </Box>
           </Box>
         </Box>
-      </Box>
+      ) : null}
 
       <Box
         display={{ base: "flex", md: "none" }}
@@ -555,7 +495,7 @@ const AxleInfo = () => {
                       <NeuButton
                         bg={"#A34400"}
                         shadow={"#FF7C1F"}
-                        onClick={() => setOpenModal(true)}
+                        onClick={() => {}}
                         label="Confirm Referral Address"
                         width="50%"
                       ></NeuButton>
@@ -565,7 +505,7 @@ const AxleInfo = () => {
                       <NeuButton
                         bg={"#A34400"}
                         shadow={"#FF7C1F"}
-                        onClick={() => setOpenModal(true)}
+                        onClick={() => connectWeb3Wallet()}
                         label="Connect Wallet"
                         width="100%"
                       ></NeuButton>
@@ -573,7 +513,7 @@ const AxleInfo = () => {
                       <NeuButton
                         bg={"#A34400"}
                         shadow={"#FF7C1F"}
-                        onClick={buyAxle}
+                        onClick={() => buyAxle()}
                         label="Buy Axle"
                         width="100%"
                       ></NeuButton>
