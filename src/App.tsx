@@ -34,13 +34,13 @@ export const App = () => {
             fontWeight: "bold",
           }}
         >
-          <Flex columnGap={"4rem"}>
-            <Text>• Zeus sale is live now, Buy $AXLE and get +25% Bonus.</Text>
-            <Text>• Refer and Earn 5% Bonus $AXLE tokens.</Text>
-            <Text>• First 100 Buyers {`>`}= 1 BNB will get a Zeus NFT.</Text>
-            <Text>• Zeus sale is live now, Buy $AXLE and get +25% Bonus.</Text>
-            <Text>• Refer and Earn 5% Bonus $AXLE tokens.</Text>
-            <Text>• First 100 Buyers {`>`}= 1 BNB will get a Zeus NFT.</Text>
+          <Flex columnGap={"1rem"}>
+            <Text>• Zeus sale is live now, Buy $AXLE and get +25% Bonus</Text>
+            <Text>• Refer and Earn 5% Bonus $AXLE tokens</Text>
+            <Text>• First 100 Buyers {`>`}= 1 BNB will get a Zeus NFT</Text>
+            <Text>• Zeus sale is live now, Buy $AXLE and get +25% Bonus</Text>
+            <Text>• Refer and Earn 5% Bonus $AXLE tokens</Text>
+            <Text>• First 100 Buyers {`>`}= 1 BNB will get a Zeus NFT</Text>
           </Flex>
         </Marquee>
         <Banner close={() => setBanner(false)} isOpen={banner} size="xl" />
