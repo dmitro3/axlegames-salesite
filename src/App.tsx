@@ -5,11 +5,14 @@ import UtilityGrid from "./pages/Axle/views/UtilityGrid";
 import WhitePaper from "./pages/Axle/views/WhitePaper";
 import Marquee from "react-fast-marquee";
 import AOS from "aos";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "aos/dist/aos.css";
 import Token from "./pages/Axle/views/Token";
+import Banner from "./pages/Axle/dialog/Banner";
 
 export const App = () => {
+  const [banner, setBanner] = useState(true);
+
   useEffect(() => {
     AOS.init({});
   }, []);
@@ -40,6 +43,7 @@ export const App = () => {
             <Text>• Axlegames is live.</Text>
           </Flex>
         </Marquee>
+        <Banner close={() => setBanner(false)} isOpen={banner} size="xl" />
         <AxleInfo />
         <Flex
           direction={"column"}
