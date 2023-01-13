@@ -491,7 +491,7 @@ const AxleInfo = () => {
               >
                 <Text
                   color={brandingColors.primaryTextColor}
-                  fontSize={{ base: "lg", lg: "2xl" }}
+                  fontSize={{ base: "lg" }}
                   fontFamily={`'Russo One', sans-serif`}
                   textAlign={"center"}
                 >
@@ -501,7 +501,7 @@ const AxleInfo = () => {
                   color={brandingColors.secondaryTextColor}
                   fontFamily={`'Russo One', sans-serif`}
                   fontWeight={"normal"}
-                  fontSize={{ base: "sm", lg: "md" }}
+                  fontSize={{ base: "sm" }}
                   textAlign={"center"}
                 >
                   {address}
