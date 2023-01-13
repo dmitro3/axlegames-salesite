@@ -25,7 +25,7 @@ import TransactionSuccessDialog from "../dialog/TransactionSuccessDialog";
 import { ethers } from "ethers";
 import { ArrowDownIcon, CopyIcon } from "@chakra-ui/icons";
 import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
-// import WalletConnectProvider from "@walletconnect/web3-provider";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 
 declare global {
   interface Window {
@@ -42,12 +42,12 @@ const AxleInfo = () => {
       binancechainwallet: {
         package: true,
       },
-      // walletconnect: {
-      //   package: WalletConnectProvider, // required
-      //   options: {
-      //     infuraId: process.env.INFURA_ID, // required
-      //   },
-      // },
+      walletconnect: {
+        package: WalletConnectProvider, // required
+        options: {
+          infuraId: process.env.INFURA_ID, // required
+        },
+      },
       coinbasewallet: {
         package: CoinbaseWalletSDK, // Required
         options: {
