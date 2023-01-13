@@ -148,12 +148,9 @@ const AxleInfo = () => {
   };
 
   useEffect(() => {
-    connectWeb3Wallet().then(() => {
-      console.log("wallet connected");
-      console.log(tokenContract);
-      console.log(presaleContract);
-      console.log(provider);
-    });
+    console.log(tokenContract);
+    console.log(presaleContract);
+    console.log(provider);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
