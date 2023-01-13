@@ -62,7 +62,7 @@ const Wallet = (props: Props) => {
                 Your wallet balance
               </Text>
               <Text fontSize={"xl"} color={brandingColors.secondaryTextColor}>
-                {props.balance} BNB{" "}
+                {Number(props.balance).toFixed(2)} BNB{" "}
               </Text>
             </Box>
             <Button
@@ -139,7 +139,9 @@ const Wallet = (props: Props) => {
 
           <Box pr={4}>
             <Text fontSize={"md"} color={brandingColors.secondaryTextColor}>
-              {!props.isLoading ? `${props.balance} BNB` : `...`}
+              {!props.isLoading
+                ? `${Number(props.balance).toFixed(2)} BNB`
+                : `...`}
             </Text>
             {props.address !== "" ? (
               <Flex
