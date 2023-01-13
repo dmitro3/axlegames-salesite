@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { brandingColors } from "../../../config/brandingColors";
 import {
   Box,
-  Divider,
   Flex,
   Grid,
   Icon,
