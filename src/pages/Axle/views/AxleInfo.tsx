@@ -124,34 +124,24 @@ const AxleInfo = () => {
       let bnbBal: any = await provider.getBalance(web3Accounts[0]);
       bnbBal = Number(ethers.utils.formatEther(bnbBal));
       setBalance(bnbBal);
-      if (network.chainId === 97) {
-        const signer = provider.getSigner();
-        const token = new ethers.Contract(
-          TOKEN_CONTRACT_ADDRESS,
-          axleTokenABI,
-          signer
-        );
-        const presale = new ethers.Contract(
-          PRESALE_CONTRACT_ADDRESS,
-          axlePresaleABI,
-          signer
-        );
-        setProvider(provider);
-        setTokenContract(token);
-        setPresaleContract(presale);
-        let bal = await token.balanceOf(web3Accounts[0]);
-        bal = ethers.utils.formatEther(bal);
-        setAxleBalance(bal);
-        localStorage.setItem("isWalletConnected", "true");
-      }
-      return toast({
-        title: "Warning",
-        description: `connect to BSC Mainnet`,
-        status: "warning",
-        duration: 5000,
-        isClosable: true,
-        position: "top",
-      });
+      const signer = provider.getSigner();
+      const token = new ethers.Contract(
+        TOKEN_CONTRACT_ADDRESS,
+        axleTokenABI,
+        signer
+      );
+      const presale = new ethers.Contract(
+        PRESALE_CONTRACT_ADDRESS,
+        axlePresaleABI,
+        signer
+      );
+      setProvider(provider);
+      setTokenContract(token);
+      setPresaleContract(presale);
+      let bal = await token.balanceOf(web3Accounts[0]);
+      bal = ethers.utils.formatEther(bal);
+      setAxleBalance(bal);
+      localStorage.setItem("isWalletConnected", "true");
     } catch (error) {
       console.log(error);
     }
