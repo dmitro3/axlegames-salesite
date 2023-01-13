@@ -51,9 +51,8 @@ const AxleInfo = () => {
       coinbasewallet: {
         package: CoinbaseWalletSDK, // Required
         options: {
-          appName: "Coinbase", // Required
+          appName: "COINBASE", // Required
           infuraId: process.env.INFURA_ID, // Required
-          chainId: 4, //4 for Rinkeby, 1 for mainnet (default)
         },
       },
     },
