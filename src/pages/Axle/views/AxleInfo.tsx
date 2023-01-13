@@ -24,8 +24,8 @@ import TransactionSuccessDialog from "../dialog/TransactionSuccessDialog";
 
 import { ethers } from "ethers";
 import { ArrowDownIcon, CopyIcon } from "@chakra-ui/icons";
-import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
-import WalletConnectProvider from "@walletconnect/web3-provider";
+// import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
+// import WalletConnectProvider from "@walletconnect/web3-provider";
 
 declare global {
   interface Window {
@@ -39,23 +39,23 @@ const AxleInfo = () => {
     theme: "dark",
     cacheProvider: false,
     providerOptions: {
-      binancechainwallet: {
-        package: true,
-      },
-      walletconnect: {
-        package: WalletConnectProvider, // required
-        options: {
-          infuraId: process.env.INFURA_ID, // required
-        },
-      },
-      coinbasewallet: {
-        package: CoinbaseWalletSDK, // Required
-        options: {
-          appName: "Coinbase", // Required
-          infuraId: process.env.INFURA_ID, // Required
-          chainId: 4, //4 for Rinkeby, 1 for mainnet (default)
-        },
-      },
+      // binancechainwallet: {
+      //   package: true,
+      // },
+      // walletconnect: {
+      //   package: WalletConnectProvider, // required
+      //   options: {
+      //     infuraId: process.env.INFURA_ID, // required
+      //   },
+      // },
+      // coinbasewallet: {
+      //   package: CoinbaseWalletSDK, // Required
+      //   options: {
+      //     appName: "Coinbase", // Required
+      //     infuraId: process.env.INFURA_ID, // Required
+      //     chainId: 4, //4 for Rinkeby, 1 for mainnet (default)
+      //   },
+      // },
     },
   });
 
