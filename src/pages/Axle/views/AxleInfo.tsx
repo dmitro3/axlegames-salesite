@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { brandingColors } from "../../../config/brandingColors";
 import {
   Box,
+  Divider,
   Flex,
   Grid,
   Icon,
@@ -204,47 +205,6 @@ const AxleInfo = () => {
           setOpenWallet={setOpenWallet}
         />
       </Box>
-      {address !== "" ? (
-        <Box display={"flex"} justifyContent="flex-end" px={4}>
-          <Box>
-            <Text color={brandingColors.primaryTextColor}>
-              Your Referral Address
-            </Text>
-            <Box
-              color={brandingColors.primaryMiscColor}
-              bg={brandingColors.newHighlightColor}
-              p={2}
-              borderRadius="md"
-              boxShadow={"lg"}
-              display="flex"
-              alignItems={"center"}
-              columnGap=".5rem"
-              justifyContent={"flex-end"}
-            >
-              <Text>
-                {address.substring(0, 6)}....
-                {address.substring(address.length - 7, address.length)}{" "}
-              </Text>
-              <CopyIcon
-                cursor={"pointer"}
-                onClick={() => {
-                  navigator.clipboard.writeText(address);
-                  return toast({
-                    title: "Copied",
-                    description: address,
-                    status: "success",
-                    duration: 5000,
-                    isClosable: true,
-                    position: "top",
-                  });
-                }}
-                color={brandingColors.primaryButtonColor}
-              />
-            </Box>
-          </Box>
-        </Box>
-      ) : null}
-
       <Box
         display={{ base: "flex", md: "none" }}
         justifyContent="center"
@@ -297,223 +257,275 @@ const AxleInfo = () => {
           width="100%"
         >
           <NFT />
-          <Box
-            justifyContent={"center"}
-            alignSelf="center"
-            display={"flex"}
-            flexDirection="column"
-            color={brandingColors.primaryTextColor}
-            backgroundImage={`linear-gradient(to bottom, #061e37, #06223e, #072544, #07294b, #082d52, #082d52, #082d52, #082d52, #07294b, #072544, #06223e, #061e37)`}
-            p={4}
-            borderRadius="xl"
-            width="100%"
-            boxShadow={`0px 0px 6px ${brandingColors.newHighlightColor}`}
-          >
-            <Text fontFamily={`'Russo One', sans-serif`} pb={2} fontSize={"xl"}>
-              Buy AXLE
-            </Text>
-            <Flex
-              alignItems={"center"}
+          <Box width="100%">
+            <Box
               justifyContent={"center"}
-              direction={"column"}
+              alignSelf="center"
+              display={"flex"}
+              flexDirection="column"
+              color={brandingColors.primaryTextColor}
+              backgroundImage={`linear-gradient(to bottom, #061e37, #06223e, #072544, #07294b, #082d52, #082d52, #082d52, #082d52, #07294b, #072544, #06223e, #061e37)`}
+              p={4}
+              borderTopRadius="xl"
+              boxShadow={`0px 0px 6px ${brandingColors.newHighlightColor}`}
             >
-              <Box width={"100%"} borderRadius="md">
-                <Box
-                  display={"flex"}
-                  justifyContent="center"
-                  alignItems={"center"}
-                  flexDirection="column"
-                  rowGap={".4rem"}
-                >
-                  <Box
-                    backgroundImage={`linear-gradient(to bottom, #061e37, #072340, #072849, #082d52, #0a325c)`}
-                    boxShadow={`0px 0px 4px ${brandingColors.newHighlightColor}`}
-                    p={4}
-                    borderRadius="md"
-                    width={"100%"}
-                  >
-                    <Text>You Pay</Text>
-                    <Flex
-                      alignItems={"center"}
-                      justifyContent={"space-between"}
-                      columnGap="20%"
-                      bg={brandingColors.bgColor}
-                      p={4}
-                      my={2}
-                      borderRadius="md"
-                    >
-                      <Flex alignItems="center" columnGap={"2rem"}>
-                        <Image
-                          width={8}
-                          src={`https://axlegames.s3.ap-south-1.amazonaws.com/bnb.png`}
-                        />
-                        <Text
-                          color={brandingColors.secondaryTextColor}
-                          fontWeight={"bold"}
-                          fontSize="xl"
-                        >
-                          BNB
-                        </Text>
-                      </Flex>
-                      <Flex
-                        flexDirection={"column"}
-                        justifyContent={"flex-end"}
-                      >
-                        <Text
-                          color={brandingColors.secondaryTextColor}
-                          fontSize={"xs"}
-                          textAlign={"right"}
-                        >
-                          Amount
-                        </Text>
-                        <Input
-                          fontWeight={"bold"}
-                          color={brandingColors.primaryButtonColor}
-                          placeholder="value (BNB)"
-                          onChange={onBnbChange}
-                          fontSize="lg"
-                          type={"number"}
-                          textAlign="right"
-                          value={bnb}
-                          border="none"
-                          outline={"none"}
-                          _focus={{
-                            outline: "none",
-                            border: "none",
-                            shadow: "none",
-                          }}
-                        ></Input>
-                      </Flex>
-                    </Flex>
-                    <Text color={brandingColors.primaryTextColor} fontSize="sm">
-                      Min 0.2 BNB | Max 50 BNB
-                    </Text>
-                  </Box>
+              <Text
+                fontFamily={`'Russo One', sans-serif`}
+                pb={2}
+                fontSize={"xl"}
+              >
+                Buy AXLE
+              </Text>
+              <Flex
+                alignItems={"center"}
+                justifyContent={"center"}
+                direction={"column"}
+              >
+                <Box width={"100%"} borderRadius="md">
                   <Box
                     display={"flex"}
-                    justifyContent={"center"}
-                    position={"relative"}
-                  >
-                    <Icon
-                      bg={brandingColors.bgColor}
-                      boxShadow={`0px 0px 12px ${brandingColors.fgColor}`}
-                      borderRadius="10vh"
-                      top={-4}
-                      width={8}
-                      height={8}
-                      position={"absolute"}
-                      as={ArrowDownIcon}
-                    ></Icon>
-                  </Box>
-
-                  <Box
-                    backgroundImage={`linear-gradient(to top, #061e37, #072340, #072849, #082d52, #0a325c)`}
-                    boxShadow={`0px 0px 4px ${brandingColors.newHighlightColor}`}
-                    p={4}
-                    borderRadius="md"
-                    width={"100%"}
-                  >
-                    <Flex justifyContent={"space-between"}>
-                      <Text>You Secure</Text>
-                      <Text
-                        color={brandingColors.secondaryTextColor}
-                        fontSize={"sm"}
-                      >
-                        {`Balance : ` + axleBalance * 10 ** 9 + ` AXLE`}
-                      </Text>
-                    </Flex>
-                    <Flex
-                      alignItems={"center"}
-                      justifyContent={"space-between"}
-                      columnGap="20%"
-                      bg={brandingColors.bgColor}
-                      p={4}
-                      my={2}
-                      borderRadius="md"
-                    >
-                      <Flex alignItems="center" columnGap={"2rem"}>
-                        <Image
-                          width={10}
-                          src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/icon.png`}
-                        />
-                        <Text
-                          color={brandingColors.secondaryTextColor}
-                          fontWeight={"bold"}
-                          fontSize="xl"
-                        >
-                          AXLE
-                        </Text>
-                      </Flex>
-                      <Flex
-                        flexDirection={"column"}
-                        justifyContent={"flex-end"}
-                      >
-                        <Text
-                          color={brandingColors.primaryButtonColor}
-                          textAlign={"right"}
-                          fontSize="lg"
-                        >
-                          {axle}
-                        </Text>
-                      </Flex>
-                    </Flex>
-                    {address !== "" && axle !== undefined ? (
-                      <Text
-                        color={brandingColors.secondaryTwoTextColor}
-                        fontSize="sm"
-                        textAlign={"center"}
-                      >
-                        {`Bonus: +${axle * 0.25} AXLE`}
-                      </Text>
-                    ) : null}
-                  </Box>
-                  <Box
-                    display={"flex"}
+                    justifyContent="center"
+                    alignItems={"center"}
                     flexDirection="column"
-                    width={"100%"}
-                    rowGap="1rem"
-                    pt={4}
+                    rowGap={".4rem"}
                   >
-                    <Input
-                      fontWeight={"bold"}
-                      placeholder="Referral Address (optional)"
-                      outline={`1px solid ${brandingColors.bgColor}`}
-                      bg={brandingColors.fgColor}
-                      border={`none`}
-                      type={"text"}
-                      onChange={(s) => updateReferralAddress(s.target.value)}
-                    ></Input>
-                    {refAddress !== "" ? (
-                      <NeuButton
-                        bg={"#A34400"}
-                        shadow={"#FF7C1F"}
-                        onClick={() => confirmRefAddress()}
-                        label="Confirm Referral Address"
-                        width="50%"
-                      ></NeuButton>
-                    ) : null}
+                    <Box
+                      backgroundImage={`linear-gradient(to bottom, #061e37, #072340, #072849, #082d52, #0a325c)`}
+                      boxShadow={`0px 0px 4px ${brandingColors.newHighlightColor}`}
+                      p={4}
+                      borderRadius="md"
+                      width={"100%"}
+                    >
+                      <Text>You Pay</Text>
+                      <Flex
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
+                        columnGap="20%"
+                        bg={brandingColors.bgColor}
+                        p={4}
+                        my={2}
+                        borderRadius="md"
+                      >
+                        <Flex alignItems="center" columnGap={"2rem"}>
+                          <Image
+                            width={8}
+                            src={`https://axlegames.s3.ap-south-1.amazonaws.com/bnb.png`}
+                          />
+                          <Text
+                            color={brandingColors.secondaryTextColor}
+                            fontWeight={"bold"}
+                            fontSize="xl"
+                          >
+                            BNB
+                          </Text>
+                        </Flex>
+                        <Flex
+                          flexDirection={"column"}
+                          justifyContent={"flex-end"}
+                        >
+                          <Text
+                            color={brandingColors.secondaryTextColor}
+                            fontSize={"xs"}
+                            textAlign={"right"}
+                          >
+                            Amount
+                          </Text>
+                          <Input
+                            fontWeight={"bold"}
+                            color={brandingColors.primaryButtonColor}
+                            placeholder="value (BNB)"
+                            onChange={onBnbChange}
+                            fontSize="lg"
+                            type={"number"}
+                            textAlign="right"
+                            value={bnb}
+                            border="none"
+                            outline={"none"}
+                            _focus={{
+                              outline: "none",
+                              border: "none",
+                              shadow: "none",
+                            }}
+                          ></Input>
+                        </Flex>
+                      </Flex>
+                      <Text
+                        color={brandingColors.primaryTextColor}
+                        fontSize="sm"
+                      >
+                        Min 0.2 BNB | Max 50 BNB
+                      </Text>
+                    </Box>
+                    <Box
+                      display={"flex"}
+                      justifyContent={"center"}
+                      position={"relative"}
+                    >
+                      <Icon
+                        bg={brandingColors.bgColor}
+                        boxShadow={`0px 0px 12px ${brandingColors.fgColor}`}
+                        borderRadius="10vh"
+                        top={-4}
+                        width={8}
+                        height={8}
+                        position={"absolute"}
+                        as={ArrowDownIcon}
+                      ></Icon>
+                    </Box>
 
-                    {address === "" ? (
-                      <NeuButton
-                        bg={"#A34400"}
-                        shadow={"#FF7C1F"}
-                        onClick={() => connectWeb3Wallet()}
-                        label="Connect Wallet"
-                        width="100%"
-                      ></NeuButton>
-                    ) : (
-                      <NeuButton
-                        bg={"#A34400"}
-                        shadow={"#FF7C1F"}
-                        onClick={() => buyAxle()}
-                        label="Buy Axle"
-                        width="100%"
-                      ></NeuButton>
-                    )}
+                    <Box
+                      backgroundImage={`linear-gradient(to top, #061e37, #072340, #072849, #082d52, #0a325c)`}
+                      boxShadow={`0px 0px 4px ${brandingColors.newHighlightColor}`}
+                      p={4}
+                      borderRadius="md"
+                      width={"100%"}
+                    >
+                      <Flex justifyContent={"space-between"}>
+                        <Text>You Secure</Text>
+                        <Text
+                          color={brandingColors.secondaryTextColor}
+                          fontSize={"sm"}
+                        >
+                          {`Balance : ` + axleBalance * 10 ** 9 + ` AXLE`}
+                        </Text>
+                      </Flex>
+                      <Flex
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
+                        columnGap="20%"
+                        bg={brandingColors.bgColor}
+                        p={4}
+                        my={2}
+                        borderRadius="md"
+                      >
+                        <Flex alignItems="center" columnGap={"2rem"}>
+                          <Image
+                            width={10}
+                            src={`https://axlegames.s3.ap-south-1.amazonaws.com/assets/icon.png`}
+                          />
+                          <Text
+                            color={brandingColors.secondaryTextColor}
+                            fontWeight={"bold"}
+                            fontSize="xl"
+                          >
+                            AXLE
+                          </Text>
+                        </Flex>
+                        <Flex
+                          flexDirection={"column"}
+                          justifyContent={"flex-end"}
+                        >
+                          <Text
+                            color={brandingColors.primaryButtonColor}
+                            textAlign={"right"}
+                            fontSize="lg"
+                          >
+                            {axle}
+                          </Text>
+                        </Flex>
+                      </Flex>
+                      {address !== "" && axle !== undefined ? (
+                        <Text
+                          color={brandingColors.secondaryTwoTextColor}
+                          fontSize="sm"
+                          textAlign={"center"}
+                        >
+                          {`Bonus: +${axle * 0.25} AXLE`}
+                        </Text>
+                      ) : null}
+                    </Box>
+                    <Box
+                      display={"flex"}
+                      flexDirection="column"
+                      width={"100%"}
+                      rowGap="1rem"
+                      pt={4}
+                    >
+                      <Input
+                        fontWeight={"bold"}
+                        placeholder="Referral Address (optional)"
+                        outline={`1px solid ${brandingColors.bgColor}`}
+                        bg={brandingColors.fgColor}
+                        border={`none`}
+                        type={"text"}
+                        onChange={(s) => updateReferralAddress(s.target.value)}
+                      ></Input>
+                      {refAddress !== "" ? (
+                        <NeuButton
+                          bg={"#A34400"}
+                          shadow={"#FF7C1F"}
+                          onClick={() => confirmRefAddress()}
+                          label="Add Referrer Address"
+                          width="100%"
+                        ></NeuButton>
+                      ) : null}
+
+                      {address === "" ? (
+                        <NeuButton
+                          bg={"#A34400"}
+                          shadow={"#FF7C1F"}
+                          onClick={() => connectWeb3Wallet()}
+                          label="Connect Wallet"
+                          width="100%"
+                        ></NeuButton>
+                      ) : (
+                        <NeuButton
+                          bg={"#A34400"}
+                          shadow={"#FF7C1F"}
+                          onClick={() => buyAxle()}
+                          label="Buy Axle"
+                          width="100%"
+                        ></NeuButton>
+                      )}
+                    </Box>
                   </Box>
                 </Box>
+              </Flex>
+            </Box>
+
+            {address !== "" ? (
+              <Box
+                py={3}
+                my={2}
+                backgroundImage={`linear-gradient(to bottom, #061e37, #002956, #003376, #003b96, #1442b5)`}
+                borderBottomRadius="xl"
+                boxShadow={`2xl`}
+              >
+                <Text
+                  color={brandingColors.primaryTextColor}
+                  fontSize={{ base: "lg", lg: "2xl" }}
+                  fontFamily={`'Russo One', sans-serif`}
+                  textAlign={"center"}
+                >
+                  Your Referral Address
+                </Text>
+                <Text
+                  color={brandingColors.secondaryTextColor}
+                  fontFamily={`'Russo One', sans-serif`}
+                  fontWeight={"normal"}
+                  fontSize={{ base: "sm", lg: "md" }}
+                  textAlign={"center"}
+                >
+                  {address}
+                  <CopyIcon
+                    mx={2}
+                    cursor={"pointer"}
+                    onClick={() => {
+                      navigator.clipboard.writeText(address);
+                      return toast({
+                        title: "Copied",
+                        description: address,
+                        status: "success",
+                        duration: 5000,
+                        isClosable: true,
+                        position: "top",
+                      });
+                    }}
+                    color={brandingColors.secondaryTextColor}
+                  />
+                </Text>
               </Box>
-            </Flex>
+            ) : null}
           </Box>
         </Box>
       </Grid>
