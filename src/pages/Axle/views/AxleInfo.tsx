@@ -76,7 +76,6 @@ const AxleInfo = () => {
   const confirmRefAddress = async () => {
     const details = await presaleContract.addReferAddress(refAddress);
     console.log(details);
-    alert(details);
   };
 
   const buyAxle = async () => {
