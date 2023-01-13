@@ -141,7 +141,6 @@ const AxleInfo = () => {
         axlePresaleABI,
         signer
       );
-      console.log(presale);
       setProvider(provider);
       setTokenContract(token);
       setPresaleContract(presale);
@@ -170,8 +169,8 @@ const AxleInfo = () => {
   const [address, setAddress] = useState<string>("");
   const [openWallet, setOpenWallet] = useState(false);
 
-  const TOKEN_CONTRACT_ADDRESS = "0x988Bc83ce10e9c120E8FCeC2cde484fE58d8bCd5";
-  const PRESALE_CONTRACT_ADDRESS = "0x5d2B76830e115dE97238EfEef8263f6bfCB70dDa";
+  const TOKEN_CONTRACT_ADDRESS = "0x7c56C79a454CBFaf63BAdb39f82555109a2A80Bf";
+  const PRESALE_CONTRACT_ADDRESS = "0xeA29a0f11EaAF0f88DBf705b2b53A09767cDF305";
 
   const toast = useToast();
 
