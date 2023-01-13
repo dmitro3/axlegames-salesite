@@ -73,6 +73,12 @@ const AxleInfo = () => {
     setAxle((bnb * 75000).toString());
   }
 
+  const confirmRefAddress = async () => {
+    const details = await presaleContract.addReferAddress(refAddress);
+    console.log(details);
+    alert(details);
+  };
+
   const buyAxle = async () => {
     if (bnb < 0.2)
       return toast({
@@ -135,6 +141,7 @@ const AxleInfo = () => {
         axlePresaleABI,
         signer
       );
+      console.log(presale);
       setProvider(provider);
       setTokenContract(token);
       setPresaleContract(presale);
@@ -170,9 +177,7 @@ const AxleInfo = () => {
 
   const [refAddress, setRefAddress] = useState("");
 
-  const updateReferralAddress = (address: string) => {
-    setRefAddress(address);
-  };
+  const updateReferralAddress = (address: string) => setRefAddress(address);
 
   return (
     <Box fontFamily={"quicksand"} fontWeight={"bold"}>
@@ -482,7 +487,7 @@ const AxleInfo = () => {
                       <NeuButton
                         bg={"#A34400"}
                         shadow={"#FF7C1F"}
-                        onClick={() => {}}
+                        onClick={() => confirmRefAddress()}
                         label="Confirm Referral Address"
                         width="50%"
                       ></NeuButton>
