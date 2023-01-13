@@ -387,7 +387,7 @@ const AxleInfo = () => {
                       </Flex>
                     </Flex>
                     <Text color={brandingColors.primaryTextColor} fontSize="sm">
-                      Min 0.2 BNB | Max 2 BNB
+                      Min 0.2 BNB | Max 50 BNB
                     </Text>
                   </Box>
                   <Box
