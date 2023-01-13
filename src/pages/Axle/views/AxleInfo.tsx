@@ -121,6 +121,7 @@ const AxleInfo = () => {
       const web3Accounts = await provider.listAccounts();
       setAddress(web3Accounts[0]);
       const network = await provider.getNetwork();
+      console.log(network);
       let bnbBal: any = await provider.getBalance(web3Accounts[0]);
       bnbBal = Number(ethers.utils.formatEther(bnbBal));
       setBalance(bnbBal);
