@@ -18,7 +18,7 @@ const TransactionSuccessDialog = (props: any) => {
         <Text fontSize={"xl"}>Welcome to AXLE family!</Text>{" "}
         <Text fontSize={"md"}>
           {" "}
-          You have received {props.fee + props.fee * 0.25} AXLE
+          You have received {Number(props.fee) + Number(props.fee * 0.25)} AXLE
         </Text>
         <a
           href={`https://testnet.bscscan.com/tx/` + props.hash}
