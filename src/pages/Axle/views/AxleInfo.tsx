@@ -110,11 +110,10 @@ const AxleInfo = () => {
       setHash(hash);
       setSuccess(true);
     } catch (err: any) {
-      console.log(err);
       if (err) {
         return toast({
           title: "Error",
-          description: err,
+          description: String(err),
           status: "error",
           duration: 5000,
           isClosable: true,
