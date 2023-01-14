@@ -67,7 +67,6 @@ const AxleInfo = () => {
   });
 
   const [presaleContract, setPresaleContract] = useState<any>();
-  const [networkId, setNetworkId] = useState(0);
 
   const disconnectWeb3Modal = async () => {
     await web3Modal.clearCachedProvider();
@@ -81,7 +80,6 @@ const AxleInfo = () => {
   }
 
   const confirmRefAddress = async () => {
-    if (networkId !== 56) return switchNetwork();
     const details = await presaleContract.addReferAddress(refAddress);
     console.log(details);
   };
@@ -108,7 +106,6 @@ const AxleInfo = () => {
       });
     try {
       const options = { value: ethers.utils.parseEther(bnb.toString()) };
-      if (networkId !== 56) return switchNetwork();
       const { hash } = await presaleContract.buyToken(options);
       setHash(hash);
       setSuccess(true);
@@ -146,7 +143,6 @@ const AxleInfo = () => {
       });
       window.ethereum.on("networkChanged", function (chainId: number) {
         if (chainId !== 56) {
-          setNetworkId(56);
           setTimeout(() => {
             switchNetwork();
             connectWeb3Wallet();
@@ -182,8 +178,6 @@ const AxleInfo = () => {
           ],
         });
       }
-    } finally {
-      setNetworkId(56);
     }
   };
 
@@ -194,10 +188,7 @@ const AxleInfo = () => {
       const web3Accounts = await provider.listAccounts();
       setAddress(web3Accounts[0]);
       const network = await provider.getNetwork();
-      if (network.chainId !== 56) {
-        switchNetwork();
-        setNetworkId(56);
-      }
+      if (network.chainId !== 56) switchNetwork();
       let bnbBal: any = await provider.getBalance(web3Accounts[0]);
       bnbBal = Number(ethers.utils.formatEther(bnbBal));
       setBalance(bnbBal);
