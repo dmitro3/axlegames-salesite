@@ -35,9 +35,9 @@ declare global {
 
 const AxleInfo = () => {
   const web3Modal = new Web3Modal({
-    network: "rinkeby",
+    network: "mainnet",
     theme: "dark",
-    cacheProvider: false,
+    cacheProvider: true,
     providerOptions: {
       binancechainwallet: {
         package: true,
@@ -46,6 +46,10 @@ const AxleInfo = () => {
         package: WalletConnectProvider, // required
         options: {
           infuraId: process.env.INFURA_ID, // required
+          rpc: {
+            56: "https://bsc-dataseed1.binance.org",
+          },
+          chainId: 56,
         },
       },
       coinbasewallet: {
@@ -53,14 +57,16 @@ const AxleInfo = () => {
         options: {
           appName: "COINBASE", // Required
           infuraId: process.env.INFURA_ID, // Required
+          rpc: {
+            56: "https://bsc-dataseed1.binance.org",
+          },
+          chainId: 56,
         },
       },
     },
   });
 
-  const [tokenContract, setTokenContract] = useState<any>();
   const [presaleContract, setPresaleContract] = useState<any>();
-  const [provider, setProvider] = useState<any>();
 
   const disconnectWeb3Modal = async () => {
     await web3Modal.clearCachedProvider();
@@ -118,6 +124,53 @@ const AxleInfo = () => {
     }
   };
 
+  useEffect(() => {
+    if (window.ethereum !== null) {
+      window.ethereum.enable(); // get permission to access accounts
+      // detect Metamask account change
+      window.ethereum.on("accountsChanged", function (accounts: string) {
+        connectWeb3Wallet();
+      });
+      window.ethereum.on("networkChanged", function (chainId: number) {
+        if (chainId !== 56) {
+          setTimeout(() => {
+            switchNetwork();
+            connectWeb3Wallet();
+          }, 5000);
+        }
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const switchNetwork = async () => {
+    try {
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: ethers.utils.hexlify(56) }],
+      });
+    } catch (err: any) {
+      // This error code indicates that the chain has not been added to MetaMask
+      if (err.code === 4902) {
+        await window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [
+            {
+              chainName: "Smart Chain",
+              chainId: 56,
+              nativeCurrency: {
+                name: "Smart Chain",
+                decimals: 18,
+                symbol: "BNB",
+              },
+              rpcUrls: ["https://bsc-dataseed.binance.org/"],
+            },
+          ],
+        });
+      }
+    }
+  };
+
   const connectWeb3Wallet = async () => {
     try {
       const web3Provider = await web3Modal.connect();
@@ -125,7 +178,7 @@ const AxleInfo = () => {
       const web3Accounts = await provider.listAccounts();
       setAddress(web3Accounts[0]);
       const network = await provider.getNetwork();
-      console.log(network);
+      if (network.chainId !== 56) switchNetwork();
       let bnbBal: any = await provider.getBalance(web3Accounts[0]);
       bnbBal = Number(ethers.utils.formatEther(bnbBal));
       setBalance(bnbBal);
@@ -140,8 +193,6 @@ const AxleInfo = () => {
         axlePresaleABI,
         signer
       );
-      setProvider(provider);
-      setTokenContract(token);
       setPresaleContract(presale);
       let bal = await token.balanceOf(web3Accounts[0]);
       bal = ethers.utils.formatEther(bal);
@@ -151,13 +202,6 @@ const AxleInfo = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    console.log(tokenContract);
-    console.log(presaleContract);
-    console.log(provider);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const [bnb, setBnb] = useState<any>();
   const [axle, setAxle] = useState<any>(0);
