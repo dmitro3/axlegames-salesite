@@ -115,15 +115,26 @@ const AxleInfo = () => {
     } catch (err: any) {
       console.log(err);
       if (err) {
-        const message = err.data.message;
-        return toast({
-          title: "Error",
-          description: message,
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
+        try {
+          const message = err.data.message;
+          return toast({
+            title: "Error",
+            description: message ? message : err,
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+            position: "top",
+          });
+        } catch (e) {
+          return toast({
+            title: "Error",
+            description: String(err),
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+            position: "top",
+          });
+        }
       }
     }
   };
