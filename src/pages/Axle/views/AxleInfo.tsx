@@ -106,13 +106,14 @@ const AxleInfo = () => {
         isClosable: true,
         position: "top",
       });
-    const options = { value: ethers.utils.parseEther(bnb.toString()) };
     try {
+      const options = { value: ethers.utils.parseEther(bnb.toString()) };
       if (networkId !== 56) return switchNetwork();
       const { hash } = await presaleContract.buyToken(options);
       setHash(hash);
       setSuccess(true);
     } catch (err: any) {
+      console.log(err);
       if (err) {
         const message = err.data.message;
         return toast({
