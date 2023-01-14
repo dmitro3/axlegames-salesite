@@ -130,8 +130,6 @@ const AxleInfo = () => {
 
   useEffect(() => {
     if (window.ethereum !== null && address !== "") {
-      window.ethereum.enable(); // get permission to access accounts
-      // detect Metamask account change
       window.ethereum.on("accountsChanged", function (accounts: string) {
         connectWeb3Wallet();
       });
