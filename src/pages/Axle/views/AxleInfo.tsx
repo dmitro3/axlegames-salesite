@@ -94,7 +94,6 @@ const AxleInfo = () => {
         isClosable: true,
         position: "top",
       });
-
     if (bnb >= 51)
       return toast({
         title: "Warning",
@@ -113,7 +112,9 @@ const AxleInfo = () => {
       if (err) {
         return toast({
           title: "Error",
-          description: String(err),
+          description: String(
+            `insufficient funds for intrinsic transaction cost`
+          ),
           status: "error",
           duration: 5000,
           isClosable: true,
