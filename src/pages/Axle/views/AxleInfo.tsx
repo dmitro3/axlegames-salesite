@@ -74,8 +74,22 @@ const AxleInfo = () => {
   }
 
   const confirmRefAddress = async () => {
-    const details = await presaleContract.addReferAddress(refAddress);
-    console.log(details);
+    try {
+      const details = await presaleContract.addReferAddress(refAddress);
+      console.log(details);
+    } catch (err: any) {
+      if (err) {
+        const message = err.data.message;
+        return toast({
+          title: "Error",
+          description: message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
+      }
+    }
   };
 
   const buyAxle = async () => {
