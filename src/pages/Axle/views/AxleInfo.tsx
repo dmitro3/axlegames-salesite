@@ -80,8 +80,39 @@ const AxleInfo = () => {
   }
 
   const confirmRefAddress = async () => {
-    const details = await presaleContract.addReferAddress(refAddress);
-    console.log(details);
+    try {
+      const details = await presaleContract.addReferAddress(refAddress);
+      console.log(details);
+      return toast({
+        title: "Successful",
+        description: "Referral Successful",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+      });
+    } catch (error: any) {
+      try {
+        const m = error.data.message;
+        return toast({
+          title: "Error",
+          description: m,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
+      } catch (e) {
+        return toast({
+          title: "Error",
+          description: "Invalid address or something went wrong",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
+      }
+    }
   };
 
   const buyAxle = async () => {
