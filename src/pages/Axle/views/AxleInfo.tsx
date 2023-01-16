@@ -117,6 +117,41 @@ const AxleInfo = () => {
     }
   };
 
+  const chainIds = [
+    {
+      chainId: 1,
+      network: "Ethereum Mainnet",
+    },
+    {
+      chainId: 56,
+      network: "Binance Smart Chain Mainnet",
+    },
+    {
+      chainId: 137,
+      network: "Polygon Mainnet",
+    },
+    {
+      chainId: 42161,
+      network: "Arbitrum One",
+    },
+    {
+      chainId: 43114,
+      network: "Avalanche C-Chain",
+    },
+    {
+      chainId: 97,
+      network: "Binance Smart Chain Testnet",
+    },
+    {
+      chainId: 4,
+      network: "Rinkeby",
+    },
+    {
+      chainId: 5,
+      network: "Goerli",
+    },
+  ];
+
   const buyAxle = async () => {
     if (bnb < 0.2)
       return toast({
@@ -162,6 +197,7 @@ const AxleInfo = () => {
         connectWeb3Wallet();
       });
       window.ethereum.on("networkChanged", function (chainId: number) {
+        console.log(chainId);
         if (chainId !== 56) {
           setTimeout(() => {
             switchNetwork();
@@ -174,7 +210,7 @@ const AxleInfo = () => {
   }, []);
 
   const [onChain, setOnChain] = useState({
-    symbol: "",
+    network: "",
     chainId: 0,
   });
 
@@ -206,6 +242,17 @@ const AxleInfo = () => {
     }
   };
 
+  const setNetworkName = (chainId: number) => {
+    for (let i = 0; i < chainIds.length; i++) {
+      if (chainIds[i].chainId === chainId) {
+        setOnChain({
+          chainId: chainId,
+          network: chainIds[i].network,
+        });
+      }
+    }
+  };
+
   const connectWeb3Wallet = async () => {
     try {
       const web3Provider = await web3Modal.connect();
@@ -214,10 +261,7 @@ const AxleInfo = () => {
       setAddress(web3Accounts[0]);
       const network = await provider.getNetwork();
       if (network.chainId !== 56) switchNetwork();
-      setOnChain({
-        symbol: network.name,
-        chainId: network.chainId,
-      });
+      setNetworkName(network.chainId);
       let bnbBal: any = await provider.getBalance(web3Accounts[0]);
       bnbBal = Number(ethers.utils.formatEther(bnbBal));
       setBalance(bnbBal);
@@ -591,7 +635,7 @@ const AxleInfo = () => {
                       fontSize={{ base: "sm" }}
                       textAlign={"center"}
                     >
-                      {onChain.symbol}
+                      {onChain.network}
                     </Text>
                     <Text
                       color={brandingColors.primaryTextColor}
@@ -599,7 +643,7 @@ const AxleInfo = () => {
                       fontFamily={`'Russo One', sans-serif`}
                       textAlign={"center"}
                     >
-                      SYMBOL
+                      Network
                     </Text>
                   </Box>
                   <Box>
