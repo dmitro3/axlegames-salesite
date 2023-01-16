@@ -25,7 +25,12 @@ const Banner = (props: Props) => {
       <ModalOverlay backdropFilter="blur(5px) hue-rotate(0deg)" />
       <ModalContent background={"none"} boxShadow="none">
         <ModalBody>
-          <Image cursor={"pointer"} src={Ban} borderRadius="xl" />
+          <Image
+            onClick={() => props.close()}
+            cursor={"pointer"}
+            src={Ban}
+            borderRadius="xl"
+          />
         </ModalBody>
       </ModalContent>
     </Modal>
