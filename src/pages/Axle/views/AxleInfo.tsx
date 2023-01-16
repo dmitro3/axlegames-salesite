@@ -463,6 +463,7 @@ const AxleInfo = () => {
                             onChange={onBnbChange}
                             fontSize="lg"
                             type={"number"}
+                            inputMode="decimal"
                             textAlign="right"
                             value={bnb}
                             border="none"
