@@ -210,10 +210,7 @@ const AxleInfo = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [onChain, setOnChain] = useState({
-    network: "",
-    chainId: 0,
-  });
+  const [onChain, setOnChain] = useState("");
 
   const switchNetwork = async () => {
     try {
@@ -246,10 +243,7 @@ const AxleInfo = () => {
   const setNetworkName = (chainId: number) => {
     for (let i = 0; i < chainIds.length; i++) {
       if (chainIds[i].chainId === chainId) {
-        setOnChain({
-          chainId: chainId,
-          network: chainIds[i].network,
-        });
+        setOnChain(chainIds[i].network);
       }
     }
   };
@@ -637,7 +631,7 @@ const AxleInfo = () => {
                       fontSize={{ base: "sm" }}
                       textAlign={"center"}
                     >
-                      {onChain.network}
+                      {onChain}
                     </Text>
                     <Text
                       color={brandingColors.primaryTextColor}
@@ -648,27 +642,8 @@ const AxleInfo = () => {
                       Network
                     </Text>
                   </Box>
-                  <Box>
-                    <Text
-                      color={brandingColors.secondaryTextColor}
-                      fontFamily={`'Russo One', sans-serif`}
-                      fontWeight={"normal"}
-                      fontSize={{ base: "sm" }}
-                      textAlign={"center"}
-                    >
-                      {onChain.chainId}
-                    </Text>
-                    <Text
-                      color={brandingColors.primaryTextColor}
-                      fontSize={{ base: "lg" }}
-                      fontFamily={`'Russo One', sans-serif`}
-                      textAlign={"center"}
-                    >
-                      CHAIN ID
-                    </Text>
-                  </Box>
                 </Flex>
-                <Divider mx="auto" width="80%" my={4} />
+                <Divider mx="auto" width="80%" my={2} />
                 <Text
                   color={brandingColors.primaryTextColor}
                   fontSize={{ base: "lg" }}
