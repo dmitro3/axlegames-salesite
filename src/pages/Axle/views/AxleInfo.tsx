@@ -462,6 +462,7 @@ const AxleInfo = () => {
                             value={bnb}
                             border="none"
                             outline={"none"}
+                            step="0.2"
                             _focus={{
                               outline: "none",
                               border: "none",
