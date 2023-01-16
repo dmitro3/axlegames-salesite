@@ -142,11 +142,10 @@ const AxleInfo = () => {
       setSuccess(true);
     } catch (err: any) {
       if (err) {
+        console.log(err);
         return toast({
           title: "Error",
-          description: String(
-            `insufficient funds for intrinsic transaction cost`
-          ),
+          description: String(err),
           status: "error",
           duration: 5000,
           isClosable: true,
