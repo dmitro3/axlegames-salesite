@@ -105,7 +105,8 @@ const AxleInfo = () => {
       } catch (e) {
         return toast({
           title: "Error",
-          description: "Invalid address or Referrer address must have previously purchased AXLE tokens! Try again",
+          description:
+            "Invalid address or Referrer address must have previously purchased AXLE tokens! Try again",
           status: "error",
           duration: 5000,
           isClosable: true,
@@ -512,23 +513,33 @@ const AxleInfo = () => {
                       rowGap="1rem"
                       pt={4}
                     >
-                      <Input
-                        fontWeight={"bold"}
-                        placeholder="Referral Address (optional)"
-                        outline={`1px solid ${brandingColors.bgColor}`}
-                        bg={brandingColors.fgColor}
-                        border={`none`}
-                        type={"text"}
-                        onChange={(s) => updateReferralAddress(s.target.value)}
-                      ></Input>
-                      {refAddress !== "" ? (
-                        <NeuButton
-                          bg={"#A34400"}
-                          shadow={"#FF7C1F"}
-                          onClick={() => confirmRefAddress()}
-                          label="Add Referrer Address"
-                          width="100%"
-                        ></NeuButton>
+                      {address !== "" ? (
+                        <Box
+                          display="flex"
+                          flexDirection={"column"}
+                          rowGap="1rem"
+                        >
+                          <Input
+                            fontWeight={"bold"}
+                            placeholder="Referral Address (optional)"
+                            outline={`1px solid ${brandingColors.bgColor}`}
+                            bg={brandingColors.fgColor}
+                            border={`none`}
+                            type={"text"}
+                            onChange={(s) =>
+                              updateReferralAddress(s.target.value)
+                            }
+                          ></Input>
+                          {refAddress !== "" ? (
+                            <NeuButton
+                              bg={"#A34400"}
+                              shadow={"#FF7C1F"}
+                              onClick={() => confirmRefAddress()}
+                              label="Add Referrer Address"
+                              width="100%"
+                            ></NeuButton>
+                          ) : null}
+                        </Box>
                       ) : null}
 
                       {address === "" ? (
