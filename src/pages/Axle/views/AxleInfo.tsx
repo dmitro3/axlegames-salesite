@@ -105,7 +105,7 @@ const AxleInfo = () => {
       } catch (e) {
         return toast({
           title: "Error",
-          description: "Invalid address or something went wrong",
+          description: "Referrer address must have bought AXLE tokens previously",
           status: "error",
           duration: 5000,
           isClosable: true,
