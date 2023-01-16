@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { brandingColors } from "../../../config/brandingColors";
 import {
   Box,
+  Divider,
   Flex,
   Grid,
   Icon,
@@ -172,6 +173,11 @@ const AxleInfo = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [onChain, setOnChain] = useState({
+    symbol: "",
+    chainId: 0,
+  });
+
   const switchNetwork = async () => {
     try {
       await window.ethereum.request({
@@ -208,6 +214,10 @@ const AxleInfo = () => {
       setAddress(web3Accounts[0]);
       const network = await provider.getNetwork();
       if (network.chainId !== 56) switchNetwork();
+      setOnChain({
+        symbol: network.name,
+        chainId: network.chainId,
+      });
       let bnbBal: any = await provider.getBalance(web3Accounts[0]);
       bnbBal = Number(ethers.utils.formatEther(bnbBal));
       setBalance(bnbBal);
@@ -572,6 +582,47 @@ const AxleInfo = () => {
                 borderBottomRadius="xl"
                 boxShadow={`2xl`}
               >
+                <Flex justifyContent={"space-evenly"} alignItems="center">
+                  <Box>
+                    <Text
+                      color={brandingColors.secondaryTextColor}
+                      fontFamily={`'Russo One', sans-serif`}
+                      fontWeight={"normal"}
+                      fontSize={{ base: "sm" }}
+                      textAlign={"center"}
+                    >
+                      {onChain.symbol}
+                    </Text>
+                    <Text
+                      color={brandingColors.primaryTextColor}
+                      fontSize={{ base: "md" }}
+                      fontFamily={`'Russo One', sans-serif`}
+                      textAlign={"center"}
+                    >
+                      SYMBOL
+                    </Text>
+                  </Box>
+                  <Box>
+                    <Text
+                      color={brandingColors.secondaryTextColor}
+                      fontFamily={`'Russo One', sans-serif`}
+                      fontWeight={"normal"}
+                      fontSize={{ base: "sm" }}
+                      textAlign={"center"}
+                    >
+                      {onChain.chainId}
+                    </Text>
+                    <Text
+                      color={brandingColors.primaryTextColor}
+                      fontSize={{ base: "lg" }}
+                      fontFamily={`'Russo One', sans-serif`}
+                      textAlign={"center"}
+                    >
+                      CHAIN ID
+                    </Text>
+                  </Box>
+                </Flex>
+                <Divider mx="auto" width="80%" my={4} />
                 <Text
                   color={brandingColors.primaryTextColor}
                   fontSize={{ base: "lg" }}
