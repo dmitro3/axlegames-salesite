@@ -251,8 +251,8 @@ const AxleInfo = () => {
   const [address, setAddress] = useState<string>("");
   const [openWallet, setOpenWallet] = useState(false);
 
-  const TOKEN_CONTRACT_ADDRESS = "0x7c56C79a454CBFaf63BAdb39f82555109a2A80Bf";
-  const PRESALE_CONTRACT_ADDRESS = "0xeA29a0f11EaAF0f88DBf705b2b53A09767cDF305";
+  const TOKEN_CONTRACT_ADDRESS = "0x3b12b9Ec6A9f1514809EEd63597C13Ff6146Aa08";
+  const PRESALE_CONTRACT_ADDRESS = "0xaeD66d62e70023762Ba0977f5304116120706D84";
 
   const toast = useToast();
 

@@ -2,7 +2,7 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import { brandingColors } from "../../../config/brandingColors";
 import Tag from "../component/Tag";
 
-const TOKEN_CONTRACT_ADDRESS = "0x7c56C79a454CBFaf63BAdb39f82555109a2A80Bf";
+const TOKEN_CONTRACT_ADDRESS = "0x3b12b9Ec6A9f1514809EEd63597C13Ff6146Aa08";
 
 const token = [
   {
