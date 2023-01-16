@@ -69,9 +69,9 @@ const AxleInfo = () => {
 
   const [presaleContract, setPresaleContract] = useState<any>();
 
-  const disconnectWeb3Modal = async () => {
+  const disconnectWeb3Modal = async (loaded: boolean = false) => {
     await web3Modal.clearCachedProvider();
-    window.location.reload();
+    if (!loaded) window.location.reload();
   };
 
   function onBnbChange(e: any) {
@@ -192,7 +192,7 @@ const AxleInfo = () => {
   };
 
   useEffect(() => {
-    disconnectWeb3Modal();
+    disconnectWeb3Modal(true);
     if (window.ethereum !== null && address !== "") {
       window.ethereum.on("accountsChanged", function (accounts: string) {
         connectWeb3Wallet();
