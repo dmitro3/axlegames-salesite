@@ -192,6 +192,7 @@ const AxleInfo = () => {
   };
 
   useEffect(() => {
+    disconnectWeb3Modal();
     if (window.ethereum !== null && address !== "") {
       window.ethereum.on("accountsChanged", function (accounts: string) {
         connectWeb3Wallet();
