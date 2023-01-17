@@ -253,7 +253,7 @@ const AxleSale = () => {
         isClosable: true,
         position: "top",
       });
-    if (bnb >= 51)
+    if (bnb > 50)
       return toast({
         title: "Warning",
         description: "Maximum 50 BNB",
@@ -264,7 +264,6 @@ const AxleSale = () => {
       });
     try {
       const options = { value: ethers.utils.parseEther(bnb.toString()) };
-      console.log(presaleContract);
       const { hash } = await presaleContract.buyToken(options);
       setHash(hash);
       setSuccess(true);
