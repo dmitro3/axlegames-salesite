@@ -27,12 +27,15 @@ const testnet: Creds = {
 };
 
 const isDevServer = env.IS_DEV_SERVER;
+console.log(isDevServer);
 let creds: Creds = {
   AXLE_CONTRACT: "",
   AXLE_ZEUS_PRESALE: "",
   presaleAbi: null,
   tokenAbi: null,
 };
+
+console.log(creds);
 
 if (isDevServer) creds = testnet;
 else creds = mainnet;
