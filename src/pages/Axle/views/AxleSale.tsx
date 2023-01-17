@@ -450,27 +450,26 @@ const AxleSale = () => {
                           >
                             Amount
                           </Text>
-                          <Input
-                            fontWeight={"bold"}
+                          <input
+                            // fontWeight={"bold"}
                             color={brandingColors.primaryButtonColor}
                             placeholder="value (BNB)"
                             onChange={onBnbChange}
-                            fontSize="lg"
+                            // fontSize="lg"
                             type={"number"}
                             inputMode="decimal"
-                            textAlign="right"
+                            // textAlign="right"
                             value={bnb}
-                            border="none"
-                            outline={"none"}
-                            pattern="[0-9]*"
-                            step="0.2"
+                            // border="none"
+                            // outline={"none"}
+                            step="0.1"
                             min="0.2"
-                            _focus={{
-                              outline: "none",
-                              border: "none",
-                              shadow: "none",
-                            }}
-                          ></Input>
+                            // _focus={{
+                            //   outline: "none",
+                            //   border: "none",
+                            //   shadow: "none",
+                            // }}
+                          ></input>
                         </Flex>
                       </Flex>
                       <Text
