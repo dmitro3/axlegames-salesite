@@ -115,7 +115,7 @@ const AxleSale = () => {
   const toast = useToast();
 
   const [bnb, setBnb] = useState<any>("0.2");
-  const [axle, setAxle] = useState<any>(0);
+  const [axle, setAxle] = useState<any>(15000);
   const [balance, setBalance] = useState(0);
   const [axleBalance, setAxleBalance] = useState<any>("0");
   const [refAddress, setRefAddress] = useState("");
@@ -264,12 +264,23 @@ const AxleSale = () => {
       });
     try {
       const options = { value: ethers.utils.parseEther(bnb.toString()) };
+      console.log(presaleContract);
       const { hash } = await presaleContract.buyToken(options);
       setHash(hash);
       setSuccess(true);
     } catch (err: any) {
-      if (err) {
-        console.log(err);
+      console.log(err);
+      try {
+        const m = err.data.message;
+        return toast({
+          title: "Error",
+          description: String(m),
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "top",
+        });
+      } catch (error) {
         return toast({
           title: "Error",
           description: String(err),
@@ -294,7 +305,6 @@ const AxleSale = () => {
         connectWeb3Wallet();
       });
       window.ethereum.on("networkChanged", function (chainId: number) {
-        console.log(chainId);
         if (chainId !== 56) {
           setTimeout(() => {
             switchNetwork();
@@ -487,15 +497,21 @@ const AxleSale = () => {
                               <ChevronUpIcon
                                 cursor={"pointer"}
                                 onClick={() => {
-                                  if (Number(bnb) < 50)
-                                    setBnb((Number(bnb) + 0.1).toFixed(2));
+                                  const n = Number(bnb);
+                                  if (n < 50) {
+                                    setBnb((n + 0.1).toFixed(2));
+                                    setAxle(((n + 0.1) * 75000).toString());
+                                  }
                                 }}
                               />
                               <ChevronDownIcon
                                 cursor={"pointer"}
                                 onClick={() => {
-                                  if (Number(bnb) > 0.2)
-                                    setBnb((Number(bnb) - 0.1).toFixed(2));
+                                  const n = Number(bnb);
+                                  if (n > 0.2) {
+                                    setBnb((n - 0.1).toFixed(2));
+                                    setAxle(((n - 0.1) * 75000).toString());
+                                  }
                                 }}
                               />
                             </Box>
@@ -573,17 +589,17 @@ const AxleSale = () => {
                             textAlign={"right"}
                             fontSize="lg"
                           >
-                            {axle}
+                            {Number(axle).toFixed(0)}
                           </Text>
                         </Flex>
                       </Flex>
                       {address !== "" && axle !== undefined ? (
                         <Text
                           color={brandingColors.secondaryTwoTextColor}
-                          fontSize="sm"
+                          fontSize="md"
                           textAlign={"center"}
                         >
-                          {`Bonus: +${axle * 0.25} AXLE`}
+                          {`Bonus: +${Number(axle * 0.25).toFixed(0)} AXLE`}
                         </Text>
                       ) : null}
                     </Box>
