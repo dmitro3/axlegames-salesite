@@ -35,9 +35,9 @@ let creds: Creds = {
   tokenAbi: null,
 };
 
-console.log(creds);
-
 if (isDevServer) creds = testnet;
 if (!isDevServer) creds = mainnet;
+
+console.log(creds);
 
 export default creds;
