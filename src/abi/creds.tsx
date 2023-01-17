@@ -38,6 +38,6 @@ let creds: Creds = {
 console.log(creds);
 
 if (isDevServer) creds = testnet;
-else creds = mainnet;
+if (!isDevServer) creds = mainnet;
 
 export default creds;
