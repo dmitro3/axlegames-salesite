@@ -12,6 +12,13 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
+import {
+  ArrowDownIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  CopyIcon,
+} from "@chakra-ui/icons";
+
 import axleTokenABI from "../../../abi/AxleToken.json";
 import axlePresaleABI from "../../../abi/AxlePresale.json";
 
@@ -24,7 +31,6 @@ import Wallet from "../component/Wallet";
 import TransactionSuccessDialog from "../dialog/TransactionSuccessDialog";
 
 import { ethers } from "ethers";
-import { ArrowDownIcon, CopyIcon } from "@chakra-ui/icons";
 import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
@@ -450,26 +456,45 @@ const AxleSale = () => {
                           >
                             Amount
                           </Text>
-                          <input
-                            // fontWeight={"bold"}
-                            color={brandingColors.primaryButtonColor}
-                            placeholder="value (BNB)"
-                            onChange={onBnbChange}
-                            // fontSize="lg"
-                            type={"number"}
-                            inputMode="decimal"
-                            // textAlign="right"
-                            value={bnb}
-                            // border="none"
-                            // outline={"none"}
-                            step="0.1"
-                            min="0.2"
-                            // _focus={{
-                            //   outline: "none",
-                            //   border: "none",
-                            //   shadow: "none",
-                            // }}
-                          ></input>
+                          <Box alignItems={"center"} display={"flex"}>
+                            <Input
+                              fontWeight={"bold"}
+                              color={brandingColors.primaryButtonColor}
+                              placeholder="value (BNB)"
+                              onChange={onBnbChange}
+                              fontSize="lg"
+                              type={"number"}
+                              inputMode="decimal"
+                              textAlign="right"
+                              value={bnb}
+                              border="none"
+                              outline={"none"}
+                              step="0.1"
+                              min="0.2"
+                              _focus={{
+                                outline: "none",
+                                border: "none",
+                                shadow: "none",
+                              }}
+                            ></Input>
+
+                            <Box display={"flex"} flexDirection="column">
+                              <ChevronUpIcon
+                                cursor={"pointer"}
+                                onClick={() => {
+                                  if (Number(bnb) < 51)
+                                    setBnb((Number(bnb) + 0.1).toFixed(2));
+                                }}
+                              />
+                              <ChevronDownIcon
+                                cursor={"pointer"}
+                                onClick={() => {
+                                  if (Number(bnb) > 0)
+                                    setBnb((Number(bnb) - 0.1).toFixed(2));
+                                }}
+                              />
+                            </Box>
+                          </Box>
                         </Flex>
                       </Flex>
                       <Text
