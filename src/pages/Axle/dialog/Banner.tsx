@@ -6,7 +6,7 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 
-import Ban from "./banner.png";
+import Ban from "./banner.webp";
 
 interface Props {
   isOpen: boolean;
