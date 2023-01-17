@@ -82,7 +82,7 @@ const chainIds = [
 const web3Modal = new Web3Modal({
   network: "mainnet",
   theme: "dark",
-  cacheProvider: true,
+  cacheProvider: false,
   providerOptions: {
     binancechainwallet: {
       package: true,
