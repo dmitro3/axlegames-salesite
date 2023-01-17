@@ -482,7 +482,7 @@ const AxleSale = () => {
                               <ChevronUpIcon
                                 cursor={"pointer"}
                                 onClick={() => {
-                                  if (Number(bnb) < 51)
+                                  if (Number(bnb) < 50)
                                     setBnb((Number(bnb) + 0.1).toFixed(2));
                                 }}
                               />
