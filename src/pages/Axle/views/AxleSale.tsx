@@ -442,7 +442,11 @@ const AxleSale = () => {
                           >
                             Amount
                           </Text>
-                          <Box alignItems={"center"} display={"flex"}>
+                          <Box
+                            columnGap={".66rem"}
+                            alignItems={"center"}
+                            display={"flex"}
+                          >
                             <Input
                               fontWeight={"bold"}
                               color={brandingColors.primaryButtonColor}
