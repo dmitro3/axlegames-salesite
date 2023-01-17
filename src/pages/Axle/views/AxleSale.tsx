@@ -89,9 +89,24 @@ const web3Modal = new Web3Modal({
     },
     walletconnect: {
       package: WalletConnectProvider, // required
+      options: {
+        infuraId: process.env.INFURA_ID, // required
+        rpc: {
+          56: "https://bsc-dataseed1.binance.org",
+        },
+        chainId: 56,
+      },
     },
     coinbasewallet: {
       package: CoinbaseWalletSDK, // Required
+      options: {
+        appName: "COINBASE", // Required
+        infuraId: process.env.INFURA_ID, // Required
+        rpc: {
+          56: "https://bsc-dataseed1.binance.org",
+        },
+        chainId: 56,
+      },
     },
   },
 });
