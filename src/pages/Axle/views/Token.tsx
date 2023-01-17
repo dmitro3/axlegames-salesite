@@ -1,8 +1,9 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
-import { brandingColors } from "../../../config/brandingColors";
 import Tag from "../component/Tag";
+import creds from "../../../abi/creds";
+import { brandingColors } from "../../../config/brandingColors";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
-const TOKEN_CONTRACT_ADDRESS = "0x7c56C79a454CBFaf63BAdb39f82555109a2A80Bf";
+const TOKEN_CONTRACT_ADDRESS = creds.AXLE_CONTRACT;
 
 const token = [
   {

@@ -19,9 +19,6 @@ import {
   CopyIcon,
 } from "@chakra-ui/icons";
 
-import axleTokenABI from "../../../abi/AxleToken.json";
-import axlePresaleABI from "../../../abi/AxlePresale.json";
-
 import Web3Modal from "web3modal";
 
 import NFT from "./NFT";
@@ -34,14 +31,18 @@ import { ethers } from "ethers";
 import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
+import creds from "../../../abi/creds";
+
 declare global {
   interface Window {
     ethereum: any;
   }
 }
 
-const TOKEN_CONTRACT_ADDRESS = "0x7c56C79a454CBFaf63BAdb39f82555109a2A80Bf";
-const PRESALE_CONTRACT_ADDRESS = "0xeA29a0f11EaAF0f88DBf705b2b53A09767cDF305";
+const TOKEN_CONTRACT_ADDRESS = creds.AXLE_CONTRACT;
+const PRESALE_CONTRACT_ADDRESS = creds.AXLE_ZEUS_PRESALE;
+const axleTokenABI = creds.tokenAbi;
+const axlePresaleABI = creds.presaleAbi;
 
 const chainIds = [
   {
@@ -88,24 +89,9 @@ const web3Modal = new Web3Modal({
     },
     walletconnect: {
       package: WalletConnectProvider, // required
-      options: {
-        infuraId: process.env.INFURA_ID, // required
-        rpc: {
-          56: "https://bsc-dataseed1.binance.org",
-        },
-        chainId: 56,
-      },
     },
     coinbasewallet: {
       package: CoinbaseWalletSDK, // Required
-      options: {
-        appName: "COINBASE", // Required
-        infuraId: process.env.INFURA_ID, // Required
-        rpc: {
-          56: "https://bsc-dataseed1.binance.org",
-        },
-        chainId: 56,
-      },
     },
   },
 });
@@ -469,8 +455,8 @@ const AxleSale = () => {
                               value={bnb}
                               border="none"
                               outline={"none"}
-                              step="0.1"
-                              min="0.2"
+                              min={0.2}
+                              max={50}
                               _focus={{
                                 outline: "none",
                                 border: "none",
@@ -489,7 +475,7 @@ const AxleSale = () => {
                               <ChevronDownIcon
                                 cursor={"pointer"}
                                 onClick={() => {
-                                  if (Number(bnb) > 0)
+                                  if (Number(bnb) > 0.2)
                                     setBnb((Number(bnb) - 0.1).toFixed(2));
                                 }}
                               />
