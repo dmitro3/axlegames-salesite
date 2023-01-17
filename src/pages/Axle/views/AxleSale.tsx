@@ -107,7 +107,7 @@ const web3Modal = new Web3Modal({
 const AxleSale = () => {
   const toast = useToast();
 
-  const [bnb, setBnb] = useState<any>();
+  const [bnb, setBnb] = useState<any>("0.2");
   const [axle, setAxle] = useState<any>(0);
   const [balance, setBalance] = useState(0);
   const [axleBalance, setAxleBalance] = useState<any>("0");
@@ -462,7 +462,9 @@ const AxleSale = () => {
                             value={bnb}
                             border="none"
                             outline={"none"}
+                            pattern="[0-9]*"
                             step="0.2"
+                            min="0.2"
                             _focus={{
                               outline: "none",
                               border: "none",
