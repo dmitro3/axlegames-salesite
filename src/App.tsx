@@ -1,14 +1,17 @@
-import { ChakraProvider, theme, Flex, Box, Text } from "@chakra-ui/react";
 import { brandingColors } from "./config/brandingColors";
-import UtilityGrid from "./pages/Axle/views/UtilityGrid";
-import WhitePaper from "./pages/Axle/views/WhitePaper";
-import Marquee from "react-fast-marquee";
+import { useEffect, useState, lazy } from "react";
+import { ChakraProvider, theme, Flex, Box, Text } from "@chakra-ui/react";
+
 import AOS from "aos";
-import { useEffect, useState } from "react";
+import Marquee from "react-fast-marquee";
+
 import "aos/dist/aos.css";
-import Token from "./pages/Axle/views/Token";
-import Banner from "./pages/Axle/dialog/Banner";
-import AxleSale from "./pages/Axle/views/AxleSale";
+
+const Token = lazy(() => import("./pages/Axle/views/Token"));
+const Banner = lazy(() => import("./pages/Axle/dialog/Banner"));
+const AxlePresale = lazy(() => import("./pages/Axle/views/AxleSale"));
+const UtilityGrid = lazy(() => import("./pages/Axle/views/UtilityGrid"));
+const WhitePaper = lazy(() => import("./pages/Axle/views/WhitePaper"));
 
 export const App = () => {
   const [banner, setBanner] = useState(true);
@@ -44,7 +47,7 @@ export const App = () => {
           </Flex>
         </Marquee>
         <Banner close={() => setBanner(false)} isOpen={banner} size="xl" />
-        <AxleSale />
+        <AxlePresale />
         <Flex
           direction={"column"}
           rowGap="1rem"
