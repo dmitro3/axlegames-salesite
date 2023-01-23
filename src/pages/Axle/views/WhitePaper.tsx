@@ -45,20 +45,37 @@ const WhitePaper = (props: any) => {
             Axle games tokenomics is designed to create solid, reliable and
             attractive ways for users to benefit from the platform.
           </Text>
-          <Box mt={3}>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ width: "100%" }}
-              href="https://axlegames.s3.ap-south-1.amazonaws.com/AxleGames_EconomicsPaper.pdf"
-            >
-              <NeuButton
-                onClick={() => {}}
-                bg={"#A34400"}
-                shadow={"#FF7C1F"}
-                label={`Economics Paper`}
-              ></NeuButton>
-            </a>
+          <Box columnGap={"1rem"} display={"flex"} mt={3}>
+            <Box>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ width: "100%" }}
+                href="https://axlegames.s3.ap-south-1.amazonaws.com/AxleGames_EconomicsPaper.pdf"
+              >
+                <NeuButton
+                  onClick={() => {}}
+                  bg={"#A34400"}
+                  shadow={"#FF7C1F"}
+                  label={`Economics Paper`}
+                ></NeuButton>
+              </a>
+            </Box>
+            <Box>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ width: "100%" }}
+                href="https://whitepaper.axlegames.io/"
+              >
+                <NeuButton
+                  onClick={() => {}}
+                  bg={"#A34400"}
+                  shadow={"#FF7C1F"}
+                  label={`White Paper`}
+                ></NeuButton>
+              </a>
+            </Box>
           </Box>
         </Flex>
       </Flex>
