@@ -85,7 +85,7 @@ export const App = () => {
               _hover={{
                 textDecoration: "underline",
               }}
-              display="flex"
+              display={{ base: "none", lg: "flex" }}
               alignItems={"center"}
               columnGap={".25rem"}
             >

@@ -12,7 +12,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 
-import { ArrowDownIcon, CopyIcon } from "@chakra-ui/icons";
+import { ArrowDownIcon, CopyIcon, LinkIcon } from "@chakra-ui/icons";
 
 import NFT from "./NFT";
 import NeuButton from "../component/NeuButton";
@@ -388,6 +388,35 @@ const AxleSale = () => {
           width="100%"
         >
           <NFT />
+          <Box display={{ base: "block", lg: "none" }}>
+            <a
+              target={"_blank"}
+              rel="noopener noreferrer"
+              href="https://medium.com/@axlegames/axle-token-how-to-buy-3c523cd0888"
+            >
+              <Box
+                px={6}
+                py={2}
+                bg={brandingColors.fgColor}
+                fontFamily={`'Russo One', sans-serif`}
+                color={brandingColors.primaryTwoTextColor}
+                border={`2px groove ${brandingColors.primaryTwoTextColor}`}
+                borderRadius="sm"
+                cursor="pointer"
+                display={"flex"}
+                _hover={{
+                  textDecoration: "underline",
+                }}
+                alignItems={"center"}
+                columnGap={".25rem"}
+              >
+                <LinkIcon />
+                <Text fontSize={{ base: "xs", md: "sm", lg: "md" }}>
+                  How To Buy?
+                </Text>
+              </Box>
+            </a>
+          </Box>
           <Box width="100%">
             <Box
               justifyContent={"center"}
