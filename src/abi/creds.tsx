@@ -27,6 +27,8 @@ const testnet: Creds = {
 };
 
 const isDevServer = env.IS_DEV_SERVER;
+console.log(isDevServer);
+
 let creds: Creds = {
   AXLE_CONTRACT: "",
   AXLE_ZEUS_PRESALE: "",
