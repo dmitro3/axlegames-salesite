@@ -276,27 +276,14 @@ const AxleSale = () => {
       setHash(hash);
       setSuccess(true);
     } catch (err: any) {
-      console.log(err);
-      try {
-        const m = err.message;
-        return toast({
-          title: "Error",
-          description: String(m),
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
-      } catch (error) {
-        return toast({
-          title: "Error",
-          description: String(error),
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-          position: "top",
-        });
-      }
+      return toast({
+        title: "Error",
+        description: "Something went wrong, please contact the team",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+      });
     }
   };
 
