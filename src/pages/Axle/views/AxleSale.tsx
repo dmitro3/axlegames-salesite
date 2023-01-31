@@ -278,7 +278,7 @@ const AxleSale = () => {
     } catch (err: any) {
       console.log(err);
       try {
-        const m = err.data.message;
+        const m = err.message;
         return toast({
           title: "Error",
           description: String(m),
@@ -290,7 +290,7 @@ const AxleSale = () => {
       } catch (error) {
         return toast({
           title: "Error",
-          description: String(err),
+          description: String(error),
           status: "error",
           duration: 5000,
           isClosable: true,
