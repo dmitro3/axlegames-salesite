@@ -71,10 +71,14 @@ export const App = () => {
             href="https://medium.com/@axlegames/axle-token-how-to-buy-3c523cd0888"
           >
             <Box
-              p={4}
-              bg={brandingColors.newHighlightColor}
+              fontSize={{ base: "sm", sm: "md", md: "lg", lg: "xl" }}
+              px={3}
+              py={2}
+              bg={brandingColors.fgColor}
               fontFamily={`'Russo One', sans-serif`}
-              color={brandingColors.primaryTextColor}
+              color={brandingColors.primaryTwoTextColor}
+              border="none"
+              boxShadow={`0px 0px 6px ${brandingColors.primaryTwoTextColor}`}
               borderRadius="md"
               position={"fixed"}
               bottom="4%"
