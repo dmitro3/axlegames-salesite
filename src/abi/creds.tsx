@@ -36,7 +36,11 @@ let creds: Creds = {
   tokenAbi: null,
 };
 
-if (isDevServer === "true") {
+if (
+  isDevServer === "true" ||
+  isDevServer === undefined ||
+  isDevServer === null
+) {
   creds = testnet;
 } else {
   creds = mainnet;
