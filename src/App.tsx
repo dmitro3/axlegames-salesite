@@ -6,6 +6,7 @@ import AOS from "aos";
 import Marquee from "react-fast-marquee";
 
 import "aos/dist/aos.css";
+import { LinkIcon } from "@chakra-ui/icons";
 
 const Token = lazy(() => import("./pages/Axle/views/Token"));
 const Banner = lazy(() => import("./pages/Axle/dialog/Banner"));
@@ -64,6 +65,36 @@ export const App = () => {
           <Token />
           <UtilityGrid />
           <WhitePaper />
+          <a
+            target={"_blank"}
+            rel="noopener noreferrer"
+            href="https://medium.com/@axlegames/axle-token-how-to-buy-3c523cd0888"
+          >
+            <Box
+              px={6}
+              py={2}
+              bg={brandingColors.fgColor}
+              fontFamily={`'Russo One', sans-serif`}
+              color={brandingColors.primaryTwoTextColor}
+              border={`2px groove ${brandingColors.primaryTwoTextColor}`}
+              borderRadius="sm"
+              position={"fixed"}
+              bottom="4%"
+              right={"4%"}
+              cursor="pointer"
+              _hover={{
+                textDecoration: "underline",
+              }}
+              display="flex"
+              alignItems={"center"}
+              columnGap={".25rem"}
+            >
+              <LinkIcon />
+              <Text fontSize={{ base: "xs", md: "sm", lg: "md" }}>
+                How To Buy?
+              </Text>
+            </Box>
+          </a>
         </Flex>
       </Box>
     </ChakraProvider>
