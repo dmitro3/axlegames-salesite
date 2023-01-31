@@ -14,8 +14,8 @@ import {
 
 import {
   ArrowDownIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
+  // ChevronDownIcon,
+  // ChevronUpIcon,
   CopyIcon,
 } from "@chakra-ui/icons";
 
@@ -130,7 +130,20 @@ const AxleSale = () => {
   const [presaleContract, setPresaleContract] = useState<any>();
 
   const onBnbChange = (e: any) => {
-    const bnb = Number(e.target.value);
+    let bnb;
+    bnb = Number(e.target.value);
+    if (isNaN(bnb)) {
+      return toast({
+        title: "Warning",
+        description: "Enter only numbers",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+      });
+    }
+    console.log(e.target.value);
+    if (e.target.value === "0.") bnb = e.target.value;
     setBnb(bnb.toString());
     setAxle((bnb * 75000).toString());
   };
@@ -478,13 +491,9 @@ const AxleSale = () => {
                               onChange={onBnbChange}
                               fontSize="lg"
                               type={"number"}
-                              inputMode="decimal"
                               textAlign="right"
-                              value={bnb}
                               border="none"
                               outline={"none"}
-                              min={0.01}
-                              max={50}
                               _focus={{
                                 outline: "none",
                                 border: "none",
@@ -492,7 +501,7 @@ const AxleSale = () => {
                               }}
                             ></Input>
 
-                            <Box display={"flex"} flexDirection="column">
+                            {/* <Box display={"flex"} flexDirection="column">
                               <ChevronUpIcon
                                 cursor={"pointer"}
                                 onClick={() => {
@@ -513,7 +522,7 @@ const AxleSale = () => {
                                   }
                                 }}
                               />
-                            </Box>
+                            </Box> */}
                           </Box>
                         </Flex>
                       </Flex>
