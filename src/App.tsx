@@ -71,15 +71,13 @@ export const App = () => {
             href="https://medium.com/@axlegames/axle-token-how-to-buy-3c523cd0888"
           >
             <Box
-              fontSize={{ base: "sm", sm: "md", md: "lg", lg: "xl" }}
-              px={3}
+              px={6}
               py={2}
               bg={brandingColors.fgColor}
               fontFamily={`'Russo One', sans-serif`}
               color={brandingColors.primaryTwoTextColor}
-              border="none"
-              boxShadow={`0px 0px 6px ${brandingColors.primaryTwoTextColor}`}
-              borderRadius="md"
+              border={`2px groove ${brandingColors.primaryTwoTextColor}`}
+              borderRadius="sm"
               position={"fixed"}
               bottom="4%"
               right={"4%"}
@@ -89,11 +87,12 @@ export const App = () => {
               }}
               display="flex"
               alignItems={"center"}
-              justifyContent="space-evenly"
-              columnGap={".5rem"}
+              columnGap={".25rem"}
             >
-              <Text>How To Buy?</Text>
               <LinkIcon />
+              <Text fontSize={{ base: "xs", md: "sm", lg: "md" }}>
+                How To Buy?
+              </Text>
             </Box>
           </a>
         </Flex>
