@@ -64,6 +64,24 @@ export const App = () => {
           <Token />
           <UtilityGrid />
           <WhitePaper />
+          <Box
+            p={4}
+            bg={brandingColors.newHighlightColor}
+            fontFamily={`'Russo One', sans-serif`}
+            color={brandingColors.primaryTextColor}
+            borderRadius="md"
+            position={"fixed"}
+            bottom="4%"
+            right={"4%"}
+          >
+            <Text
+              _hover={{
+                textDecoration: "underline",
+              }}
+            >
+              How To Buy?
+            </Text>
+          </Box>
         </Flex>
       </Box>
     </ChakraProvider>

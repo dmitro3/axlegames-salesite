@@ -114,8 +114,8 @@ const web3Modal = new Web3Modal({
 const AxleSale = () => {
   const toast = useToast();
 
-  const [bnb, setBnb] = useState<any>("0.1");
-  const [axle, setAxle] = useState<any>(15000);
+  const [bnb, setBnb] = useState<any>("0.01");
+  const [axle, setAxle] = useState<any>(750);
   const [balance, setBalance] = useState(0);
   const [axleBalance, setAxleBalance] = useState<any>("0");
   const [refAddress, setRefAddress] = useState("");
@@ -244,10 +244,10 @@ const AxleSale = () => {
   };
 
   const buyAxle = async () => {
-    if (bnb < 0.1)
+    if (bnb < 0.01)
       return toast({
         title: "Warning",
-        description: "Minimum 0.1 BNB",
+        description: "Minimum 0.01 BNB",
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -483,7 +483,7 @@ const AxleSale = () => {
                               value={bnb}
                               border="none"
                               outline={"none"}
-                              min={0.1}
+                              min={0.01}
                               max={50}
                               _focus={{
                                 outline: "none",
@@ -498,8 +498,8 @@ const AxleSale = () => {
                                 onClick={() => {
                                   const n = Number(bnb);
                                   if (n < 50) {
-                                    setBnb((n + 0.1).toFixed(2));
-                                    setAxle(((n + 0.1) * 75000).toString());
+                                    setBnb((n + 0.05).toFixed(2));
+                                    setAxle(((n + 0.05) * 75000).toString());
                                   }
                                 }}
                               />
@@ -507,9 +507,9 @@ const AxleSale = () => {
                                 cursor={"pointer"}
                                 onClick={() => {
                                   const n = Number(bnb);
-                                  if (n > 0.1) {
-                                    setBnb((n - 0.1).toFixed(2));
-                                    setAxle(((n - 0.1) * 75000).toString());
+                                  if (n > 0.01) {
+                                    setBnb((n - 0.05).toFixed(2));
+                                    setAxle(((n - 0.05) * 75000).toString());
                                   }
                                 }}
                               />
@@ -521,7 +521,7 @@ const AxleSale = () => {
                         color={brandingColors.primaryTextColor}
                         fontSize="sm"
                       >
-                        Min 0.1 BNB | Max 50 BNB
+                        Min 0.01 BNB | Max 50 BNB
                       </Text>
                     </Box>
                     <Box
