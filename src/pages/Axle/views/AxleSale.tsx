@@ -276,9 +276,24 @@ const AxleSale = () => {
       setHash(hash);
       setSuccess(true);
     } catch (err: any) {
+      console.log(err);
+      let message = err;
+      try {
+        if (err?.code === "NETWORK_ERROR") {
+          message = "Please switch the network, to BSC Mainnet";
+        }
+        if (err?.data.method === "eth_estimateGas") {
+          message = err.message;
+        }
+        if (err?.data.code === -32000) {
+          message = err.data.message;
+        }
+      } catch (error) {
+        console.log(error);
+      }
       return toast({
         title: "Error",
-        description: "Something went wrong, please contact the team",
+        description: String(message),
         status: "error",
         duration: 5000,
         isClosable: true,
