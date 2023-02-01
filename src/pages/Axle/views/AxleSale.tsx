@@ -303,7 +303,7 @@ const AxleSale = () => {
   };
 
   const disconnectWeb3Modal = async (loaded: boolean = false) => {
-    await web3Modal.clearCachedProvider();
+    web3Modal.clearCachedProvider();
     if (!loaded) window.location.reload();
   };
 
