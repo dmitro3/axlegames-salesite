@@ -387,8 +387,10 @@ const AxleSale = () => {
           p={{ base: "0", md: "4" }}
           width="100%"
         >
-          <NFT />
-          <Box width="100%">
+          <Box display={{ base: "none", lg: "flex" }}>
+            <NFT />
+          </Box>
+          <Box mx="auto" my={4} width={{ base: "90%", md: "100%" }}>
             <Box
               justifyContent={"center"}
               alignSelf="center"
@@ -695,6 +697,10 @@ const AxleSale = () => {
                 </Text>
               </Box>
             ) : null}
+          </Box>
+
+          <Box display={{ base: "flex", lg: "none" }}>
+            <NFT />
           </Box>
 
           <Box display={{ base: "block", lg: "none" }}>
