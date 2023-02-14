@@ -507,7 +507,7 @@ const AxleSale = () => {
                         color={brandingColors.primaryTextColor}
                         fontSize="sm"
                       >
-                        Min 0.01 BNB | Max 50 BNB
+                        Min 0.1 BNB | Max 50 BNB
                       </Text>
                     </Box>
                     <Box
